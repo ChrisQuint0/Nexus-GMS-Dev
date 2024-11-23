@@ -95,6 +95,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="profForm.Designer.vb">
+      <DependentUpon>profForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="profForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="studentForm.Designer.vb">
+      <DependentUpon>studentForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="studentForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mainForm.resx">
@@ -105,6 +117,12 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="profForm.resx">
+      <DependentUpon>profForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="studentForm.resx">
+      <DependentUpon>studentForm.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +142,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\logInButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\studentFormBg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\logoutButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\profFormBg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\editButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\encodeButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\generateRButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
