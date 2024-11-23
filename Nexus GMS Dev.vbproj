@@ -73,6 +73,24 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adminForm.Designer.vb">
+      <DependentUpon>adminForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="adminForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="encodeGrades.Designer.vb">
+      <DependentUpon>encodeGrades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="encodeGrades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forgotPassForm.Designer.vb">
+      <DependentUpon>forgotPassForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forgotPassForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +127,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="adminForm.resx">
+      <DependentUpon>adminForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="encodeGrades.resx">
+      <DependentUpon>encodeGrades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forgotPassForm.resx">
+      <DependentUpon>forgotPassForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +187,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\generateRButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\adminForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\encodeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\assignIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\encodeAdminButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\assignProfButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\resetPassForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\cancelButtonPass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\submitButtonPass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\encodeGradesForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\midtermComponents.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

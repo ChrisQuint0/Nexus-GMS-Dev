@@ -50,6 +50,15 @@ Public Class mainForm
 
             mainSendToBack()
             profForm.Show()
+        ElseIf txtUsername.Text = "Fred" And txtPass.Text = "passadmin" Then
+            Dim adminForm = New adminForm(Me)
+
+            adminForm.MdiParent = Me
+            adminForm.StartPosition = FormStartPosition.Manual
+            adminForm.Location = New Point(0, 0)
+
+            mainSendToBack()
+            adminForm.Show()
         End If
     End Sub
 
@@ -72,16 +81,14 @@ Public Class mainForm
         checkBShowPass.BringToFront()
     End Sub
 
+    Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs) Handles lblForgotPassword.Click
+        Dim forgotPassForm As New forgotPassForm(Me)
 
-    Private Sub txtUsername_TextChanged(sender As Object, e As EventArgs) Handles txtUsername.TextChanged
+        forgotPassForm.MdiParent = Me
+        forgotPassForm.StartPosition = FormStartPosition.Manual
+        forgotPassForm.Location = New Point(0, 0)
 
-    End Sub
-
-    Private Sub txtPass_TextChanged(sender As Object, e As EventArgs) Handles txtPass.TextChanged
-
-    End Sub
-
-    Private Sub picLogInFormBg_Click(sender As Object, e As EventArgs) Handles picLogInFormBg.Click
-
+        mainSendToBack()
+        forgotPassForm.Show()
     End Sub
 End Class

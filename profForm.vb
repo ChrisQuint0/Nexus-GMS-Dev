@@ -27,4 +27,14 @@
             mainFormReference.mainBringToFront()
         End If
     End Sub
+
+    Private Sub btnEncodeGrades_Click(sender As Object, e As EventArgs) Handles btnEncodeGrades.Click
+        Dim encodeGradesForm As New encodeGrades()
+
+        encodeGradesForm.MdiParent = mainFormReference
+        encodeGradesForm.StartPosition = FormStartPosition.Manual
+        encodeGradesForm.Location = New Point(0, 0)
+
+        encodeGradesForm.Show()
+    End Sub
 End Class
