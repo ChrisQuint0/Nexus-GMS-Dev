@@ -48,6 +48,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=9.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector NET 9.1\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -79,10 +83,28 @@
     <Compile Include="adminForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="assignProf.Designer.vb">
+      <DependentUpon>assignProf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="assignProf.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editForm.Designer.vb">
+      <DependentUpon>editForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="editForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="encodeGrades.Designer.vb">
       <DependentUpon>encodeGrades.vb</DependentUpon>
     </Compile>
     <Compile Include="encodeGrades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="encodeNewData.Designer.vb">
+      <DependentUpon>encodeNewData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="encodeNewData.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forgotPassForm.Designer.vb">
@@ -119,6 +141,12 @@
     <Compile Include="profForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="profReportForm.Designer.vb">
+      <DependentUpon>profReportForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="profReportForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="studentForm.Designer.vb">
       <DependentUpon>studentForm.vb</DependentUpon>
     </Compile>
@@ -130,8 +158,17 @@
     <EmbeddedResource Include="adminForm.resx">
       <DependentUpon>adminForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="assignProf.resx">
+      <DependentUpon>assignProf.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editForm.resx">
+      <DependentUpon>editForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="encodeGrades.resx">
       <DependentUpon>encodeGrades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="encodeNewData.resx">
+      <DependentUpon>encodeNewData.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forgotPassForm.resx">
       <DependentUpon>forgotPassForm.vb</DependentUpon>
@@ -147,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="profForm.resx">
       <DependentUpon>profForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="profReportForm.resx">
+      <DependentUpon>profReportForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="studentForm.resx">
       <DependentUpon>studentForm.vb</DependentUpon>
@@ -217,6 +257,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\midtermComponents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\computeButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\finalsComponents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\backButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\saveButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\profReportForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\backButtonReport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\downloadButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\editForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\cancelEditButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\saveEditButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\encodeNewData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\addCourseButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\addFacultyButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\addStudentButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\assignForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\assignProfBackButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\assignProfSaveButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

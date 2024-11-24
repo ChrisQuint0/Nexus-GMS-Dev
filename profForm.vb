@@ -37,4 +37,24 @@
 
         encodeGradesForm.Show()
     End Sub
+
+    Private Sub btnGenerateReport_Click(sender As Object, e As EventArgs) Handles btnGenerateReport.Click
+        Dim profReportForm As New profReportForm()
+
+        profReportForm.MdiParent = mainFormReference
+        profReportForm.StartPosition = FormStartPosition.Manual
+        profReportForm.Location = New Point(0, 0)
+
+        profReportForm.Show()
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        Dim editForm As New editForm()
+
+        editForm.MdiParent = mainFormReference
+        editForm.StartPosition = FormStartPosition.Manual
+        editForm.Location = New Point(0, 0)
+
+        editForm.Show()
+    End Sub
 End Class

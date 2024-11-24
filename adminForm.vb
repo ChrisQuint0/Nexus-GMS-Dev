@@ -24,4 +24,48 @@
 
         Me.Bounds = Screen.PrimaryScreen.Bounds
     End Sub
+
+    Private Sub btnEncodeAdminCard_Click(sender As Object, e As EventArgs) Handles btnEncodeAdminCard.Click
+        Dim encodeNewDataForm As New encodeNewData()
+
+        encodeNewDataForm.MdiParent = mainFormReference
+        encodeNewDataForm.StartPosition = FormStartPosition.Manual
+        encodeNewDataForm.Location = New Point(0, 0)
+
+        encodeNewDataForm.Show()
+    End Sub
+
+    Private Sub btnEncodeAdmin_Click(sender As Object, e As EventArgs) Handles btnEncodeAdmin.Click
+        Dim encodeNewDataForm As New encodeNewData()
+
+        encodeNewDataForm.MdiParent = mainFormReference
+        encodeNewDataForm.StartPosition = FormStartPosition.Manual
+        encodeNewDataForm.Location = New Point(0, 0)
+
+        encodeNewDataForm.Show()
+    End Sub
+
+
+
+
+
+    Private Sub btnAssignAdminCard_Click(sender As Object, e As EventArgs) Handles btnAssignAdminCard.Click
+        Dim assignProfForm As New assignProf()
+
+        assignProfForm.MdiParent = mainFormReference
+        assignProfForm.StartPosition = FormStartPosition.Manual
+        assignProfForm.Location = New Point(0, 0)
+
+        assignProfForm.Show()
+    End Sub
+
+    Private Sub btnAssignProf_Click(sender As Object, e As EventArgs) Handles btnAssignProf.Click
+        Dim assignProfForm As New assignProf()
+
+        assignProfForm.MdiParent = mainFormReference
+        assignProfForm.StartPosition = FormStartPosition.Manual
+        assignProfForm.Location = New Point(0, 0)
+
+        assignProfForm.Show()
+    End Sub
 End Class

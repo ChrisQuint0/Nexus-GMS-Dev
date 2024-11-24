@@ -125,7 +125,7 @@ Partial Class adminForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.adminForm
-        Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.ClientSize = New System.Drawing.Size(1520, 845)
         Me.Controls.Add(Me.MonthCalendar1)
         Me.Controls.Add(Me.btnAssignProf)
         Me.Controls.Add(Me.btnEncodeAdmin)

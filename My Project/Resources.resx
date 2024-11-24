@@ -118,58 +118,109 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="encodeGradesForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\encodeGradesForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="profFormBg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\profFormBg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="assignProfButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\assignProfButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="editButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\editButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="saveEditButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\saveEditButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="encodeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\encodeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cancelButtonPass" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\cancelButtonPass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="assignIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\assignIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logoutButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\logoutButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="backButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\backButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="submitButtonPass" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\submitButtonPass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="adminForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\adminForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="encodeNewData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\encodeNewData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="encodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\encodeButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="studentFormBg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\studentFormBg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="addFacultyButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\addFacultyButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logInButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\logInButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cancelButtonPass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\cancelButtonPass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="resetPassForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\resetPassForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="backButtonReport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\backButtonReport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="encodeAdminButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\encodeAdminButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="addCourseButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\addCourseButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="generateRButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\generateRButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="finalsComponents" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\finalsComponents.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encodeGradesForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\encodeGradesForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encodeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\encodeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="computeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\computeButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="adminForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\adminForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logInFormBg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\logInFormBg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="encodeAdminButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\encodeAdminButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profFormBg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\profFormBg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logoutButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\logoutButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="resetPassForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\resetPassForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="assignIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\assignIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logInButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\logInButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downloadButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\downloadButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="midtermComponents" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\midtermComponents.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancelEditButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\cancelEditButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\editForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profReportForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\profReportForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\editButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="studentFormBg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\studentFormBg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="generateRButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\generateRButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="saveButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\saveButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addStudentButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\addStudentButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="assignForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\assignForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="assignProfBackButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\assignProfBackButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="assignProfSaveButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\assignProfSaveButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -181,7 +181,7 @@ Partial Class profForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.profFormBg1
-        Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.ClientSize = New System.Drawing.Size(1520, 845)
         Me.Controls.Add(Me.btnGenerateReport)
         Me.Controls.Add(Me.btnEncodeGrades)
         Me.Controls.Add(Me.calProf)
