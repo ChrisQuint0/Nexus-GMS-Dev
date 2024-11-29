@@ -16,6 +16,8 @@
         Me.WindowState = FormWindowState.Maximized
 
         Me.Bounds = Screen.PrimaryScreen.Bounds
+
+        Me.KeyPreview = True
     End Sub
 
     Private Sub btnCancelPass_Click(sender As Object, e As EventArgs) Handles btnCancelPass.Click
@@ -23,6 +25,15 @@
 
         If mainFormReference IsNot Nothing Then
             mainFormReference.mainBringToFront()
+        End If
+    End Sub
+
+    Private Sub forgotPassForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Escape Then
+            Dim confirmEsc = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If confirmEsc = DialogResult.Yes Then
+                Application.Exit()
+            End If
         End If
     End Sub
 End Class

@@ -25,6 +25,7 @@ Partial Class forgotPassForm
         Me.picForgotPassBg = New System.Windows.Forms.PictureBox()
         Me.btnCancelPass = New System.Windows.Forms.Button()
         Me.btnSubmitPass = New System.Windows.Forms.Button()
+        Me.txtResPass = New System.Windows.Forms.TextBox()
         CType(Me.picForgotPassBg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -61,12 +62,22 @@ Partial Class forgotPassForm
         Me.btnSubmitPass.TabIndex = 2
         Me.btnSubmitPass.UseVisualStyleBackColor = False
         '
+        'txtResPass
+        '
+        Me.txtResPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResPass.Location = New System.Drawing.Point(539, 491)
+        Me.txtResPass.Multiline = True
+        Me.txtResPass.Name = "txtResPass"
+        Me.txtResPass.Size = New System.Drawing.Size(427, 29)
+        Me.txtResPass.TabIndex = 3
+        '
         'forgotPassForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.resetPassForm
         Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.Controls.Add(Me.txtResPass)
         Me.Controls.Add(Me.btnSubmitPass)
         Me.Controls.Add(Me.btnCancelPass)
         Me.Controls.Add(Me.picForgotPassBg)
@@ -74,10 +85,12 @@ Partial Class forgotPassForm
         Me.Text = "forgotPassForm"
         CType(Me.picForgotPassBg, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents picForgotPassBg As PictureBox
     Friend WithEvents btnCancelPass As Button
     Friend WithEvents btnSubmitPass As Button
+    Friend WithEvents txtResPass As TextBox
 End Class
