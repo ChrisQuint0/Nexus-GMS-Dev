@@ -50,152 +50,167 @@ Partial Class encodeNewData
         Me.picEncodeNewData.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.encodeNewData
         Me.picEncodeNewData.Enabled = False
         Me.picEncodeNewData.Location = New System.Drawing.Point(0, 0)
+        Me.picEncodeNewData.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.picEncodeNewData.Name = "picEncodeNewData"
-        Me.picEncodeNewData.Size = New System.Drawing.Size(1536, 884)
+        Me.picEncodeNewData.Size = New System.Drawing.Size(2048, 1088)
         Me.picEncodeNewData.TabIndex = 0
         Me.picEncodeNewData.TabStop = False
         '
         'comboAccountType
         '
         Me.comboAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboAccountType.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboAccountType.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboAccountType.FormattingEnabled = True
         Me.comboAccountType.Items.AddRange(New Object() {"Student", "Professor", "Course"})
-        Me.comboAccountType.Location = New System.Drawing.Point(316, 240)
+        Me.comboAccountType.Location = New System.Drawing.Point(421, 295)
+        Me.comboAccountType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.comboAccountType.Name = "comboAccountType"
-        Me.comboAccountType.Size = New System.Drawing.Size(366, 30)
+        Me.comboAccountType.Size = New System.Drawing.Size(487, 33)
         Me.comboAccountType.TabIndex = 1
         '
         'txtNewStudID
         '
         Me.txtNewStudID.Enabled = False
-        Me.txtNewStudID.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewStudID.Location = New System.Drawing.Point(345, 438)
+        Me.txtNewStudID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewStudID.Location = New System.Drawing.Point(460, 539)
+        Me.txtNewStudID.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewStudID.Name = "txtNewStudID"
-        Me.txtNewStudID.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewStudID.Size = New System.Drawing.Size(359, 30)
         Me.txtNewStudID.TabIndex = 2
         '
         'txtNewStudName
         '
         Me.txtNewStudName.Enabled = False
-        Me.txtNewStudName.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewStudName.Location = New System.Drawing.Point(345, 485)
+        Me.txtNewStudName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewStudName.Location = New System.Drawing.Point(460, 597)
+        Me.txtNewStudName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewStudName.Name = "txtNewStudName"
-        Me.txtNewStudName.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewStudName.Size = New System.Drawing.Size(359, 30)
         Me.txtNewStudName.TabIndex = 3
         '
         'txtNewYrSec
         '
         Me.txtNewYrSec.Enabled = False
-        Me.txtNewYrSec.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewYrSec.Location = New System.Drawing.Point(345, 538)
+        Me.txtNewYrSec.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewYrSec.Location = New System.Drawing.Point(460, 662)
+        Me.txtNewYrSec.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewYrSec.Name = "txtNewYrSec"
-        Me.txtNewYrSec.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewYrSec.Size = New System.Drawing.Size(359, 30)
         Me.txtNewYrSec.TabIndex = 4
         '
         'txtNewFacultyID
         '
         Me.txtNewFacultyID.Enabled = False
-        Me.txtNewFacultyID.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewFacultyID.Location = New System.Drawing.Point(908, 240)
+        Me.txtNewFacultyID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewFacultyID.Location = New System.Drawing.Point(1211, 295)
+        Me.txtNewFacultyID.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewFacultyID.Name = "txtNewFacultyID"
-        Me.txtNewFacultyID.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewFacultyID.Size = New System.Drawing.Size(359, 30)
         Me.txtNewFacultyID.TabIndex = 5
         '
         'txtNewFacultyName
         '
         Me.txtNewFacultyName.Enabled = False
-        Me.txtNewFacultyName.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewFacultyName.Location = New System.Drawing.Point(909, 281)
+        Me.txtNewFacultyName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewFacultyName.Location = New System.Drawing.Point(1212, 346)
+        Me.txtNewFacultyName.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewFacultyName.Name = "txtNewFacultyName"
-        Me.txtNewFacultyName.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewFacultyName.Size = New System.Drawing.Size(359, 30)
         Me.txtNewFacultyName.TabIndex = 6
         '
         'comboNewStudDept
         '
         Me.comboNewStudDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboNewStudDept.Enabled = False
-        Me.comboNewStudDept.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboNewStudDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewStudDept.FormattingEnabled = True
         Me.comboNewStudDept.Items.AddRange(New Object() {"CCS", "CON"})
-        Me.comboNewStudDept.Location = New System.Drawing.Point(345, 588)
+        Me.comboNewStudDept.Location = New System.Drawing.Point(460, 724)
+        Me.comboNewStudDept.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.comboNewStudDept.Name = "comboNewStudDept"
-        Me.comboNewStudDept.Size = New System.Drawing.Size(270, 30)
+        Me.comboNewStudDept.Size = New System.Drawing.Size(359, 33)
         Me.comboNewStudDept.TabIndex = 7
         '
         'comboNewStudCourse
         '
         Me.comboNewStudCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboNewStudCourse.Enabled = False
-        Me.comboNewStudCourse.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboNewStudCourse.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewStudCourse.FormattingEnabled = True
         Me.comboNewStudCourse.Items.AddRange(New Object() {"1st Year IT Courseware", "2nd Year IT Courseware", "3rd Year IT Courseware", "4th Year IT Courseware", "1st Year CS Courseware", "2nd Year CS Courseware", "3rd Year CS Courseware", "4th Year CS Courseware"})
-        Me.comboNewStudCourse.Location = New System.Drawing.Point(345, 679)
+        Me.comboNewStudCourse.Location = New System.Drawing.Point(460, 836)
+        Me.comboNewStudCourse.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.comboNewStudCourse.Name = "comboNewStudCourse"
-        Me.comboNewStudCourse.Size = New System.Drawing.Size(270, 30)
+        Me.comboNewStudCourse.Size = New System.Drawing.Size(359, 33)
         Me.comboNewStudCourse.TabIndex = 8
         '
         'comboNewFacultyDept
         '
         Me.comboNewFacultyDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboNewFacultyDept.Enabled = False
-        Me.comboNewFacultyDept.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboNewFacultyDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewFacultyDept.FormattingEnabled = True
         Me.comboNewFacultyDept.Items.AddRange(New Object() {"College of Computer Studies", "College of Nursing"})
-        Me.comboNewFacultyDept.Location = New System.Drawing.Point(910, 319)
+        Me.comboNewFacultyDept.Location = New System.Drawing.Point(1213, 393)
+        Me.comboNewFacultyDept.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.comboNewFacultyDept.Name = "comboNewFacultyDept"
-        Me.comboNewFacultyDept.Size = New System.Drawing.Size(270, 30)
+        Me.comboNewFacultyDept.Size = New System.Drawing.Size(359, 33)
         Me.comboNewFacultyDept.TabIndex = 9
         '
         'comboNewFacultySub
         '
         Me.comboNewFacultySub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboNewFacultySub.Enabled = False
-        Me.comboNewFacultySub.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboNewFacultySub.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewFacultySub.FormattingEnabled = True
         Me.comboNewFacultySub.Items.AddRange(New Object() {"IT 202: Object Oriented Programming", "COMP 101: Introduction to Computing", "N101: Nursing 101"})
-        Me.comboNewFacultySub.Location = New System.Drawing.Point(910, 359)
+        Me.comboNewFacultySub.Location = New System.Drawing.Point(1213, 442)
+        Me.comboNewFacultySub.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.comboNewFacultySub.Name = "comboNewFacultySub"
-        Me.comboNewFacultySub.Size = New System.Drawing.Size(270, 30)
+        Me.comboNewFacultySub.Size = New System.Drawing.Size(359, 33)
         Me.comboNewFacultySub.TabIndex = 10
         '
         'comboNewStudProgram
         '
         Me.comboNewStudProgram.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboNewStudProgram.Enabled = False
-        Me.comboNewStudProgram.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboNewStudProgram.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewStudProgram.FormattingEnabled = True
         Me.comboNewStudProgram.Items.AddRange(New Object() {"BS in Information Technology", "BS in Computer Science", "BS in Nursing"})
-        Me.comboNewStudProgram.Location = New System.Drawing.Point(345, 637)
+        Me.comboNewStudProgram.Location = New System.Drawing.Point(460, 784)
+        Me.comboNewStudProgram.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.comboNewStudProgram.Name = "comboNewStudProgram"
-        Me.comboNewStudProgram.Size = New System.Drawing.Size(270, 30)
+        Me.comboNewStudProgram.Size = New System.Drawing.Size(359, 33)
         Me.comboNewStudProgram.TabIndex = 11
         '
         'txtNewCourseCode
         '
         Me.txtNewCourseCode.Enabled = False
-        Me.txtNewCourseCode.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewCourseCode.Location = New System.Drawing.Point(903, 572)
+        Me.txtNewCourseCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewCourseCode.Location = New System.Drawing.Point(1204, 704)
+        Me.txtNewCourseCode.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewCourseCode.Name = "txtNewCourseCode"
-        Me.txtNewCourseCode.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewCourseCode.Size = New System.Drawing.Size(359, 30)
         Me.txtNewCourseCode.TabIndex = 12
         '
         'txtNewCourseTitle
         '
         Me.txtNewCourseTitle.Enabled = False
-        Me.txtNewCourseTitle.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewCourseTitle.Location = New System.Drawing.Point(903, 613)
+        Me.txtNewCourseTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewCourseTitle.Location = New System.Drawing.Point(1204, 754)
+        Me.txtNewCourseTitle.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewCourseTitle.Name = "txtNewCourseTitle"
-        Me.txtNewCourseTitle.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewCourseTitle.Size = New System.Drawing.Size(359, 30)
         Me.txtNewCourseTitle.TabIndex = 13
         '
         'txtNewCourseCurYear
         '
         Me.txtNewCourseCurYear.Enabled = False
-        Me.txtNewCourseCurYear.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewCourseCurYear.Location = New System.Drawing.Point(902, 655)
+        Me.txtNewCourseCurYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewCourseCurYear.Location = New System.Drawing.Point(1203, 806)
+        Me.txtNewCourseCurYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtNewCourseCurYear.Name = "txtNewCourseCurYear"
-        Me.txtNewCourseCurYear.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewCourseCurYear.Size = New System.Drawing.Size(359, 30)
         Me.txtNewCourseCurYear.TabIndex = 14
         '
         'btnAddCourse
@@ -205,9 +220,10 @@ Partial Class encodeNewData
         Me.btnAddCourse.Enabled = False
         Me.btnAddCourse.FlatAppearance.BorderSize = 0
         Me.btnAddCourse.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddCourse.Location = New System.Drawing.Point(1203, 704)
+        Me.btnAddCourse.Location = New System.Drawing.Point(1604, 866)
+        Me.btnAddCourse.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnAddCourse.Name = "btnAddCourse"
-        Me.btnAddCourse.Size = New System.Drawing.Size(177, 43)
+        Me.btnAddCourse.Size = New System.Drawing.Size(236, 53)
         Me.btnAddCourse.TabIndex = 15
         Me.btnAddCourse.UseVisualStyleBackColor = False
         '
@@ -218,9 +234,10 @@ Partial Class encodeNewData
         Me.btnAddFaculty.Enabled = False
         Me.btnAddFaculty.FlatAppearance.BorderSize = 0
         Me.btnAddFaculty.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddFaculty.Location = New System.Drawing.Point(1203, 422)
+        Me.btnAddFaculty.Location = New System.Drawing.Point(1604, 519)
+        Me.btnAddFaculty.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnAddFaculty.Name = "btnAddFaculty"
-        Me.btnAddFaculty.Size = New System.Drawing.Size(177, 43)
+        Me.btnAddFaculty.Size = New System.Drawing.Size(236, 53)
         Me.btnAddFaculty.TabIndex = 16
         Me.btnAddFaculty.UseVisualStyleBackColor = False
         '
@@ -231,9 +248,10 @@ Partial Class encodeNewData
         Me.btnAddStud.Enabled = False
         Me.btnAddStud.FlatAppearance.BorderSize = 0
         Me.btnAddStud.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddStud.Location = New System.Drawing.Point(505, 715)
+        Me.btnAddStud.Location = New System.Drawing.Point(673, 880)
+        Me.btnAddStud.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnAddStud.Name = "btnAddStud"
-        Me.btnAddStud.Size = New System.Drawing.Size(177, 43)
+        Me.btnAddStud.Size = New System.Drawing.Size(236, 53)
         Me.btnAddStud.TabIndex = 17
         Me.btnAddStud.UseVisualStyleBackColor = False
         '
@@ -243,9 +261,10 @@ Partial Class encodeNewData
         Me.btnBackEncodeNew.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.backButtonReport
         Me.btnBackEncodeNew.FlatAppearance.BorderSize = 0
         Me.btnBackEncodeNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnBackEncodeNew.Location = New System.Drawing.Point(1242, 137)
+        Me.btnBackEncodeNew.Location = New System.Drawing.Point(1656, 169)
+        Me.btnBackEncodeNew.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnBackEncodeNew.Name = "btnBackEncodeNew"
-        Me.btnBackEncodeNew.Size = New System.Drawing.Size(159, 43)
+        Me.btnBackEncodeNew.Size = New System.Drawing.Size(212, 53)
         Me.btnBackEncodeNew.TabIndex = 18
         Me.btnBackEncodeNew.UseVisualStyleBackColor = False
         '
@@ -256,18 +275,19 @@ Partial Class encodeNewData
         Me.btnAdminGenReport.Enabled = False
         Me.btnAdminGenReport.FlatAppearance.BorderSize = 0
         Me.btnAdminGenReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdminGenReport.Location = New System.Drawing.Point(1058, 779)
+        Me.btnAdminGenReport.Location = New System.Drawing.Point(1411, 959)
+        Me.btnAdminGenReport.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnAdminGenReport.Name = "btnAdminGenReport"
-        Me.btnAdminGenReport.Size = New System.Drawing.Size(343, 43)
+        Me.btnAdminGenReport.Size = New System.Drawing.Size(457, 53)
         Me.btnAdminGenReport.TabIndex = 19
         Me.btnAdminGenReport.UseVisualStyleBackColor = False
         '
         'encodeNewData
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.encodeNewData
-        Me.ClientSize = New System.Drawing.Size(1520, 845)
+        Me.ClientSize = New System.Drawing.Size(1924, 1040)
         Me.Controls.Add(Me.btnAdminGenReport)
         Me.Controls.Add(Me.btnBackEncodeNew)
         Me.Controls.Add(Me.btnAddStud)
@@ -288,6 +308,7 @@ Partial Class encodeNewData
         Me.Controls.Add(Me.txtNewStudID)
         Me.Controls.Add(Me.comboAccountType)
         Me.Controls.Add(Me.picEncodeNewData)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "encodeNewData"
         Me.Text = "encodeNewData"
         CType(Me.picEncodeNewData, System.ComponentModel.ISupportInitialize).EndInit()
