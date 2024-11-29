@@ -1,6 +1,7 @@
 ﻿Imports System.Net.Security
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
+'This is the updated master branch 29/11/2024 3:46 PM
 Public Class mainForm
     Dim mainFormIns As mainForm
     Dim passwordShown As Boolean = False
