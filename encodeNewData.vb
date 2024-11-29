@@ -95,4 +95,16 @@
         txtNewCourseCurYear.Clear()
 
     End Sub
+
+    Private Sub encodeNewData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.KeyPreview = True
+    End Sub
+    Private Sub encodeNewData_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Escape Then
+            Dim confirmEsc = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If confirmEsc = DialogResult.Yes Then
+                Application.Exit()
+            End If
+        End If
+    End Sub
 End Class
