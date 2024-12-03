@@ -11,12 +11,15 @@
 
 
     End Sub
+
     Private Sub studentForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = FormBorderStyle.None
 
         Me.WindowState = FormWindowState.Maximized
 
         Me.Bounds = Screen.PrimaryScreen.Bounds
+
+        Me.KeyPreview = True
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
