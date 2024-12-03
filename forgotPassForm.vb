@@ -16,6 +16,8 @@
         Me.WindowState = FormWindowState.Maximized
 
         Me.Bounds = Screen.PrimaryScreen.Bounds
+
+        Me.KeyPreview = True
     End Sub
 
     Private Sub btnCancelPass_Click(sender As Object, e As EventArgs) Handles btnCancelPass.Click

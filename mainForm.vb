@@ -19,6 +19,8 @@ Public Class mainForm
         IsMdiContainer = True
 
         'Me.TopMost = True
+
+        Me.KeyPreview = True
     End Sub
 
     Private Sub checkBShowPass_CheckedChanged(sender As Object, e As EventArgs) Handles checkBShowPass.CheckedChanged
@@ -92,5 +94,13 @@ Public Class mainForm
 
         mainSendToBack()
         forgotPassForm.Show()
+    End Sub
+    Private Sub mainForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Escape Then
+            Dim confirmEsc = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If confirmEsc = DialogResult.Yes Then
+                Application.Exit()
+            End If
+        End If
     End Sub
 End Class
