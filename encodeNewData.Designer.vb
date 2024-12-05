@@ -46,6 +46,7 @@ Partial Class encodeNewData
         Me.txtNewStudPassword = New System.Windows.Forms.TextBox()
         Me.txtNewFacultyUsername = New System.Windows.Forms.TextBox()
         Me.txtNewFacultyPass = New System.Windows.Forms.TextBox()
+        Me.txtNewCoursewareId = New System.Windows.Forms.TextBox()
         CType(Me.picEncodeNewData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -121,7 +122,6 @@ Partial Class encodeNewData
         Me.comboNewStudDept.Enabled = False
         Me.comboNewStudDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewStudDept.FormattingEnabled = True
-        Me.comboNewStudDept.Items.AddRange(New Object() {"CCS", "CON"})
         Me.comboNewStudDept.Location = New System.Drawing.Point(347, 529)
         Me.comboNewStudDept.Name = "comboNewStudDept"
         Me.comboNewStudDept.Size = New System.Drawing.Size(270, 28)
@@ -169,7 +169,6 @@ Partial Class encodeNewData
         Me.comboNewStudProgram.Enabled = False
         Me.comboNewStudProgram.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewStudProgram.FormattingEnabled = True
-        Me.comboNewStudProgram.Items.AddRange(New Object() {"BS in Information Technology", "BS in Computer Science", "BS in Nursing"})
         Me.comboNewStudProgram.Location = New System.Drawing.Point(347, 578)
         Me.comboNewStudProgram.Name = "comboNewStudProgram"
         Me.comboNewStudProgram.Size = New System.Drawing.Size(270, 28)
@@ -302,12 +301,22 @@ Partial Class encodeNewData
         Me.txtNewFacultyPass.Size = New System.Drawing.Size(270, 26)
         Me.txtNewFacultyPass.TabIndex = 23
         '
+        'txtNewCoursewareId
+        '
+        Me.txtNewCoursewareId.Enabled = False
+        Me.txtNewCoursewareId.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewCoursewareId.Location = New System.Drawing.Point(902, 699)
+        Me.txtNewCoursewareId.Name = "txtNewCoursewareId"
+        Me.txtNewCoursewareId.Size = New System.Drawing.Size(270, 26)
+        Me.txtNewCoursewareId.TabIndex = 24
+        '
         'encodeNewData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.encodeNewData
         Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.Controls.Add(Me.txtNewCoursewareId)
         Me.Controls.Add(Me.txtNewFacultyPass)
         Me.Controls.Add(Me.txtNewFacultyUsername)
         Me.Controls.Add(Me.txtNewStudPassword)
@@ -364,4 +373,5 @@ Partial Class encodeNewData
     Friend WithEvents txtNewStudPassword As TextBox
     Friend WithEvents txtNewFacultyUsername As TextBox
     Friend WithEvents txtNewFacultyPass As TextBox
+    Friend WithEvents txtNewCoursewareId As TextBox
 End Class

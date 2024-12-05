@@ -1,4 +1,12 @@
-﻿Public Class encodeNewData
+﻿Imports MySql.Data.MySqlClient
+
+Public Class encodeNewData
+    Dim cmd As New MySqlCommand
+    Dim dt As New DataTable
+    Dim da As New MySqlDataAdapter
+    Dim str As String
+    Dim x As Integer
+    Dim con As New MySqlConnection("server=localhost; user=root; database=nexus_db")
     Private Sub btnBackEncodeNew_Click(sender As Object, e As EventArgs) Handles btnBackEncodeNew.Click
         Me.Close()
     End Sub
@@ -93,6 +101,7 @@
         txtNewCourseCode.Enabled = True
         txtNewCourseTitle.Enabled = True
         txtNewCourseCurYear.Enabled = True
+        txtNewCoursewareId.Enabled = True
         btnAddCourse.Enabled = True
     End Sub
 
@@ -110,6 +119,33 @@
 
     Private Sub encodeNewData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.KeyPreview = True
+
+        Try
+            ' Open the connection
+            con.Open()
+
+            ' Define the SQL query to retrieve department names
+            Dim query As String = "SELECT Dept_name FROM department"
+
+            ' Create the command and pass the query and connection
+            Using cmd As New MySqlCommand(query, con)
+                ' Execute the query and get the result
+                Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    ' Loop through the results and add to ComboBox
+                    While reader.Read()
+                        comboNewStudDept.Items.Add(reader("Dept_name").ToString())
+                    End While
+                End Using
+            End Using
+
+        Catch ex As MySqlException
+            ' Handle any errors that may have occurred
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            ' Close the connection
+            con.Close()
+        End Try
+
     End Sub
     Private Sub encodeNewData_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.Escape Then
@@ -120,7 +156,98 @@
         End If
     End Sub
 
-    Private Sub txtNewYrSec_TextChanged(sender As Object, e As EventArgs) Handles txtNewYrSec.TextChanged
+    Private Sub btnAddCourse_Click(sender As Object, e As EventArgs) Handles btnAddCourse.Click
+        If txtNewCourseCode.Text.Length <> 0 And txtNewCourseTitle.Text.Length <> 0 And txtNewCourseCurYear.Text.Length <> 0 And txtNewCoursewareId.Text.Length <> 0 Then
+            Try
+                con.Open()
+                str = "INSERT INTO subjects(Subject_ID, Subject_Name, Curriculum_year, course_ware_id) values('" & txtNewCourseCode.Text & "','" & txtNewCourseTitle.Text & "','" & txtNewCourseCurYear.Text & "'," & txtNewCoursewareId.Text & ");"
+
+                cmd.Connection = con
+                cmd.CommandText = str
+                cmd.ExecuteNonQuery()
+                con.Close()
+
+                MessageBox.Show("New Course Added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                txtNewCourseCode.Clear()
+                txtNewCourseTitle.Clear()
+                txtNewCourseCurYear.Clear()
+                txtNewCoursewareId.Clear()
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtNewCourseCode.Clear()
+                txtNewCourseTitle.Clear()
+                txtNewCourseCurYear.Clear()
+                txtNewCoursewareId.Clear()
+            End Try
+        End If
+    End Sub
+
+    Private Sub comboNewStudDept_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboNewStudDept.SelectedIndexChanged
+        If comboNewStudDept.SelectedItem = "CCS (College of Computer Studies)" Then
+            loadPrograms(1)
+        ElseIf comboNewStudDept.SelectedItem = "CON (College of Nursing)" Then
+            loadPrograms(2)
+        End If
+    End Sub
+
+    Public Sub loadPrograms(deptId As Integer)
+        comboNewStudProgram.Items.Clear()
+
+        If deptId = 1 Then
+            Try
+                ' Open the connection
+                con.Open()
+
+                ' Define the SQL query to retrieve department names
+                Dim query As String = "SELECT Course_name FROM courses WHERE Dept_ID = 1"
+
+                ' Create the command and pass the query and connection
+                Using cmd As New MySqlCommand(query, con)
+                    ' Execute the query and get the result
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        ' Loop through the results and add to ComboBox
+                        While reader.Read()
+                            comboNewStudProgram.Items.Add(reader("Course_name").ToString())
+                        End While
+                    End Using
+                End Using
+
+            Catch ex As MySqlException
+                ' Handle any errors that may have occurred
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
+                ' Close the connection
+                con.Close()
+            End Try
+        ElseIf deptId = 2 Then
+            Try
+                ' Open the connection
+                con.Open()
+
+                ' Define the SQL query to retrieve department names
+                Dim query As String = "SELECT Course_name FROM courses WHERE Dept_ID = 2"
+
+                ' Create the command and pass the query and connection
+                Using cmd As New MySqlCommand(query, con)
+                    ' Execute the query and get the result
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        ' Loop through the results and add to ComboBox
+                        While reader.Read()
+                            comboNewStudProgram.Items.Add(reader("Course_name").ToString())
+                        End While
+                    End Using
+                End Using
+
+            Catch ex As MySqlException
+                ' Handle any errors that may have occurred
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
+                ' Close the connection
+                con.Close()
+            End Try
+
+        End If
+
 
     End Sub
 End Class
