@@ -62,9 +62,9 @@ Partial Class encodeGrades
         Me.comboSem = New System.Windows.Forms.ComboBox()
         Me.lblMidGrade = New System.Windows.Forms.Label()
         Me.lblFinGrade = New System.Windows.Forms.Label()
-        Me.txtSemGrade = New System.Windows.Forms.Label()
-        Me.txtCompGrade = New System.Windows.Forms.Label()
-        Me.txCollegeGrade = New System.Windows.Forms.Label()
+        Me.lblSemGrade = New System.Windows.Forms.Label()
+        Me.lblCompGrade = New System.Windows.Forms.Label()
+        Me.lblCollegeGrade = New System.Windows.Forms.Label()
         Me.maskedTxtStudId = New System.Windows.Forms.MaskedTextBox()
         Me.txtStudName = New System.Windows.Forms.TextBox()
         Me.comboMidNumQuiz = New System.Windows.Forms.ComboBox()
@@ -488,41 +488,41 @@ Partial Class encodeGrades
         Me.lblFinGrade.TabIndex = 54
         Me.lblFinGrade.Text = "00.00"
         '
-        'txtSemGrade
+        'lblSemGrade
         '
-        Me.txtSemGrade.AutoSize = True
-        Me.txtSemGrade.BackColor = System.Drawing.Color.Transparent
-        Me.txtSemGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSemGrade.ForeColor = System.Drawing.Color.White
-        Me.txtSemGrade.Location = New System.Drawing.Point(439, 800)
-        Me.txtSemGrade.Name = "txtSemGrade"
-        Me.txtSemGrade.Size = New System.Drawing.Size(57, 22)
-        Me.txtSemGrade.TabIndex = 55
-        Me.txtSemGrade.Text = "00.00"
+        Me.lblSemGrade.AutoSize = True
+        Me.lblSemGrade.BackColor = System.Drawing.Color.Transparent
+        Me.lblSemGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSemGrade.ForeColor = System.Drawing.Color.White
+        Me.lblSemGrade.Location = New System.Drawing.Point(439, 800)
+        Me.lblSemGrade.Name = "lblSemGrade"
+        Me.lblSemGrade.Size = New System.Drawing.Size(57, 22)
+        Me.lblSemGrade.TabIndex = 55
+        Me.lblSemGrade.Text = "00.00"
         '
-        'txtCompGrade
+        'lblCompGrade
         '
-        Me.txtCompGrade.AutoSize = True
-        Me.txtCompGrade.BackColor = System.Drawing.Color.Transparent
-        Me.txtCompGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCompGrade.ForeColor = System.Drawing.Color.White
-        Me.txtCompGrade.Location = New System.Drawing.Point(749, 800)
-        Me.txtCompGrade.Name = "txtCompGrade"
-        Me.txtCompGrade.Size = New System.Drawing.Size(57, 22)
-        Me.txtCompGrade.TabIndex = 56
-        Me.txtCompGrade.Text = "00.00"
+        Me.lblCompGrade.AutoSize = True
+        Me.lblCompGrade.BackColor = System.Drawing.Color.Transparent
+        Me.lblCompGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCompGrade.ForeColor = System.Drawing.Color.White
+        Me.lblCompGrade.Location = New System.Drawing.Point(749, 800)
+        Me.lblCompGrade.Name = "lblCompGrade"
+        Me.lblCompGrade.Size = New System.Drawing.Size(57, 22)
+        Me.lblCompGrade.TabIndex = 56
+        Me.lblCompGrade.Text = "00.00"
         '
-        'txCollegeGrade
+        'lblCollegeGrade
         '
-        Me.txCollegeGrade.AutoSize = True
-        Me.txCollegeGrade.BackColor = System.Drawing.Color.Transparent
-        Me.txCollegeGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txCollegeGrade.ForeColor = System.Drawing.Color.White
-        Me.txCollegeGrade.Location = New System.Drawing.Point(823, 800)
-        Me.txCollegeGrade.Name = "txCollegeGrade"
-        Me.txCollegeGrade.Size = New System.Drawing.Size(57, 22)
-        Me.txCollegeGrade.TabIndex = 57
-        Me.txCollegeGrade.Text = "00.00"
+        Me.lblCollegeGrade.AutoSize = True
+        Me.lblCollegeGrade.BackColor = System.Drawing.Color.Transparent
+        Me.lblCollegeGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCollegeGrade.ForeColor = System.Drawing.Color.White
+        Me.lblCollegeGrade.Location = New System.Drawing.Point(823, 800)
+        Me.lblCollegeGrade.Name = "lblCollegeGrade"
+        Me.lblCollegeGrade.Size = New System.Drawing.Size(57, 22)
+        Me.lblCollegeGrade.TabIndex = 57
+        Me.lblCollegeGrade.Text = "00.00"
         '
         'maskedTxtStudId
         '
@@ -632,9 +632,9 @@ Partial Class encodeGrades
         Me.Controls.Add(Me.comboMidNumQuiz)
         Me.Controls.Add(Me.txtStudName)
         Me.Controls.Add(Me.maskedTxtStudId)
-        Me.Controls.Add(Me.txCollegeGrade)
-        Me.Controls.Add(Me.txtCompGrade)
-        Me.Controls.Add(Me.txtSemGrade)
+        Me.Controls.Add(Me.lblCollegeGrade)
+        Me.Controls.Add(Me.lblCompGrade)
+        Me.Controls.Add(Me.lblSemGrade)
         Me.Controls.Add(Me.lblFinGrade)
         Me.Controls.Add(Me.lblMidGrade)
         Me.Controls.Add(Me.comboSem)
@@ -723,9 +723,9 @@ Partial Class encodeGrades
     Friend WithEvents comboSem As ComboBox
     Friend WithEvents lblMidGrade As Label
     Friend WithEvents lblFinGrade As Label
-    Friend WithEvents txtSemGrade As Label
-    Friend WithEvents txtCompGrade As Label
-    Friend WithEvents txCollegeGrade As Label
+    Friend WithEvents lblSemGrade As Label
+    Friend WithEvents lblCompGrade As Label
+    Friend WithEvents lblCollegeGrade As Label
     Friend WithEvents maskedTxtStudId As MaskedTextBox
     Friend WithEvents txtStudName As TextBox
     Friend WithEvents comboMidNumQuiz As ComboBox
