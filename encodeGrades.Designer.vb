@@ -40,8 +40,8 @@ Partial Class encodeGrades
         Me.txtMQ4Score = New System.Windows.Forms.TextBox()
         Me.txtMQ4Total = New System.Windows.Forms.TextBox()
         Me.txtMExamScore = New System.Windows.Forms.TextBox()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
+        Me.txtMExamTotal = New System.Windows.Forms.TextBox()
+        Me.txtMExamPerc = New System.Windows.Forms.TextBox()
         Me.txtMQuizPerc = New System.Windows.Forms.TextBox()
         Me.txtFAtt = New System.Windows.Forms.TextBox()
         Me.txtFLab = New System.Windows.Forms.TextBox()
@@ -59,9 +59,9 @@ Partial Class encodeGrades
         Me.txtFExamScore = New System.Windows.Forms.TextBox()
         Me.txtFExamTotal = New System.Windows.Forms.TextBox()
         Me.txtFExamPerc = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.txtMidGrade = New System.Windows.Forms.Label()
-        Me.txtFinGrade = New System.Windows.Forms.Label()
+        Me.comboSem = New System.Windows.Forms.ComboBox()
+        Me.lblMidGrade = New System.Windows.Forms.Label()
+        Me.lblFinGrade = New System.Windows.Forms.Label()
         Me.txtSemGrade = New System.Windows.Forms.Label()
         Me.txtCompGrade = New System.Windows.Forms.Label()
         Me.txCollegeGrade = New System.Windows.Forms.Label()
@@ -99,6 +99,7 @@ Partial Class encodeGrades
         'comboCourseEncode
         '
         Me.comboCourseEncode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboCourseEncode.Enabled = False
         Me.comboCourseEncode.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboCourseEncode.FormattingEnabled = True
         Me.comboCourseEncode.Items.AddRange(New Object() {"IT 202: Object Oriented Programming"})
@@ -110,6 +111,7 @@ Partial Class encodeGrades
         'comboProgramEncode
         '
         Me.comboProgramEncode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboProgramEncode.Enabled = False
         Me.comboProgramEncode.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboProgramEncode.FormattingEnabled = True
         Me.comboProgramEncode.Items.AddRange(New Object() {"BS in Information Technology", "BS in Computer Science"})
@@ -121,6 +123,7 @@ Partial Class encodeGrades
         'comboSectionEncode
         '
         Me.comboSectionEncode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboSectionEncode.Enabled = False
         Me.comboSectionEncode.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboSectionEncode.FormattingEnabled = True
         Me.comboSectionEncode.Items.AddRange(New Object() {"1A", "2A", "3A", "4A"})
@@ -131,6 +134,7 @@ Partial Class encodeGrades
         '
         'txtMidAtt
         '
+        Me.txtMidAtt.Enabled = False
         Me.txtMidAtt.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMidAtt.Location = New System.Drawing.Point(370, 499)
         Me.txtMidAtt.MaxLength = 5
@@ -140,6 +144,7 @@ Partial Class encodeGrades
         '
         'txtMLab
         '
+        Me.txtMLab.Enabled = False
         Me.txtMLab.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMLab.Location = New System.Drawing.Point(370, 558)
         Me.txtMLab.MaxLength = 5
@@ -149,6 +154,7 @@ Partial Class encodeGrades
         '
         'txtMCase
         '
+        Me.txtMCase.Enabled = False
         Me.txtMCase.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMCase.Location = New System.Drawing.Point(370, 615)
         Me.txtMCase.MaxLength = 5
@@ -158,6 +164,7 @@ Partial Class encodeGrades
         '
         'txtMRec
         '
+        Me.txtMRec.Enabled = False
         Me.txtMRec.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMRec.Location = New System.Drawing.Point(370, 670)
         Me.txtMRec.MaxLength = 5
@@ -167,6 +174,7 @@ Partial Class encodeGrades
         '
         'txtMQ1Score
         '
+        Me.txtMQ1Score.Enabled = False
         Me.txtMQ1Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ1Score.Location = New System.Drawing.Point(463, 573)
         Me.txtMQ1Score.MaxLength = 5
@@ -176,6 +184,7 @@ Partial Class encodeGrades
         '
         'txtMQ1Total
         '
+        Me.txtMQ1Total.Enabled = False
         Me.txtMQ1Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ1Total.Location = New System.Drawing.Point(549, 573)
         Me.txtMQ1Total.MaxLength = 5
@@ -185,6 +194,7 @@ Partial Class encodeGrades
         '
         'txtMQ2Score
         '
+        Me.txtMQ2Score.Enabled = False
         Me.txtMQ2Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ2Score.Location = New System.Drawing.Point(624, 573)
         Me.txtMQ2Score.MaxLength = 5
@@ -194,6 +204,7 @@ Partial Class encodeGrades
         '
         'txtMQ2Total
         '
+        Me.txtMQ2Total.Enabled = False
         Me.txtMQ2Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ2Total.Location = New System.Drawing.Point(709, 572)
         Me.txtMQ2Total.MaxLength = 5
@@ -203,6 +214,7 @@ Partial Class encodeGrades
         '
         'txtMQ3Score
         '
+        Me.txtMQ3Score.Enabled = False
         Me.txtMQ3Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ3Score.Location = New System.Drawing.Point(466, 643)
         Me.txtMQ3Score.MaxLength = 5
@@ -212,6 +224,7 @@ Partial Class encodeGrades
         '
         'txtMQ3Total
         '
+        Me.txtMQ3Total.Enabled = False
         Me.txtMQ3Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ3Total.Location = New System.Drawing.Point(551, 644)
         Me.txtMQ3Total.MaxLength = 5
@@ -221,6 +234,7 @@ Partial Class encodeGrades
         '
         'txtMQ4Score
         '
+        Me.txtMQ4Score.Enabled = False
         Me.txtMQ4Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ4Score.Location = New System.Drawing.Point(627, 642)
         Me.txtMQ4Score.MaxLength = 5
@@ -230,6 +244,7 @@ Partial Class encodeGrades
         '
         'txtMQ4Total
         '
+        Me.txtMQ4Total.Enabled = False
         Me.txtMQ4Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMQ4Total.Location = New System.Drawing.Point(711, 642)
         Me.txtMQ4Total.MaxLength = 5
@@ -239,6 +254,7 @@ Partial Class encodeGrades
         '
         'txtMExamScore
         '
+        Me.txtMExamScore.Enabled = False
         Me.txtMExamScore.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtMExamScore.Location = New System.Drawing.Point(402, 726)
         Me.txtMExamScore.MaxLength = 5
@@ -246,24 +262,25 @@ Partial Class encodeGrades
         Me.txtMExamScore.Size = New System.Drawing.Size(43, 21)
         Me.txtMExamScore.TabIndex = 32
         '
-        'TextBox13
+        'txtMExamTotal
         '
-        Me.TextBox13.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox13.Location = New System.Drawing.Point(487, 726)
-        Me.TextBox13.MaxLength = 5
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(43, 21)
-        Me.TextBox13.TabIndex = 33
+        Me.txtMExamTotal.Enabled = False
+        Me.txtMExamTotal.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtMExamTotal.Location = New System.Drawing.Point(487, 726)
+        Me.txtMExamTotal.MaxLength = 5
+        Me.txtMExamTotal.Name = "txtMExamTotal"
+        Me.txtMExamTotal.Size = New System.Drawing.Size(43, 21)
+        Me.txtMExamTotal.TabIndex = 33
         '
-        'TextBox14
+        'txtMExamPerc
         '
-        Me.TextBox14.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox14.Location = New System.Drawing.Point(561, 726)
-        Me.TextBox14.MaxLength = 5
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.ReadOnly = True
-        Me.TextBox14.Size = New System.Drawing.Size(43, 21)
-        Me.TextBox14.TabIndex = 34
+        Me.txtMExamPerc.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtMExamPerc.Location = New System.Drawing.Point(561, 726)
+        Me.txtMExamPerc.MaxLength = 5
+        Me.txtMExamPerc.Name = "txtMExamPerc"
+        Me.txtMExamPerc.ReadOnly = True
+        Me.txtMExamPerc.Size = New System.Drawing.Size(43, 21)
+        Me.txtMExamPerc.TabIndex = 34
         '
         'txtMQuizPerc
         '
@@ -277,6 +294,7 @@ Partial Class encodeGrades
         '
         'txtFAtt
         '
+        Me.txtFAtt.Enabled = False
         Me.txtFAtt.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFAtt.Location = New System.Drawing.Point(966, 498)
         Me.txtFAtt.MaxLength = 5
@@ -286,6 +304,7 @@ Partial Class encodeGrades
         '
         'txtFLab
         '
+        Me.txtFLab.Enabled = False
         Me.txtFLab.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFLab.Location = New System.Drawing.Point(966, 557)
         Me.txtFLab.MaxLength = 5
@@ -295,6 +314,7 @@ Partial Class encodeGrades
         '
         'txtFCase
         '
+        Me.txtFCase.Enabled = False
         Me.txtFCase.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFCase.Location = New System.Drawing.Point(966, 613)
         Me.txtFCase.MaxLength = 5
@@ -304,6 +324,7 @@ Partial Class encodeGrades
         '
         'txtFRec
         '
+        Me.txtFRec.Enabled = False
         Me.txtFRec.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFRec.Location = New System.Drawing.Point(966, 669)
         Me.txtFRec.MaxLength = 5
@@ -323,6 +344,7 @@ Partial Class encodeGrades
         '
         'txtFQ1Score
         '
+        Me.txtFQ1Score.Enabled = False
         Me.txtFQ1Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQ1Score.Location = New System.Drawing.Point(1058, 572)
         Me.txtFQ1Score.MaxLength = 5
@@ -332,6 +354,7 @@ Partial Class encodeGrades
         '
         'txtFQuiz1Total
         '
+        Me.txtFQuiz1Total.Enabled = False
         Me.txtFQuiz1Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQuiz1Total.Location = New System.Drawing.Point(1145, 571)
         Me.txtFQuiz1Total.MaxLength = 5
@@ -341,6 +364,7 @@ Partial Class encodeGrades
         '
         'txtFQuiz2Score
         '
+        Me.txtFQuiz2Score.Enabled = False
         Me.txtFQuiz2Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQuiz2Score.Location = New System.Drawing.Point(1220, 572)
         Me.txtFQuiz2Score.MaxLength = 5
@@ -350,6 +374,7 @@ Partial Class encodeGrades
         '
         'txtFQuiz2Total
         '
+        Me.txtFQuiz2Total.Enabled = False
         Me.txtFQuiz2Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQuiz2Total.Location = New System.Drawing.Point(1305, 571)
         Me.txtFQuiz2Total.MaxLength = 5
@@ -359,6 +384,7 @@ Partial Class encodeGrades
         '
         'txtFQuiz3Score
         '
+        Me.txtFQuiz3Score.Enabled = False
         Me.txtFQuiz3Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQuiz3Score.Location = New System.Drawing.Point(1062, 643)
         Me.txtFQuiz3Score.MaxLength = 5
@@ -368,6 +394,7 @@ Partial Class encodeGrades
         '
         'txtFQuiz3Total
         '
+        Me.txtFQuiz3Total.Enabled = False
         Me.txtFQuiz3Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQuiz3Total.Location = New System.Drawing.Point(1146, 643)
         Me.txtFQuiz3Total.MaxLength = 5
@@ -377,6 +404,7 @@ Partial Class encodeGrades
         '
         'txtFQuiz4Score
         '
+        Me.txtFQuiz4Score.Enabled = False
         Me.txtFQuiz4Score.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQuiz4Score.Location = New System.Drawing.Point(1223, 641)
         Me.txtFQuiz4Score.MaxLength = 5
@@ -386,6 +414,7 @@ Partial Class encodeGrades
         '
         'txtFQuiz4Total
         '
+        Me.txtFQuiz4Total.Enabled = False
         Me.txtFQuiz4Total.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFQuiz4Total.Location = New System.Drawing.Point(1308, 640)
         Me.txtFQuiz4Total.MaxLength = 5
@@ -395,6 +424,7 @@ Partial Class encodeGrades
         '
         'txtFExamScore
         '
+        Me.txtFExamScore.Enabled = False
         Me.txtFExamScore.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFExamScore.Location = New System.Drawing.Point(965, 727)
         Me.txtFExamScore.MaxLength = 5
@@ -404,6 +434,7 @@ Partial Class encodeGrades
         '
         'txtFExamTotal
         '
+        Me.txtFExamTotal.Enabled = False
         Me.txtFExamTotal.Font = New System.Drawing.Font("Montserrat", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFExamTotal.Location = New System.Drawing.Point(1049, 728)
         Me.txtFExamTotal.MaxLength = 5
@@ -421,40 +452,41 @@ Partial Class encodeGrades
         Me.txtFExamPerc.Size = New System.Drawing.Size(43, 21)
         Me.txtFExamPerc.TabIndex = 51
         '
-        'ComboBox1
+        'comboSem
         '
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"1st Semester", "2nd Semester"})
-        Me.ComboBox1.Location = New System.Drawing.Point(593, 379)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(385, 30)
-        Me.ComboBox1.TabIndex = 52
+        Me.comboSem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboSem.Enabled = False
+        Me.comboSem.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboSem.FormattingEnabled = True
+        Me.comboSem.Items.AddRange(New Object() {"1st Semester", "2nd Semester"})
+        Me.comboSem.Location = New System.Drawing.Point(593, 379)
+        Me.comboSem.Name = "comboSem"
+        Me.comboSem.Size = New System.Drawing.Size(385, 30)
+        Me.comboSem.TabIndex = 52
         '
-        'txtMidGrade
+        'lblMidGrade
         '
-        Me.txtMidGrade.AutoSize = True
-        Me.txtMidGrade.BackColor = System.Drawing.Color.Transparent
-        Me.txtMidGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtMidGrade.ForeColor = System.Drawing.Color.White
-        Me.txtMidGrade.Location = New System.Drawing.Point(451, 433)
-        Me.txtMidGrade.Name = "txtMidGrade"
-        Me.txtMidGrade.Size = New System.Drawing.Size(57, 22)
-        Me.txtMidGrade.TabIndex = 53
-        Me.txtMidGrade.Text = "00.00"
+        Me.lblMidGrade.AutoSize = True
+        Me.lblMidGrade.BackColor = System.Drawing.Color.Transparent
+        Me.lblMidGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMidGrade.ForeColor = System.Drawing.Color.White
+        Me.lblMidGrade.Location = New System.Drawing.Point(451, 433)
+        Me.lblMidGrade.Name = "lblMidGrade"
+        Me.lblMidGrade.Size = New System.Drawing.Size(57, 22)
+        Me.lblMidGrade.TabIndex = 53
+        Me.lblMidGrade.Text = "00.00"
         '
-        'txtFinGrade
+        'lblFinGrade
         '
-        Me.txtFinGrade.AutoSize = True
-        Me.txtFinGrade.BackColor = System.Drawing.Color.Transparent
-        Me.txtFinGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFinGrade.ForeColor = System.Drawing.Color.White
-        Me.txtFinGrade.Location = New System.Drawing.Point(1042, 437)
-        Me.txtFinGrade.Name = "txtFinGrade"
-        Me.txtFinGrade.Size = New System.Drawing.Size(57, 22)
-        Me.txtFinGrade.TabIndex = 54
-        Me.txtFinGrade.Text = "00.00"
+        Me.lblFinGrade.AutoSize = True
+        Me.lblFinGrade.BackColor = System.Drawing.Color.Transparent
+        Me.lblFinGrade.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFinGrade.ForeColor = System.Drawing.Color.White
+        Me.lblFinGrade.Location = New System.Drawing.Point(1042, 437)
+        Me.lblFinGrade.Name = "lblFinGrade"
+        Me.lblFinGrade.Size = New System.Drawing.Size(57, 22)
+        Me.lblFinGrade.TabIndex = 54
+        Me.lblFinGrade.Text = "00.00"
         '
         'txtSemGrade
         '
@@ -506,15 +538,18 @@ Partial Class encodeGrades
         'txtStudName
         '
         Me.txtStudName.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtStudName.Enabled = False
         Me.txtStudName.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtStudName.Location = New System.Drawing.Point(426, 260)
         Me.txtStudName.Name = "txtStudName"
+        Me.txtStudName.ReadOnly = True
         Me.txtStudName.Size = New System.Drawing.Size(256, 20)
         Me.txtStudName.TabIndex = 59
         '
         'comboMidNumQuiz
         '
         Me.comboMidNumQuiz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboMidNumQuiz.Enabled = False
         Me.comboMidNumQuiz.Font = New System.Drawing.Font("Montserrat", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboMidNumQuiz.FormattingEnabled = True
         Me.comboMidNumQuiz.Items.AddRange(New Object() {"2", "3", "4"})
@@ -526,6 +561,7 @@ Partial Class encodeGrades
         'comboFinNumQuiz
         '
         Me.comboFinNumQuiz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboFinNumQuiz.Enabled = False
         Me.comboFinNumQuiz.Font = New System.Drawing.Font("Montserrat", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboFinNumQuiz.FormattingEnabled = True
         Me.comboFinNumQuiz.Items.AddRange(New Object() {"2", "3", "4"})
@@ -552,7 +588,7 @@ Partial Class encodeGrades
         Me.btnComputeMid.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.computeButton
         Me.btnComputeMid.FlatAppearance.BorderSize = 0
         Me.btnComputeMid.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnComputeMid.Location = New System.Drawing.Point(629, 708)
+        Me.btnComputeMid.Location = New System.Drawing.Point(631, 713)
         Me.btnComputeMid.Name = "btnComputeMid"
         Me.btnComputeMid.Size = New System.Drawing.Size(137, 42)
         Me.btnComputeMid.TabIndex = 63
@@ -576,7 +612,7 @@ Partial Class encodeGrades
         Me.btnSaveEncode.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.saveButton
         Me.btnSaveEncode.FlatAppearance.BorderSize = 0
         Me.btnSaveEncode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSaveEncode.Location = New System.Drawing.Point(1252, 803)
+        Me.btnSaveEncode.Location = New System.Drawing.Point(1252, 794)
         Me.btnSaveEncode.Name = "btnSaveEncode"
         Me.btnSaveEncode.Size = New System.Drawing.Size(137, 42)
         Me.btnSaveEncode.TabIndex = 65
@@ -599,9 +635,9 @@ Partial Class encodeGrades
         Me.Controls.Add(Me.txCollegeGrade)
         Me.Controls.Add(Me.txtCompGrade)
         Me.Controls.Add(Me.txtSemGrade)
-        Me.Controls.Add(Me.txtFinGrade)
-        Me.Controls.Add(Me.txtMidGrade)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.lblFinGrade)
+        Me.Controls.Add(Me.lblMidGrade)
+        Me.Controls.Add(Me.comboSem)
         Me.Controls.Add(Me.txtFExamPerc)
         Me.Controls.Add(Me.txtFExamTotal)
         Me.Controls.Add(Me.txtFExamScore)
@@ -619,8 +655,8 @@ Partial Class encodeGrades
         Me.Controls.Add(Me.txtFLab)
         Me.Controls.Add(Me.txtFAtt)
         Me.Controls.Add(Me.txtMQuizPerc)
-        Me.Controls.Add(Me.TextBox14)
-        Me.Controls.Add(Me.TextBox13)
+        Me.Controls.Add(Me.txtMExamPerc)
+        Me.Controls.Add(Me.txtMExamTotal)
         Me.Controls.Add(Me.txtMExamScore)
         Me.Controls.Add(Me.txtMQ4Total)
         Me.Controls.Add(Me.txtMQ4Score)
@@ -665,8 +701,8 @@ Partial Class encodeGrades
     Friend WithEvents txtMQ4Score As TextBox
     Friend WithEvents txtMQ4Total As TextBox
     Friend WithEvents txtMExamScore As TextBox
-    Friend WithEvents TextBox13 As TextBox
-    Friend WithEvents TextBox14 As TextBox
+    Friend WithEvents txtMExamTotal As TextBox
+    Friend WithEvents txtMExamPerc As TextBox
     Friend WithEvents txtMQuizPerc As TextBox
     Friend WithEvents txtFAtt As TextBox
     Friend WithEvents txtFLab As TextBox
@@ -684,9 +720,9 @@ Partial Class encodeGrades
     Friend WithEvents txtFExamScore As TextBox
     Friend WithEvents txtFExamTotal As TextBox
     Friend WithEvents txtFExamPerc As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents txtMidGrade As Label
-    Friend WithEvents txtFinGrade As Label
+    Friend WithEvents comboSem As ComboBox
+    Friend WithEvents lblMidGrade As Label
+    Friend WithEvents lblFinGrade As Label
     Friend WithEvents txtSemGrade As Label
     Friend WithEvents txtCompGrade As Label
     Friend WithEvents txCollegeGrade As Label

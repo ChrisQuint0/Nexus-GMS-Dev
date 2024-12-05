@@ -28,6 +28,8 @@
         txtNewStudID.Enabled = True
         txtNewStudName.Enabled = True
         txtNewYrSec.Enabled = True
+        txtNewStudUsername.Enabled = True
+        txtNewStudPassword.Enabled = True
         comboNewStudDept.Enabled = True
         comboNewStudProgram.Enabled = True
         comboNewStudCourse.Enabled = True
@@ -39,6 +41,8 @@
         txtNewStudID.Enabled = False
         txtNewStudName.Enabled = False
         txtNewYrSec.Enabled = False
+        txtNewStudUsername.Enabled = False
+        txtNewStudPassword.Enabled = False
         comboNewStudDept.Enabled = False
         comboNewStudProgram.Enabled = False
         comboNewStudCourse.Enabled = False
@@ -47,6 +51,8 @@
         txtNewStudID.Clear()
         txtNewStudName.Clear()
         txtNewYrSec.Clear()
+        txtNewStudUsername.Clear()
+        txtNewStudPassword.Clear()
         comboNewStudDept.SelectedIndex = -1
         comboNewStudProgram.SelectedIndex = -1
         comboNewStudCourse.SelectedIndex = -1
@@ -57,6 +63,8 @@
     Public Sub enableNewFaculty()
         txtNewFacultyID.Enabled = True
         txtNewFacultyName.Enabled = True
+        txtNewFacultyUsername.Enabled = True
+        txtNewFacultyPass.Enabled = True
         comboNewFacultyDept.Enabled = True
         comboNewFacultySub.Enabled = True
         btnAddFaculty.Enabled = True
@@ -66,12 +74,16 @@
     Public Sub disableNewFaculty()
         txtNewFacultyID.Enabled = False
         txtNewFacultyName.Enabled = False
+        txtNewFacultyUsername.Enabled = False
+        txtNewFacultyPass.Enabled = False
         comboNewFacultyDept.Enabled = False
         comboNewFacultySub.Enabled = False
         btnAddFaculty.Enabled = False
 
         txtNewFacultyID.Clear()
         txtNewFacultyName.Clear()
+        txtNewFacultyUsername.Clear()
+        txtNewFacultyPass.Clear()
         comboNewFacultyDept.SelectedIndex = -1
         comboNewFacultySub.SelectedIndex = -1
 
@@ -106,5 +118,9 @@
                 Application.Exit()
             End If
         End If
+    End Sub
+
+    Private Sub txtNewYrSec_TextChanged(sender As Object, e As EventArgs) Handles txtNewYrSec.TextChanged
+
     End Sub
 End Class
