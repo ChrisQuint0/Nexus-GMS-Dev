@@ -235,13 +235,14 @@ Public Class encodeNewData
 
 
     Private Sub comboNewStudProgram_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboNewStudProgram.SelectedIndexChanged
+        comboNewStudCourse.Items.Clear()
+
         If comboNewStudProgram.SelectedItem = "BS in Information Technology" Then
             comboNewStudCourse.Items.Add("1st Year IT Courseware")
         ElseIf comboNewStudProgram.SelectedItem = "BS in Computer Science" Then
             comboNewStudCourse.Items.Add("1st Year CS Courseware")
         ElseIf comboNewStudProgram.SelectedItem = "BS in Nursing" Then
             comboNewStudCourse.Items.Add("1st Year Nursing Courseware")
-
         End If
     End Sub
 
@@ -281,48 +282,62 @@ Public Class encodeNewData
                 MessageBox.Show("Error: " & ex.Message)
             Finally
                 con.Close()
+
             End Try
         End If
     End Sub
 
     Private Sub btnAddStud_Click(sender As Object, e As EventArgs) Handles btnAddStud.Click
-        If txtNewStudID.Text.Length <> 0 And txtNewStudName.Text.Length <> 0 And txtNewYrSec.Text.Length <> 0 And comboNewStudDept.SelectedIndex <> -1 And comboNewStudProgram.SelectedIndex <> -1 And comboNewStudCourse.SelectedIndex <> -1 And txtNewStudUsername.Text.Length <> -1 And txtNewStudPassword.Text.Length <> -1 Then
+        If txtNewStudID.Text.Length <> 0 And txtNewStudName.Text.Length <> 0 And txtNewYrSec.Text.Length <> 0 And comboNewStudDept.SelectedIndex <> -1 And comboNewStudProgram.SelectedIndex <> -1 And comboNewStudCourse.SelectedIndex <> -1 Then
 
             Dim program_id As Integer
 
-            If comboNewStudProgram.SelectedText = "BS in Information Technology" Then
+            ' Map program selection to program_id
+            If comboNewStudProgram.Text = "BS in Information Technology" Then
                 program_id = 1
+            ElseIf comboNewStudProgram.Text = "BS in Information Technology" Then
+                program_id = 2
+            ElseIf comboNewStudProgram.Text = "BS in Nursing" Then
+                program_id = 3
+            Else
+                MessageBox.Show("Invalid program selected.")
+                Exit Sub
             End If
+
             Try
                 con.Open()
 
-                ' Insert the student's details into the students table
-                Dim insertStudent As String = "INSERT INTO students(Student_ID, Full_name, Year_Section, program_id) VALUES(@StudentID, @FullName, @YearSection, @ProgramID);"
+                ' Retrieve courses for the selected courseware
+                Dim selectedCourseware As String = comboNewStudCourse.Text
+                Dim coursewareId As Integer
+
+                If selectedCourseware = "1st Year IT Courseware" Then
+                    coursewareId = 1
+                ElseIf selectedCourseware = "1st Year Nursing Courseware" Then
+                    coursewareId = 2
+                Else
+                    MessageBox.Show("Invalid courseware selected.")
+                    Exit Sub
+                End If
+
+                Dim insertStudent As String = "INSERT INTO students(Student_ID, Full_name, Year_Section, program_id, courseware_id) VALUES(@StudentID, @FullName, @YearSection, @ProgramID, @CoursesEnrolled);"
                 Dim cmdInsertStudent As New MySqlCommand(insertStudent, con)
-                cmdInsertStudent.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
-                cmdInsertStudent.Parameters.AddWithValue("@FullName", txtNewStudName.Text)
-                cmdInsertStudent.Parameters.AddWithValue("@YearSection", txtNewYrSec.Text)
-                cmdInsertStudent.Parameters.AddWithValue("@ProgramID", program_id)
+                    cmdInsertStudent.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
+                    cmdInsertStudent.Parameters.AddWithValue("@FullName", txtNewStudName.Text)
+                    cmdInsertStudent.Parameters.AddWithValue("@YearSection", txtNewYrSec.Text)
+                    cmdInsertStudent.Parameters.AddWithValue("@ProgramID", program_id)
+                    cmdInsertStudent.Parameters.AddWithValue("@CoursesEnrolled", coursewareId)
                 cmdInsertStudent.ExecuteNonQuery()
 
-                ' Check if comboNewStudCourse is "1st Year IT Courseware"
-                If comboNewStudCourse.Text = "1st Year IT Courseware" Then
-                    ' Retrieve the course codes for course_ware_id = 1
-                    Dim selectCourses As String = "SELECT course_code FROM courses WHERE course_ware_id = 1;"
-                    Dim cmdSelectCourses As New MySqlCommand(selectCourses, con)
-                    Dim reader As MySqlDataReader = cmdSelectCourses.ExecuteReader()
+                Dim insertStudentUser As String = "insert into users(User_name, Password, User_type) values ('" & txtNewStudUsername.Text & "','" & txtNewStudPassword.Text & "', 'student');"
 
-                    ' Insert each course_code as course_enrolled for the new student
-                    While reader.Read()
-                        Dim insertEnrollment As String = "INSERT INTO course_enrolled(Student_ID, course_code) VALUES(@StudentID, @CourseCode);"
-                        Dim cmdInsertEnrollment As New MySqlCommand(insertEnrollment, con)
-                        cmdInsertEnrollment.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
-                        cmdInsertEnrollment.Parameters.AddWithValue("@CourseCode", reader("course_code").ToString())
-                        cmdInsertEnrollment.ExecuteNonQuery()
-                    End While
+                cmd.Connection = con
+                cmd.CommandText = insertStudentUser
+                cmd.ExecuteNonQuery()
+                con.Close()
 
-                    reader.Close()
-                End If
+
+                MessageBox.Show("Student and courses added successfully!")
 
             Catch ex As MySqlException
                 MessageBox.Show("Error: " & ex.Message)
@@ -330,6 +345,8 @@ Public Class encodeNewData
                 con.Close()
             End Try
 
+        Else
+            MessageBox.Show("Please fill in all the required fields.")
         End If
     End Sub
 End Class
