@@ -37,7 +37,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES ('BIO101','Anatomy and Physiology','2024',2),('COMP102','Information Management','2024',1),('IT201','Object Oriented Programming','2024',1),('PHAR201','Pharmacology','2024',2);
+INSERT INTO `courses` VALUES ('BIO101','Anatomy and Physiology','2024',2),('COMP102','Information Management','2024',1),('IT201','Object Oriented Programming','2024',1),('IT956','Cloud Computing','2023',3),('IT999','Quantum Computing','2024',3),('PHAR201','Pharmacology','2024',2);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,8 +73,8 @@ DROP TABLE IF EXISTS `grades`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `grades` (
-  `Grade_ID` int(8) NOT NULL,
-  `Subject_ID` varchar(10) NOT NULL,
+  `Grade_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `course_id` varchar(10) DEFAULT NULL,
   `Student_ID` varchar(10) NOT NULL,
   `Prof_ID` varchar(10) NOT NULL,
   `Midterm_attendance` int(4) DEFAULT NULL,
@@ -119,10 +119,10 @@ CREATE TABLE `grades` (
   `Semester` varchar(50) DEFAULT NULL,
   `College_grade` decimal(4,0) DEFAULT NULL,
   PRIMARY KEY (`Grade_ID`),
-  KEY `Subject_ID` (`Subject_ID`),
+  KEY `Subject_ID` (`course_id`),
   KEY `Student_ID` (`Student_ID`),
   KEY `Prof_ID` (`Prof_ID`),
-  CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`Subject_ID`) REFERENCES `courses` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`Student_ID`) REFERENCES `students` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `grades_ibfk_3` FOREIGN KEY (`Prof_ID`) REFERENCES `professor` (`Prof_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -200,7 +200,7 @@ CREATE TABLE `students` (
   `Full_name` varchar(256) NOT NULL,
   `Year_Section` varchar(50) DEFAULT NULL,
   `program_id` int(11) DEFAULT NULL,
-  `course_enrolled` varchar(11) DEFAULT NULL,
+  `courseware_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`Student_ID`),
   KEY `Course_ID` (`program_id`),
   CONSTRAINT `students_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`),
@@ -214,7 +214,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('23-00163','Dela Cruz, Juan','2A',1,NULL);
+INSERT INTO `students` VALUES ('23-00163','Dela Cruz, Juan','2A',1,1);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,7 +232,7 @@ CREATE TABLE `users` (
   `User_type` enum('student','professor','admin') NOT NULL,
   PRIMARY KEY (`User_ID`),
   UNIQUE KEY `User_name` (`User_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +241,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'superAdmin','0','admin'),(2,'quinto_christopher','0','student'),(3,'mirabel_rodolfo','0','professor');
+INSERT INTO `users` VALUES (1,'quinto_christopher','passadmin0713','admin'),(3,'dela_cruz_juan','passstud0713','student'),(4,'mcgonagall_minerva','passprof0713','professor');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -254,4 +254,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-06 16:20:16
+-- Dump completed on 2024-12-06 20:17:48
