@@ -322,11 +322,11 @@ Public Class encodeNewData
 
                 Dim insertStudent As String = "INSERT INTO students(Student_ID, Full_name, Year_Section, program_id, courseware_id) VALUES(@StudentID, @FullName, @YearSection, @ProgramID, @CoursesEnrolled);"
                 Dim cmdInsertStudent As New MySqlCommand(insertStudent, con)
-                    cmdInsertStudent.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
-                    cmdInsertStudent.Parameters.AddWithValue("@FullName", txtNewStudName.Text)
-                    cmdInsertStudent.Parameters.AddWithValue("@YearSection", txtNewYrSec.Text)
-                    cmdInsertStudent.Parameters.AddWithValue("@ProgramID", program_id)
-                    cmdInsertStudent.Parameters.AddWithValue("@CoursesEnrolled", coursewareId)
+                cmdInsertStudent.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
+                cmdInsertStudent.Parameters.AddWithValue("@FullName", txtNewStudName.Text)
+                cmdInsertStudent.Parameters.AddWithValue("@YearSection", txtNewYrSec.Text)
+                cmdInsertStudent.Parameters.AddWithValue("@ProgramID", program_id)
+                cmdInsertStudent.Parameters.AddWithValue("@CoursesEnrolled", coursewareId)
                 cmdInsertStudent.ExecuteNonQuery()
 
                 Dim insertStudentUser As String = "insert into users(User_name, Password, User_type) values ('" & txtNewStudUsername.Text & "','" & txtNewStudPassword.Text & "', 'student');"
@@ -348,5 +348,18 @@ Public Class encodeNewData
         Else
             MessageBox.Show("Please fill in all the required fields.")
         End If
+    End Sub
+
+    Private Sub btnAddFaculty_Click(sender As Object, e As EventArgs) Handles btnAddFaculty.Click
+        con.Open()
+
+        Dim insertProfUser As String = "insert into users(User_name, Password, User_type) values ('" & txtNewFacultyUsername.Text & "','" & txtNewFacultyPass.Text & "', 'professor');"
+
+        MsgBox(insertProfUser)
+
+        cmd.Connection = con
+        cmd.CommandText = insertProfUser
+        cmd.ExecuteNonQuery()
+        con.Close()
     End Sub
 End Class

@@ -631,4 +631,8 @@ Public Class encodeGrades
             End If
         End If
     End Sub
+
+    Private Sub btnSaveEncode_Click(sender As Object, e As EventArgs) Handles btnSaveEncode.Click
+        Dim str = ""
+    End Sub
 End Class
