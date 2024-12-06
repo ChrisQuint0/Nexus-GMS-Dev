@@ -23,13 +23,12 @@ DROP TABLE IF EXISTS `courses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `courses` (
-  `Course_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Course_name` varchar(256) NOT NULL,
-  `Dept_ID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Course_ID`),
-  KEY `fk_department` (`Dept_ID`),
-  CONSTRAINT `fk_department` FOREIGN KEY (`Dept_ID`) REFERENCES `department` (`Dept_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `course_code` varchar(10) NOT NULL,
+  `course_title` varchar(256) DEFAULT NULL,
+  `curriculum_year` char(4) DEFAULT NULL,
+  `course_ware_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`course_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,18 +37,18 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'BS in Information Technology',1),(2,'BS in Computer Science',1),(3,'BS in Nursing',2);
+INSERT INTO `courses` VALUES ('BIO101','Anatomy and Physiology','2024',2),('COMP102','Information Management','2024',1),('IT201','Object Oriented Programming','2024',1),('PHAR201','Pharmacology','2024',2);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `department`
+-- Table structure for table `departments`
 --
 
-DROP TABLE IF EXISTS `department`;
+DROP TABLE IF EXISTS `departments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `department` (
+CREATE TABLE `departments` (
   `Dept_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Dept_name` varchar(256) NOT NULL,
   PRIMARY KEY (`Dept_ID`)
@@ -57,13 +56,13 @@ CREATE TABLE `department` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `department`
+-- Dumping data for table `departments`
 --
 
-LOCK TABLES `department` WRITE;
-/*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES (1,'CCS (College of Computer Studies)'),(2,'CON (College of Nursing)');
-/*!40000 ALTER TABLE `department` ENABLE KEYS */;
+LOCK TABLES `departments` WRITE;
+/*!40000 ALTER TABLE `departments` DISABLE KEYS */;
+INSERT INTO `departments` VALUES (1,'CCS (College of Computer Studies)'),(2,'CON (College of Nursing)');
+/*!40000 ALTER TABLE `departments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -123,8 +122,8 @@ CREATE TABLE `grades` (
   KEY `Subject_ID` (`Subject_ID`),
   KEY `Student_ID` (`Student_ID`),
   KEY `Prof_ID` (`Prof_ID`),
-  CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`Subject_ID`) REFERENCES `subjects` (`Subject_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`Subject_ID`) REFERENCES `courses` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`Student_ID`) REFERENCES `students` (`Student_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `grades_ibfk_3` FOREIGN KEY (`Prof_ID`) REFERENCES `professor` (`Prof_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -163,58 +162,60 @@ INSERT INTO `professor` VALUES ('01-00001','Rodolfo Mirabel Jr.');
 UNLOCK TABLES;
 
 --
--- Table structure for table `student`
+-- Table structure for table `programs`
 --
 
-DROP TABLE IF EXISTS `student`;
+DROP TABLE IF EXISTS `programs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student` (
-  `Student_ID` varchar(10) NOT NULL,
-  `Full_name` varchar(256) NOT NULL,
-  `Year_Section` varchar(50) DEFAULT NULL,
-  `Course_ID` int(4) DEFAULT NULL,
-  PRIMARY KEY (`Student_ID`),
-  KEY `Course_ID` (`Course_ID`),
-  CONSTRAINT `student_ibfk_1` FOREIGN KEY (`Course_ID`) REFERENCES `courses` (`Course_ID`),
-  CONSTRAINT `student_ibfk_2` FOREIGN KEY (`Course_ID`) REFERENCES `courses` (`Course_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE `programs` (
+  `program_id` int(11) NOT NULL,
+  `program_name` varchar(256) DEFAULT NULL,
+  `Dept_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`program_id`),
+  KEY `fk_department` (`Dept_ID`),
+  CONSTRAINT `fk_department` FOREIGN KEY (`Dept_ID`) REFERENCES `departments` (`Dept_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student`
+-- Dumping data for table `programs`
 --
 
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('23-00163','Dela Cruz, Juan','2A',1);
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
+LOCK TABLES `programs` WRITE;
+/*!40000 ALTER TABLE `programs` DISABLE KEYS */;
+INSERT INTO `programs` VALUES (1,'BS in Information Technology',1),(2,'BS in Computer Science',1),(3,'BS in Nursing',2);
+/*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `subjects`
+-- Table structure for table `students`
 --
 
-DROP TABLE IF EXISTS `subjects`;
+DROP TABLE IF EXISTS `students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `subjects` (
-  `Subject_ID` varchar(10) NOT NULL,
-  `Subject_name` varchar(256) NOT NULL,
-  `Curriculum_year` char(4) DEFAULT NULL,
-  `course_ware_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Subject_ID`)
+CREATE TABLE `students` (
+  `Student_ID` varchar(10) NOT NULL,
+  `Full_name` varchar(256) NOT NULL,
+  `Year_Section` varchar(50) DEFAULT NULL,
+  `program_id` int(11) DEFAULT NULL,
+  `course_enrolled` varchar(11) DEFAULT NULL,
+  PRIMARY KEY (`Student_ID`),
+  KEY `Course_ID` (`program_id`),
+  CONSTRAINT `students_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`),
+  CONSTRAINT `students_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `subjects`
+-- Dumping data for table `students`
 --
 
-LOCK TABLES `subjects` WRITE;
-/*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
-INSERT INTO `subjects` VALUES ('BIO101','Anatomy and Physiology','2024',2),('COMP102','Information Management','2024',1),('IT201','Object Oriented Programming','2024',1),('PHAR201','Pharmacology','2024',2);
-/*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
+LOCK TABLES `students` WRITE;
+/*!40000 ALTER TABLE `students` DISABLE KEYS */;
+INSERT INTO `students` VALUES ('23-00163','Dela Cruz, Juan','2A',1,NULL);
+/*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -253,4 +254,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-06  4:26:03
+-- Dump completed on 2024-12-06 16:20:16
