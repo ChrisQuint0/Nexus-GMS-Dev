@@ -133,7 +133,6 @@ Partial Class encodeNewData
         Me.comboNewStudCourse.Enabled = False
         Me.comboNewStudCourse.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewStudCourse.FormattingEnabled = True
-        Me.comboNewStudCourse.Items.AddRange(New Object() {"1st Year IT Courseware", "2nd Year IT Courseware", "3rd Year IT Courseware", "4th Year IT Courseware", "1st Year CS Courseware", "2nd Year CS Courseware", "3rd Year CS Courseware", "4th Year CS Courseware"})
         Me.comboNewStudCourse.Location = New System.Drawing.Point(347, 620)
         Me.comboNewStudCourse.Name = "comboNewStudCourse"
         Me.comboNewStudCourse.Size = New System.Drawing.Size(270, 28)

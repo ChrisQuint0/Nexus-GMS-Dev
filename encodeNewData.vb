@@ -125,7 +125,7 @@ Public Class encodeNewData
             con.Open()
 
             ' Define the SQL query to retrieve department names
-            Dim query As String = "SELECT Dept_name FROM department"
+            Dim query As String = "SELECT Dept_name FROM departments"
 
             ' Create the command and pass the query and connection
             Using cmd As New MySqlCommand(query, con)
@@ -160,7 +160,7 @@ Public Class encodeNewData
         If txtNewCourseCode.Text.Length <> 0 And txtNewCourseTitle.Text.Length <> 0 And txtNewCourseCurYear.Text.Length <> 0 And txtNewCoursewareId.Text.Length <> 0 Then
             Try
                 con.Open()
-                str = "INSERT INTO subjects(Subject_ID, Subject_Name, Curriculum_year, course_ware_id) values('" & txtNewCourseCode.Text & "','" & txtNewCourseTitle.Text & "','" & txtNewCourseCurYear.Text & "'," & txtNewCoursewareId.Text & ");"
+                str = "INSERT INTO courses(course_code, course_title, curriculum_year, course_ware_id) values('" & txtNewCourseCode.Text & "','" & txtNewCourseTitle.Text & "','" & txtNewCourseCurYear.Text & "'," & txtNewCoursewareId.Text & ");"
 
                 cmd.Connection = con
                 cmd.CommandText = str
@@ -192,62 +192,144 @@ Public Class encodeNewData
 
     Public Sub loadPrograms(deptId As Integer)
         comboNewStudProgram.Items.Clear()
+        comboNewStudCourse.Items.Clear()
 
         If deptId = 1 Then
             Try
-                ' Open the connection
                 con.Open()
-
-                ' Define the SQL query to retrieve department names
-                Dim query As String = "SELECT Course_name FROM courses WHERE Dept_ID = 1"
-
-                ' Create the command and pass the query and connection
+                Dim query As String = "SELECT program_name FROM programs WHERE Dept_ID = 1"
                 Using cmd As New MySqlCommand(query, con)
-                    ' Execute the query and get the result
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
-                        ' Loop through the results and add to ComboBox
                         While reader.Read()
-                            comboNewStudProgram.Items.Add(reader("Course_name").ToString())
+                            comboNewStudProgram.Items.Add(reader("program_name").ToString())
                         End While
                     End Using
                 End Using
 
             Catch ex As MySqlException
-                ' Handle any errors that may have occurred
                 MessageBox.Show("Error: " & ex.Message)
             Finally
-                ' Close the connection
                 con.Close()
             End Try
         ElseIf deptId = 2 Then
             Try
-                ' Open the connection
                 con.Open()
+                Dim query As String = "SELECT program_name FROM programs WHERE Dept_ID = 2"
 
-                ' Define the SQL query to retrieve department names
-                Dim query As String = "SELECT Course_name FROM courses WHERE Dept_ID = 2"
-
-                ' Create the command and pass the query and connection
                 Using cmd As New MySqlCommand(query, con)
-                    ' Execute the query and get the result
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
-                        ' Loop through the results and add to ComboBox
                         While reader.Read()
-                            comboNewStudProgram.Items.Add(reader("Course_name").ToString())
+                            comboNewStudProgram.Items.Add(reader("program_name").ToString())
                         End While
                     End Using
                 End Using
 
             Catch ex As MySqlException
-                ' Handle any errors that may have occurred
                 MessageBox.Show("Error: " & ex.Message)
             Finally
-                ' Close the connection
+                con.Close()
+            End Try
+        End If
+    End Sub
+
+
+
+    Private Sub comboNewStudProgram_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboNewStudProgram.SelectedIndexChanged
+        If comboNewStudProgram.SelectedItem = "BS in Information Technology" Then
+            comboNewStudCourse.Items.Add("1st Year IT Courseware")
+        ElseIf comboNewStudProgram.SelectedItem = "BS in Computer Science" Then
+            comboNewStudCourse.Items.Add("1st Year CS Courseware")
+        ElseIf comboNewStudProgram.SelectedItem = "BS in Nursing" Then
+            comboNewStudCourse.Items.Add("1st Year Nursing Courseware")
+
+        End If
+    End Sub
+
+    Public Sub loadCourses(deptId As Integer)
+        comboNewStudCourse.Items.Clear()
+        If deptId = 1 Then
+            Try
+                con.Open()
+                Dim query As String = "SELECT CONCAT(course_code, ': ', course_title)  AS displayText from courses WHERE course_ware_id = 1"
+                Using cmd As New MySqlCommand(query, con)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            comboNewStudCourse.Items.Add(reader("displayText").ToString())
+                        End While
+                    End Using
+                End Using
+
+            Catch ex As MySqlException
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
+                con.Close()
+            End Try
+        ElseIf deptId = 2 Then
+            Try
+                con.Open()
+                Dim query As String = "SELECT CONCAT(course_code, ': ', course_title)  AS displayText from courses WHERE course_ware_id = 2"
+
+                Using cmd As New MySqlCommand(query, con)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            comboNewStudCourse.Items.Add(reader("displayText").ToString())
+                        End While
+                    End Using
+                End Using
+
+            Catch ex As MySqlException
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
+                con.Close()
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnAddStud_Click(sender As Object, e As EventArgs) Handles btnAddStud.Click
+        If txtNewStudID.Text.Length <> 0 And txtNewStudName.Text.Length <> 0 And txtNewYrSec.Text.Length <> 0 And comboNewStudDept.SelectedIndex <> -1 And comboNewStudProgram.SelectedIndex <> -1 And comboNewStudCourse.SelectedIndex <> -1 And txtNewStudUsername.Text.Length <> -1 And txtNewStudPassword.Text.Length <> -1 Then
+
+            Dim program_id As Integer
+
+            If comboNewStudProgram.SelectedText = "BS in Information Technology" Then
+                program_id = 1
+            End If
+            Try
+                con.Open()
+
+                ' Insert the student's details into the students table
+                Dim insertStudent As String = "INSERT INTO students(Student_ID, Full_name, Year_Section, program_id) VALUES(@StudentID, @FullName, @YearSection, @ProgramID);"
+                Dim cmdInsertStudent As New MySqlCommand(insertStudent, con)
+                cmdInsertStudent.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
+                cmdInsertStudent.Parameters.AddWithValue("@FullName", txtNewStudName.Text)
+                cmdInsertStudent.Parameters.AddWithValue("@YearSection", txtNewYrSec.Text)
+                cmdInsertStudent.Parameters.AddWithValue("@ProgramID", program_id)
+                cmdInsertStudent.ExecuteNonQuery()
+
+                ' Check if comboNewStudCourse is "1st Year IT Courseware"
+                If comboNewStudCourse.Text = "1st Year IT Courseware" Then
+                    ' Retrieve the course codes for course_ware_id = 1
+                    Dim selectCourses As String = "SELECT course_code FROM courses WHERE course_ware_id = 1;"
+                    Dim cmdSelectCourses As New MySqlCommand(selectCourses, con)
+                    Dim reader As MySqlDataReader = cmdSelectCourses.ExecuteReader()
+
+                    ' Insert each course_code as course_enrolled for the new student
+                    While reader.Read()
+                        Dim insertEnrollment As String = "INSERT INTO course_enrolled(Student_ID, course_code) VALUES(@StudentID, @CourseCode);"
+                        Dim cmdInsertEnrollment As New MySqlCommand(insertEnrollment, con)
+                        cmdInsertEnrollment.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
+                        cmdInsertEnrollment.Parameters.AddWithValue("@CourseCode", reader("course_code").ToString())
+                        cmdInsertEnrollment.ExecuteNonQuery()
+                    End While
+
+                    reader.Close()
+                End If
+
+            Catch ex As MySqlException
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
                 con.Close()
             End Try
 
         End If
-
-
     End Sub
 End Class
