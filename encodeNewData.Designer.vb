@@ -27,12 +27,11 @@ Partial Class encodeNewData
         Me.txtNewStudID = New System.Windows.Forms.TextBox()
         Me.txtNewStudName = New System.Windows.Forms.TextBox()
         Me.txtNewYrSec = New System.Windows.Forms.TextBox()
-        Me.txtNewFacultyID = New System.Windows.Forms.TextBox()
         Me.txtNewFacultyName = New System.Windows.Forms.TextBox()
         Me.comboNewStudDept = New System.Windows.Forms.ComboBox()
         Me.comboNewStudCourse = New System.Windows.Forms.ComboBox()
         Me.comboNewFacultyDept = New System.Windows.Forms.ComboBox()
-        Me.comboNewFacultySub = New System.Windows.Forms.ComboBox()
+        Me.comboNewFacultyCourse = New System.Windows.Forms.ComboBox()
         Me.comboNewStudProgram = New System.Windows.Forms.ComboBox()
         Me.txtNewCourseCode = New System.Windows.Forms.TextBox()
         Me.txtNewCourseTitle = New System.Windows.Forms.TextBox()
@@ -47,6 +46,8 @@ Partial Class encodeNewData
         Me.txtNewFacultyUsername = New System.Windows.Forms.TextBox()
         Me.txtNewFacultyPass = New System.Windows.Forms.TextBox()
         Me.txtNewCoursewareId = New System.Windows.Forms.TextBox()
+        Me.txtSecHandling = New System.Windows.Forms.TextBox()
+        Me.txtNewFacultyID = New System.Windows.Forms.MaskedTextBox()
         CType(Me.picEncodeNewData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -98,15 +99,6 @@ Partial Class encodeNewData
         Me.txtNewYrSec.Size = New System.Drawing.Size(270, 26)
         Me.txtNewYrSec.TabIndex = 4
         '
-        'txtNewFacultyID
-        '
-        Me.txtNewFacultyID.Enabled = False
-        Me.txtNewFacultyID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewFacultyID.Location = New System.Drawing.Point(908, 240)
-        Me.txtNewFacultyID.Name = "txtNewFacultyID"
-        Me.txtNewFacultyID.Size = New System.Drawing.Size(270, 26)
-        Me.txtNewFacultyID.TabIndex = 5
-        '
         'txtNewFacultyName
         '
         Me.txtNewFacultyName.Enabled = False
@@ -144,23 +136,21 @@ Partial Class encodeNewData
         Me.comboNewFacultyDept.Enabled = False
         Me.comboNewFacultyDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboNewFacultyDept.FormattingEnabled = True
-        Me.comboNewFacultyDept.Items.AddRange(New Object() {"College of Computer Studies", "College of Nursing"})
         Me.comboNewFacultyDept.Location = New System.Drawing.Point(910, 320)
         Me.comboNewFacultyDept.Name = "comboNewFacultyDept"
         Me.comboNewFacultyDept.Size = New System.Drawing.Size(270, 28)
         Me.comboNewFacultyDept.TabIndex = 9
         '
-        'comboNewFacultySub
+        'comboNewFacultyCourse
         '
-        Me.comboNewFacultySub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboNewFacultySub.Enabled = False
-        Me.comboNewFacultySub.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.comboNewFacultySub.FormattingEnabled = True
-        Me.comboNewFacultySub.Items.AddRange(New Object() {"IT 202: Object Oriented Programming", "COMP 101: Introduction to Computing", "N101: Nursing 101"})
-        Me.comboNewFacultySub.Location = New System.Drawing.Point(910, 360)
-        Me.comboNewFacultySub.Name = "comboNewFacultySub"
-        Me.comboNewFacultySub.Size = New System.Drawing.Size(270, 28)
-        Me.comboNewFacultySub.TabIndex = 10
+        Me.comboNewFacultyCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboNewFacultyCourse.Enabled = False
+        Me.comboNewFacultyCourse.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.comboNewFacultyCourse.FormattingEnabled = True
+        Me.comboNewFacultyCourse.Location = New System.Drawing.Point(910, 360)
+        Me.comboNewFacultyCourse.Name = "comboNewFacultyCourse"
+        Me.comboNewFacultyCourse.Size = New System.Drawing.Size(270, 28)
+        Me.comboNewFacultyCourse.TabIndex = 10
         '
         'comboNewStudProgram
         '
@@ -177,7 +167,7 @@ Partial Class encodeNewData
         '
         Me.txtNewCourseCode.Enabled = False
         Me.txtNewCourseCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewCourseCode.Location = New System.Drawing.Point(903, 572)
+        Me.txtNewCourseCode.Location = New System.Drawing.Point(903, 600)
         Me.txtNewCourseCode.Name = "txtNewCourseCode"
         Me.txtNewCourseCode.Size = New System.Drawing.Size(270, 26)
         Me.txtNewCourseCode.TabIndex = 12
@@ -186,7 +176,7 @@ Partial Class encodeNewData
         '
         Me.txtNewCourseTitle.Enabled = False
         Me.txtNewCourseTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewCourseTitle.Location = New System.Drawing.Point(903, 613)
+        Me.txtNewCourseTitle.Location = New System.Drawing.Point(903, 641)
         Me.txtNewCourseTitle.Name = "txtNewCourseTitle"
         Me.txtNewCourseTitle.Size = New System.Drawing.Size(270, 26)
         Me.txtNewCourseTitle.TabIndex = 13
@@ -195,7 +185,7 @@ Partial Class encodeNewData
         '
         Me.txtNewCourseCurYear.Enabled = False
         Me.txtNewCourseCurYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewCourseCurYear.Location = New System.Drawing.Point(902, 655)
+        Me.txtNewCourseCurYear.Location = New System.Drawing.Point(902, 683)
         Me.txtNewCourseCurYear.Name = "txtNewCourseCurYear"
         Me.txtNewCourseCurYear.Size = New System.Drawing.Size(270, 26)
         Me.txtNewCourseCurYear.TabIndex = 14
@@ -286,7 +276,7 @@ Partial Class encodeNewData
         '
         Me.txtNewFacultyUsername.Enabled = False
         Me.txtNewFacultyUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewFacultyUsername.Location = New System.Drawing.Point(910, 398)
+        Me.txtNewFacultyUsername.Location = New System.Drawing.Point(910, 440)
         Me.txtNewFacultyUsername.Name = "txtNewFacultyUsername"
         Me.txtNewFacultyUsername.Size = New System.Drawing.Size(270, 26)
         Me.txtNewFacultyUsername.TabIndex = 22
@@ -295,7 +285,7 @@ Partial Class encodeNewData
         '
         Me.txtNewFacultyPass.Enabled = False
         Me.txtNewFacultyPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewFacultyPass.Location = New System.Drawing.Point(910, 442)
+        Me.txtNewFacultyPass.Location = New System.Drawing.Point(910, 478)
         Me.txtNewFacultyPass.Name = "txtNewFacultyPass"
         Me.txtNewFacultyPass.Size = New System.Drawing.Size(270, 26)
         Me.txtNewFacultyPass.TabIndex = 23
@@ -304,10 +294,28 @@ Partial Class encodeNewData
         '
         Me.txtNewCoursewareId.Enabled = False
         Me.txtNewCoursewareId.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewCoursewareId.Location = New System.Drawing.Point(902, 699)
+        Me.txtNewCoursewareId.Location = New System.Drawing.Point(902, 727)
         Me.txtNewCoursewareId.Name = "txtNewCoursewareId"
         Me.txtNewCoursewareId.Size = New System.Drawing.Size(270, 26)
         Me.txtNewCoursewareId.TabIndex = 24
+        '
+        'txtSecHandling
+        '
+        Me.txtSecHandling.Enabled = False
+        Me.txtSecHandling.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSecHandling.Location = New System.Drawing.Point(910, 401)
+        Me.txtSecHandling.Name = "txtSecHandling"
+        Me.txtSecHandling.Size = New System.Drawing.Size(270, 26)
+        Me.txtSecHandling.TabIndex = 25
+        '
+        'txtNewFacultyID
+        '
+        Me.txtNewFacultyID.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewFacultyID.Location = New System.Drawing.Point(910, 243)
+        Me.txtNewFacultyID.Mask = "00-0000000"
+        Me.txtNewFacultyID.Name = "txtNewFacultyID"
+        Me.txtNewFacultyID.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewFacultyID.TabIndex = 26
         '
         'encodeNewData
         '
@@ -315,6 +323,8 @@ Partial Class encodeNewData
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.encodeNewData
         Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.Controls.Add(Me.txtNewFacultyID)
+        Me.Controls.Add(Me.txtSecHandling)
         Me.Controls.Add(Me.txtNewCoursewareId)
         Me.Controls.Add(Me.txtNewFacultyPass)
         Me.Controls.Add(Me.txtNewFacultyUsername)
@@ -329,12 +339,11 @@ Partial Class encodeNewData
         Me.Controls.Add(Me.txtNewCourseTitle)
         Me.Controls.Add(Me.txtNewCourseCode)
         Me.Controls.Add(Me.comboNewStudProgram)
-        Me.Controls.Add(Me.comboNewFacultySub)
+        Me.Controls.Add(Me.comboNewFacultyCourse)
         Me.Controls.Add(Me.comboNewFacultyDept)
         Me.Controls.Add(Me.comboNewStudCourse)
         Me.Controls.Add(Me.comboNewStudDept)
         Me.Controls.Add(Me.txtNewFacultyName)
-        Me.Controls.Add(Me.txtNewFacultyID)
         Me.Controls.Add(Me.txtNewYrSec)
         Me.Controls.Add(Me.txtNewStudName)
         Me.Controls.Add(Me.txtNewStudID)
@@ -353,12 +362,11 @@ Partial Class encodeNewData
     Friend WithEvents txtNewStudID As TextBox
     Friend WithEvents txtNewStudName As TextBox
     Friend WithEvents txtNewYrSec As TextBox
-    Friend WithEvents txtNewFacultyID As TextBox
     Friend WithEvents txtNewFacultyName As TextBox
     Friend WithEvents comboNewStudDept As ComboBox
     Friend WithEvents comboNewStudCourse As ComboBox
     Friend WithEvents comboNewFacultyDept As ComboBox
-    Friend WithEvents comboNewFacultySub As ComboBox
+    Friend WithEvents comboNewFacultyCourse As ComboBox
     Friend WithEvents comboNewStudProgram As ComboBox
     Friend WithEvents txtNewCourseCode As TextBox
     Friend WithEvents txtNewCourseTitle As TextBox
@@ -373,4 +381,6 @@ Partial Class encodeNewData
     Friend WithEvents txtNewFacultyUsername As TextBox
     Friend WithEvents txtNewFacultyPass As TextBox
     Friend WithEvents txtNewCoursewareId As TextBox
+    Friend WithEvents txtSecHandling As TextBox
+    Friend WithEvents txtNewFacultyID As MaskedTextBox
 End Class

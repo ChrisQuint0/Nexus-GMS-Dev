@@ -88,7 +88,7 @@ Public Class mainForm
                         studForm.Show()
 
                     Case "professor"
-                        Dim profForm = New profForm(Me)
+                        Dim profForm = New profForm(Me, username)
 
                         profForm.MdiParent = Me
                         profForm.StartPosition = FormStartPosition.Manual
