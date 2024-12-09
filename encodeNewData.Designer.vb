@@ -24,7 +24,6 @@ Partial Class encodeNewData
     Private Sub InitializeComponent()
         Me.picEncodeNewData = New System.Windows.Forms.PictureBox()
         Me.comboAccountType = New System.Windows.Forms.ComboBox()
-        Me.txtNewStudID = New System.Windows.Forms.TextBox()
         Me.txtNewStudName = New System.Windows.Forms.TextBox()
         Me.txtNewYrSec = New System.Windows.Forms.TextBox()
         Me.txtNewFacultyName = New System.Windows.Forms.TextBox()
@@ -48,6 +47,7 @@ Partial Class encodeNewData
         Me.txtNewCoursewareId = New System.Windows.Forms.TextBox()
         Me.txtSecHandling = New System.Windows.Forms.TextBox()
         Me.txtNewFacultyID = New System.Windows.Forms.MaskedTextBox()
+        Me.txtNewStudId = New System.Windows.Forms.MaskedTextBox()
         CType(Me.picEncodeNewData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -71,15 +71,6 @@ Partial Class encodeNewData
         Me.comboAccountType.Name = "comboAccountType"
         Me.comboAccountType.Size = New System.Drawing.Size(366, 28)
         Me.comboAccountType.TabIndex = 1
-        '
-        'txtNewStudID
-        '
-        Me.txtNewStudID.Enabled = False
-        Me.txtNewStudID.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewStudID.Location = New System.Drawing.Point(347, 379)
-        Me.txtNewStudID.Name = "txtNewStudID"
-        Me.txtNewStudID.Size = New System.Drawing.Size(270, 26)
-        Me.txtNewStudID.TabIndex = 2
         '
         'txtNewStudName
         '
@@ -310,6 +301,7 @@ Partial Class encodeNewData
         '
         'txtNewFacultyID
         '
+        Me.txtNewFacultyID.Enabled = False
         Me.txtNewFacultyID.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNewFacultyID.Location = New System.Drawing.Point(910, 243)
         Me.txtNewFacultyID.Mask = "00-0000000"
@@ -317,12 +309,23 @@ Partial Class encodeNewData
         Me.txtNewFacultyID.Size = New System.Drawing.Size(270, 27)
         Me.txtNewFacultyID.TabIndex = 26
         '
+        'txtNewStudId
+        '
+        Me.txtNewStudId.Enabled = False
+        Me.txtNewStudId.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewStudId.Location = New System.Drawing.Point(347, 378)
+        Me.txtNewStudId.Mask = "00-00000"
+        Me.txtNewStudId.Name = "txtNewStudId"
+        Me.txtNewStudId.Size = New System.Drawing.Size(270, 27)
+        Me.txtNewStudId.TabIndex = 27
+        '
         'encodeNewData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.encodeNewData
         Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.Controls.Add(Me.txtNewStudId)
         Me.Controls.Add(Me.txtNewFacultyID)
         Me.Controls.Add(Me.txtSecHandling)
         Me.Controls.Add(Me.txtNewCoursewareId)
@@ -346,7 +349,6 @@ Partial Class encodeNewData
         Me.Controls.Add(Me.txtNewFacultyName)
         Me.Controls.Add(Me.txtNewYrSec)
         Me.Controls.Add(Me.txtNewStudName)
-        Me.Controls.Add(Me.txtNewStudID)
         Me.Controls.Add(Me.comboAccountType)
         Me.Controls.Add(Me.picEncodeNewData)
         Me.Name = "encodeNewData"
@@ -359,7 +361,6 @@ Partial Class encodeNewData
 
     Friend WithEvents picEncodeNewData As PictureBox
     Friend WithEvents comboAccountType As ComboBox
-    Friend WithEvents txtNewStudID As TextBox
     Friend WithEvents txtNewStudName As TextBox
     Friend WithEvents txtNewYrSec As TextBox
     Friend WithEvents txtNewFacultyName As TextBox
@@ -383,4 +384,5 @@ Partial Class encodeNewData
     Friend WithEvents txtNewCoursewareId As TextBox
     Friend WithEvents txtSecHandling As TextBox
     Friend WithEvents txtNewFacultyID As MaskedTextBox
+    Friend WithEvents txtNewStudId As MaskedTextBox
 End Class

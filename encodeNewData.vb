@@ -1,4 +1,5 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
+﻿Imports System.Linq.Expressions
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports MySql.Data.MySqlClient
 
 Public Class encodeNewData
@@ -8,6 +9,7 @@ Public Class encodeNewData
     Dim str As String
     Dim x As Integer
     Dim con As New MySqlConnection("server=localhost; user=root; database=nexus_db")
+    Dim accountExists As Boolean = False
     Private Sub btnBackEncodeNew_Click(sender As Object, e As EventArgs) Handles btnBackEncodeNew.Click
         Me.Close()
     End Sub
@@ -34,7 +36,7 @@ Public Class encodeNewData
     End Sub
 
     Public Sub enableNewStudent()
-        txtNewStudID.Enabled = True
+        txtNewStudId.Enabled = True
         txtNewStudName.Enabled = True
         txtNewYrSec.Enabled = True
         txtNewStudUsername.Enabled = True
@@ -47,7 +49,7 @@ Public Class encodeNewData
     End Sub
 
     Public Sub disableNewStudent()
-        txtNewStudID.Enabled = False
+        txtNewStudId.Enabled = False
         txtNewStudName.Enabled = False
         txtNewYrSec.Enabled = False
         txtNewStudUsername.Enabled = False
@@ -57,7 +59,7 @@ Public Class encodeNewData
         comboNewStudCourse.Enabled = False
         btnAddStud.Enabled = False
 
-        txtNewStudID.Clear()
+        txtNewStudId.Clear()
         txtNewStudName.Clear()
         txtNewYrSec.Clear()
         txtNewStudUsername.Clear()
@@ -368,74 +370,96 @@ Public Class encodeNewData
     End Sub
 
     Private Sub btnAddStud_Click(sender As Object, e As EventArgs) Handles btnAddStud.Click
-        If txtNewStudID.Text.Length <> 0 And txtNewStudName.Text.Length <> 0 And txtNewYrSec.Text.Length <> 0 And comboNewStudDept.SelectedIndex <> -1 And comboNewStudProgram.SelectedIndex <> -1 And comboNewStudCourse.SelectedIndex <> -1 Then
+        Dim program_id As Integer
 
-            Dim program_id As Integer
+        ' Map program selection to program_id
+        If comboNewStudProgram.Text = "BS in Information Technology" Then
+            program_id = 1
+        ElseIf comboNewStudProgram.Text = "BS in Computer Science" Then
+            program_id = 2
+        ElseIf comboNewStudProgram.Text = "BS in Nursing" Then
+            program_id = 3
+        Else
+            MessageBox.Show("Invalid program selected.")
+            Exit Sub
+        End If
 
-            ' Map program selection to program_id
-            If comboNewStudProgram.Text = "BS in Information Technology" Then
-                program_id = 1
-            ElseIf comboNewStudProgram.Text = "BS in Computer Science" Then
-                program_id = 2
-            ElseIf comboNewStudProgram.Text = "BS in Nursing" Then
-                program_id = 3
-            Else
-                MessageBox.Show("Invalid program selected.")
+        Try
+            con.Open()
+
+            ' Check if student account already exists
+            Dim checkStudentQuery As String = "SELECT COUNT(*) FROM students WHERE Student_ID = @StudentID"
+            Dim cmdCheck As New MySqlCommand(checkStudentQuery, con)
+            cmdCheck.Parameters.AddWithValue("@StudentID", txtNewStudId.Text)
+            Dim studentExists As Integer = Convert.ToInt32(cmdCheck.ExecuteScalar())
+
+            If studentExists > 0 Then
+                MessageBox.Show("Student account already exists. Please verify the details.")
                 Exit Sub
             End If
 
-            Try
-                con.Open()
+            ' Insert new user securely using parameters
+            Dim insertStudentUser As String = "INSERT INTO users (User_name, Password, User_type) VALUES (@UserName, @Password, 'student');"
+            Dim cmdInsertUser As New MySqlCommand(insertStudentUser, con)
+            cmdInsertUser.Parameters.AddWithValue("@UserName", txtNewStudUsername.Text)
+            cmdInsertUser.Parameters.AddWithValue("@Password", txtNewStudPassword.Text)
+            cmdInsertUser.ExecuteNonQuery()
 
-                ' Insert new user securely using parameters
-                Dim insertStudentUser As String = "INSERT INTO users (User_name, Password, User_type) VALUES (@UserName, @Password, 'student');"
-                Dim cmd As New MySqlCommand(insertStudentUser, con)
-                cmd.Parameters.AddWithValue("@UserName", txtNewStudUsername.Text)
-                cmd.Parameters.AddWithValue("@Password", txtNewStudPassword.Text)
-                cmd.ExecuteNonQuery()
+            ' Retrieve User_ID for the new user
+            Dim queryUserId As String = "SELECT LAST_INSERT_ID()"
+            Dim cmdGetUserId As New MySqlCommand(queryUserId, con)
+            Dim userId As Integer = Convert.ToInt32(cmdGetUserId.ExecuteScalar())
 
-                ' Retrieve User_ID for the new user
-                Dim query As String = "SELECT User_ID FROM users WHERE User_name = @UserName"
-                cmd.CommandText = query
-                cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@UserName", txtNewStudUsername.Text)
-                Dim userId As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+            ' Determine courseware ID
+            Dim selectedCourseware As String = comboNewStudCourse.Text
+            Dim coursewareId As Integer
+            If selectedCourseware = "1st Year IT Courseware" Then
+                coursewareId = 1
+            ElseIf selectedCourseware = "1st Year Nursing Courseware" Then
+                coursewareId = 2
+            Else
+                MessageBox.Show("Invalid courseware selected.")
+                Exit Sub
+            End If
 
-                ' Determine courseware ID
-                Dim selectedCourseware As String = comboNewStudCourse.Text
-                Dim coursewareId As Integer
-                If selectedCourseware = "1st Year IT Courseware" Then
-                    coursewareId = 1
-                ElseIf selectedCourseware = "1st Year Nursing Courseware" Then
-                    coursewareId = 2
-                Else
-                    MessageBox.Show("Invalid courseware selected.")
-                    Exit Sub
-                End If
+            ' Retrieve courses associated with the selected courseware ID
+            Dim getCoursesQuery As String = "SELECT course_code FROM courses WHERE course_ware_id = @CoursewareID"
+            Dim cmdGetCourses As New MySqlCommand(getCoursesQuery, con)
+            cmdGetCourses.Parameters.AddWithValue("@CoursewareID", coursewareId)
+            Dim reader As MySqlDataReader = cmdGetCourses.ExecuteReader()
 
-                ' Insert student details securely, including User_ID
-                Dim insertStudent As String = "INSERT INTO students (Student_ID, Full_name, Year_Section, program_id, courseware_id, User_ID) VALUES (@StudentID, @FullName, @YearSection, @ProgramID, @CoursewareID, @UserID);"
+            Dim courses As New List(Of String)
+            While reader.Read()
+                courses.Add(reader("course_code").ToString())
+            End While
+            reader.Close()
+
+            For Each course As String In courses
+                MessageBox.Show("Course: " & course) ' Debug output to confirm course value
+                ' Your insert code here...
+            Next
+
+            ' Insert student details for each course
+            For Each course As String In courses
+                Dim insertStudent As String = "INSERT INTO students (Student_ID, Full_name, Year_Section, program_id, course_enrolled, User_ID) VALUES (@StudentID, @FullName, @YearSection, @ProgramID, @CourseEnrolled, @UserID);"
                 Dim cmdInsertStudent As New MySqlCommand(insertStudent, con)
-                cmdInsertStudent.Parameters.AddWithValue("@StudentID", txtNewStudID.Text)
+                cmdInsertStudent.Parameters.AddWithValue("@StudentID", txtNewStudId.Text)
                 cmdInsertStudent.Parameters.AddWithValue("@FullName", txtNewStudName.Text)
                 cmdInsertStudent.Parameters.AddWithValue("@YearSection", txtNewYrSec.Text)
                 cmdInsertStudent.Parameters.AddWithValue("@ProgramID", program_id)
-                cmdInsertStudent.Parameters.AddWithValue("@CoursewareID", coursewareId)
+                cmdInsertStudent.Parameters.AddWithValue("@CourseEnrolled", course)
                 cmdInsertStudent.Parameters.AddWithValue("@UserID", userId)
                 cmdInsertStudent.ExecuteNonQuery()
+            Next
 
-                MessageBox.Show("Student and courses added successfully!")
-            Catch ex As Exception
-                MessageBox.Show("An error occurred: " & ex.Message)
-            Finally
-                If con.State = ConnectionState.Open Then
-                    con.Close()
-                End If
-            End Try
-
-        Else
-            MessageBox.Show("Please fill in all the required fields.")
-        End If
+            MessageBox.Show("Student and courses added successfully!")
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message)
+        Finally
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
     End Sub
 
     Public Sub checkExistingAccount()
@@ -472,12 +496,71 @@ Public Class encodeNewData
 
                 MessageBox.Show("An account with this faculty ID already exists. The username and password have been loaded.",
                             "Account Exists", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                accountExists = True
             Else
                 ' If no account exists, clear the textboxes and make them editable
                 txtNewFacultyUsername.Clear()
                 txtNewFacultyPass.Clear()
                 txtNewFacultyUsername.ReadOnly = False
                 txtNewFacultyPass.ReadOnly = False
+                accountExists = False
+            End If
+
+            reader.Close() ' Close the reader
+
+        Catch ex As Exception
+            ' Handle any exceptions
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            ' Close the connection
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+
+    Public Sub checkExistingStudAccount()
+        Try
+            ' Open the connection
+            If con.State <> ConnectionState.Open Then
+                con.Open()
+            End If
+
+            ' Check if an account with the same faculty ID exists
+            Dim checkFacultyQuery As String = "SELECT u.User_name, u.Password " &
+                                          "FROM users u " &
+                                          "JOIN students s ON u.User_ID = s.user_id " &
+                                          "WHERE s.Student_ID = @StudID " &
+                                          "LIMIT 1;"
+            cmd.Connection = con
+            cmd.CommandText = checkFacultyQuery
+            cmd.Parameters.Clear()
+            cmd.Parameters.AddWithValue("@StudID", txtNewStudId.Text)
+
+            ' Execute the query
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+            If reader.HasRows Then
+                ' If an account exists, retrieve the username and password
+                While reader.Read()
+                    txtNewStudUsername.Text = reader("User_name").ToString()
+                    txtNewStudPassword.Text = reader("Password").ToString()
+                End While
+
+                ' Set textboxes to read-only
+                txtNewStudUsername.ReadOnly = True
+                txtNewStudPassword.ReadOnly = True
+
+                MessageBox.Show("An account with this faculty ID already exists. The username and password have been loaded.", "Account Exists", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                accountExists = True
+            Else
+                ' If no account exists, clear the textboxes and make them editable
+                txtNewStudUsername.Clear()
+                txtNewStudPassword.Clear()
+                txtNewStudUsername.ReadOnly = False
+                txtNewStudPassword.ReadOnly = False
+                accountExists = False
             End If
 
             reader.Close() ' Close the reader
@@ -507,28 +590,51 @@ Public Class encodeNewData
 
         con.Open()
 
-        ' Retrieve the User_ID for the new or existing user
-        Dim queryUserId As String = "SELECT User_ID FROM users WHERE User_name = @UserName"
-        cmd.CommandText = queryUserId
-        cmd.Parameters.Clear()
-        cmd.Parameters.AddWithValue("@UserName", txtNewFacultyUsername.Text)
-        Dim userId As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+        Try
+            Dim userId As Integer
 
-        ' Insert or update professor details
-        Dim insertProfDetails As String = "INSERT INTO professors(Prof_ID, Prof_name, dept_id, course_handling, user_id, section_handling) VALUES (@ProfID, @ProfName, @DeptID, @CourseHandling, @UserID, @SectionHandling);"
-        cmd.CommandText = insertProfDetails
-        cmd.Parameters.Clear()
-        cmd.Parameters.AddWithValue("@ProfID", txtNewFacultyID.Text)
-        cmd.Parameters.AddWithValue("@ProfName", txtNewFacultyName.Text)
-        cmd.Parameters.AddWithValue("@DeptID", deptId)
-        cmd.Parameters.AddWithValue("@CourseHandling", courseId)
-        cmd.Parameters.AddWithValue("@UserID", userId)
-        cmd.Parameters.AddWithValue("@SectionHandling", txtSecHandling.Text)
-        cmd.ExecuteNonQuery()
+            If Not accountExists Then
+                ' Insert a new user account
+                Dim insertUserQuery As String = "INSERT INTO users (User_name, Password, User_type) VALUES (@UserName, @Password, 'student');"
+                Using cmd As New MySqlCommand(insertUserQuery, con)
+                    cmd.Parameters.AddWithValue("@UserName", txtNewFacultyUsername.Text)
+                    cmd.Parameters.AddWithValue("@Password", txtNewFacultyPass.Text)
+                    cmd.ExecuteNonQuery()
+                End Using
 
-        con.Close()
+                ' Retrieve the new User_ID
+                Dim retrieveUserIdQuery As String = "SELECT LAST_INSERT_ID();"
+                Using cmd As New MySqlCommand(retrieveUserIdQuery, con)
+                    userId = Convert.ToInt32(cmd.ExecuteScalar())
+                End Using
+            Else
+                ' Retrieve existing User_ID
+                Dim queryUserId As String = "SELECT User_ID FROM users WHERE User_name = @UserName"
+                Using cmd As New MySqlCommand(queryUserId, con)
+                    cmd.Parameters.AddWithValue("@UserName", txtNewFacultyUsername.Text)
+                    userId = Convert.ToInt32(cmd.ExecuteScalar())
+                End Using
+            End If
 
-        MessageBox.Show("Faculty information saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' Insert professor details
+            Dim insertProfQuery As String = "INSERT INTO professors (Prof_ID, Prof_name, dept_id, course_handling, user_id, section_handling) VALUES (@ProfID, @ProfName, @DeptID, @CourseHandling, @UserID, @SectionHandling);"
+            Using cmd As New MySqlCommand(insertProfQuery, con)
+                cmd.Parameters.AddWithValue("@ProfID", txtNewFacultyID.Text)
+                cmd.Parameters.AddWithValue("@ProfName", txtNewFacultyName.Text)
+                cmd.Parameters.AddWithValue("@DeptID", deptId)
+                cmd.Parameters.AddWithValue("@CourseHandling", courseId)
+                cmd.Parameters.AddWithValue("@UserID", userId)
+                cmd.Parameters.AddWithValue("@SectionHandling", txtSecHandling.Text)
+                cmd.ExecuteNonQuery()
+            End Using
+
+            MessageBox.Show("Faculty information saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As MySqlException
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            con.Close()
+        End Try
     End Sub
 
     Private Sub comboNewFacultyDept_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboNewFacultyDept.SelectedIndexChanged
@@ -542,6 +648,12 @@ Public Class encodeNewData
     Private Sub txtNewFacultyID_TextChanged(sender As Object, e As EventArgs) Handles txtNewFacultyID.TextChanged
         If txtNewFacultyID.MaskCompleted Then
             checkExistingAccount()
+        End If
+    End Sub
+
+    Private Sub txtNewStudId_TextChanged(sender As Object, e As EventArgs) Handles txtNewStudId.TextChanged
+        If txtNewStudId.MaskCompleted Then
+            checkExistingStudAccount()
         End If
     End Sub
 End Class

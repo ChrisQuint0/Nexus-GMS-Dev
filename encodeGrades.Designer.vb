@@ -102,7 +102,6 @@ Partial Class encodeGrades
         Me.comboCourseEncode.Enabled = False
         Me.comboCourseEncode.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboCourseEncode.FormattingEnabled = True
-        Me.comboCourseEncode.Items.AddRange(New Object() {"IT 202: Object Oriented Programming"})
         Me.comboCourseEncode.Location = New System.Drawing.Point(219, 327)
         Me.comboCourseEncode.Name = "comboCourseEncode"
         Me.comboCourseEncode.Size = New System.Drawing.Size(1141, 30)

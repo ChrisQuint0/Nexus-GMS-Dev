@@ -1,8 +1,19 @@
-﻿Imports Mysqlx.Session
+﻿Imports MySql.Data.MySqlClient
+Imports Mysqlx.Session
+
 
 Public Class encodeGrades
 
+    Dim conn As New MySqlConnection("server=localhost;user id=root;password=;database=nexus_db;")
+
     Private isClearing As Boolean = False
+    Dim profId As String
+
+    Public Sub New(ByVal profId As String)
+        InitializeComponent()
+        Me.profId = profId
+
+    End Sub
     Private Sub encodeGrades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.KeyPreview = True
     End Sub
@@ -14,42 +25,214 @@ Public Class encodeGrades
             End If
         End If
     End Sub
+    Private Sub btnBackEncode_Click(sender As Object, e As EventArgs) Handles btnBackEncode.Click
+        Me.Close()
+    End Sub
 
     Private Sub maskedTxtStudId_TextChanged(sender As Object, e As EventArgs) Handles maskedTxtStudId.TextChanged
-        If maskedTxtStudId.Text = "23-00265" Then
-            txtStudName.Text = "Keith Tornea"
-            txtStudName.Enabled = True
-            comboProgramEncode.Enabled = True
-            comboProgramEncode.SelectedItem = "BS in Information Technology"
-            comboSectionEncode.Enabled = True
-            comboSectionEncode.SelectedItem = "2A"
-            comboCourseEncode.Enabled = True
-            comboCourseEncode.SelectedIndex = 0
+        If maskedTxtStudId.MaskCompleted Then
+            ' Create the first query to fetch student info
+            Dim studentQuery As String = "SELECT Full_name, program_id, Year_Section FROM students WHERE Student_ID = @Student_ID"
+            Dim studentCmd As New MySqlCommand(studentQuery, conn)
+            studentCmd.Parameters.AddWithValue("@Student_ID", maskedTxtStudId.Text)
 
-            comboSem.Enabled = True
-            comboSem.SelectedItem = "1st Semester"
+            Try
+                ' Open the connection once
+                If conn.State <> ConnectionState.Open Then
+                    conn.Open()
+                End If
 
-            enableMidterm()
-        Else
-            disableMidterm()
-            txtStudName.Enabled = False
-            comboProgramEncode.Enabled = False
-            comboSectionEncode.Enabled = False
-            comboCourseEncode.Enabled = False
-            comboSem.Enabled = False
+                ' Execute the student query
+                Dim studentReader As MySqlDataReader = studentCmd.ExecuteReader()
+                If studentReader.Read() Then
+                    ' Read and display student data
+                    txtStudName.Text = studentReader("Full_name").ToString()
 
-            txtStudName.Clear()
-            comboProgramEncode.SelectedIndex = -1
-            comboSectionEncode.SelectedIndex = -1
-            comboCourseEncode.SelectedIndex = -1
-            comboSem.SelectedIndex = -1
-            clearMidterm()
+                    ' Get the program_id from the student data
+                    Dim programId As Integer = Convert.ToInt32(studentReader("program_id"))
+                    Dim yearSection As String = studentReader("Year_Section").ToString()
 
+                    ' Close the student reader after use
+                    studentReader.Close()
+
+                    ' Now create the query for the program name
+                    Dim programQuery As String = "SELECT program_name FROM programs WHERE program_id = @program_id"
+                    Dim programCmd As New MySqlCommand(programQuery, conn)
+                    programCmd.Parameters.AddWithValue("@program_id", programId)
+
+                    ' Execute the program query
+                    Dim programReader As MySqlDataReader = programCmd.ExecuteReader()
+                    If programReader.Read() Then
+                        comboProgramEncode.Text = programReader("program_name").ToString()
+                    Else
+                        MessageBox.Show("Program not found.")
+                    End If
+
+                    ' Close the program reader after use
+                    programReader.Close()
+
+                    ' Set other details like Year/Section, Semester, etc.
+                    comboSectionEncode.Text = yearSection
+                    comboSem.Text = "1st Semester"
+
+                    ' Populate courses based on program selection
+                    PopulateCourses()
+
+                    ' Enable the relevant UI elements
+                    txtStudName.Enabled = True
+                    comboCourseEncode.Enabled = True
+                    comboProgramEncode.Enabled = True
+                    comboSectionEncode.Enabled = True
+                    comboSem.Enabled = True
+                    enableMidterm()
+                Else
+                    MessageBox.Show("Student not found.")
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
+                ' Ensure the connection is closed
+                If conn.State = ConnectionState.Open Then
+                    conn.Close()
+                End If
+            End Try
         End If
     End Sub
 
-    Private Sub btnBackEncode_Click(sender As Object, e As EventArgs) Handles btnBackEncode.Click
-        Me.Close()
+    Private Sub PopulateCourses()
+        Dim query As String = "SELECT course_code, course_title FROM courses WHERE course_ware_id = @course_ware_id"
+        Dim courseWareId As Integer
+
+        ' Determine course_ware_id from program
+        If comboProgramEncode.Text = "BS in Information Technology" Then
+            courseWareId = 1
+        ElseIf comboProgramEncode.Text = "BS in Nursing" Then
+            courseWareId = 2
+        Else
+            MessageBox.Show("Unknown program selected.")
+            Exit Sub
+        End If
+
+        ' Create the command and add parameters
+        Dim cmd As New MySqlCommand(query, conn)
+        cmd.Parameters.AddWithValue("@course_ware_id", courseWareId)
+
+        Try
+            ' Open the connection within the method to ensure it's fresh
+            If conn.State <> ConnectionState.Open Then
+                conn.Open()
+            End If
+
+            ' Execute the query
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+            comboCourseEncode.Items.Clear()
+
+            ' Add the retrieved courses to the combo box (both course_code and course_title)
+            While reader.Read()
+                Dim courseCode As String = reader("course_code").ToString()
+                Dim courseTitle As String = reader("course_title").ToString()
+
+                ' Combine course code and title for display
+                Dim displayText As String = courseCode & ": " & courseTitle
+                comboCourseEncode.Items.Add(displayText)
+            End While
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            ' Ensure the connection is closed
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+    End Sub
+
+
+    Private Sub btnSaveGrades_Click(sender As Object, e As EventArgs) Handles btnSaveEncode.Click
+        Dim conn As New MySqlConnection("server=localhost;user id=root;password=;database=nexus_db;")
+        Dim query As String = "INSERT INTO grades (course_id, Student_ID, Prof_ID, Midterm_Attendance, Midterm_quiz_1, 
+                            Midterm_quiz_1_total, Midterm_quiz_2, Midterm_quiz_2_total, Midterm_quiz_3, Midterm_quiz_3_total, 
+                            Midterm_quiz_4, Midterm_quiz_4_total, Midterm_quiz_total, Midterm_quiz_items, Midterm_quiz_grade, 
+                            Midterm_lab, Midterm_recitation, Midterm_casestudy, Midterm_exam, Midterm_exam_items, 
+                            Midterm_exam_grade, Midterm_grade, Finals_attendance, Finals_quiz_1, Finals_quiz_1_total, 
+                            Finals_quiz_2, Finals_quiz_2_total, Finals_quiz_3, Finals_quiz_3_total, Finals_quiz_4, 
+                            Finals_quiz_4_total, Finals_quiz_total, Finals_quiz_items, Finals_quiz_grade, Finals_lab, 
+                            Finals_recitation, Finals_casestudy, Finals_exam, Finals_exam_items, Finals_exam_grade, 
+                            Finals_grade, Semestral_grade, Semester, College_grade) 
+                            VALUES (@course_id, @Student_ID, @Prof_ID, @Midterm_Attendance, @Midterm_quiz_1, 
+                            @Midterm_quiz_1_total, @Midterm_quiz_2, @Midterm_quiz_2_total, @Midterm_quiz_3, @Midterm_quiz_3_total, 
+                            @Midterm_quiz_4, @Midterm_quiz_4_total, @Midterm_quiz_total, @Midterm_quiz_items, @Midterm_quiz_grade, 
+                            @Midterm_lab, @Midterm_recitation, @Midterm_casestudy, @Midterm_exam, @Midterm_exam_items, 
+                            @Midterm_exam_grade, @Midterm_grade, @Finals_attendance, @Finals_quiz_1, @Finals_quiz_1_total, 
+                            @Finals_quiz_2, @Finals_quiz_2_total, @Finals_quiz_3, @Finals_quiz_3_total, @Finals_quiz_4, 
+                            @Finals_quiz_4_total, @Finals_quiz_total, @Finals_quiz_items, @Finals_quiz_grade, @Finals_lab, 
+                            @Finals_recitation, @Finals_casestudy, @Finals_exam, @Finals_exam_items, @Finals_exam_grade, 
+                            @Finals_grade, @Semestral_grade, @Semester, @College_grade)"
+
+        Dim cmd As New MySqlCommand(query, conn)
+
+        Dim courseEncode As String = comboCourseEncode.Text
+        Dim parts() As String = courseEncode.Split(":"c)
+        Dim courseId As String = parts(0).Trim()
+
+        ' Add parameters
+        cmd.Parameters.AddWithValue("@course_id", courseId)
+        cmd.Parameters.AddWithValue("@Student_ID", maskedTxtStudId.Text)
+        cmd.Parameters.AddWithValue("@Prof_ID", profId) ' Example Professor ID, change accordingly
+        cmd.Parameters.AddWithValue("@Midterm_Attendance", txtMidAtt.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_1", txtMQ1Score.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_1_total", txtMQ1Total.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_2", txtMQ2Score.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_2_total", txtMQ2Total.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_3", txtMQ3Score.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_3_total", txtMQ3Total.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_4", txtMQ4Score.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_4_total", txtMQ4Total.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_total", txtMQuizPerc.Text)
+        cmd.Parameters.AddWithValue("@Midterm_quiz_items", txtMQuizPerc.Text) ' Assuming it's the same
+        cmd.Parameters.AddWithValue("@Midterm_quiz_grade", txtMQuizPerc.Text) ' Assuming it's the same
+        cmd.Parameters.AddWithValue("@Midterm_lab", txtMLab.Text)
+        cmd.Parameters.AddWithValue("@Midterm_recitation", txtMRec.Text)
+        cmd.Parameters.AddWithValue("@Midterm_casestudy", txtMCase.Text)
+        cmd.Parameters.AddWithValue("@Midterm_exam", txtMExamScore.Text)
+        cmd.Parameters.AddWithValue("@Midterm_exam_items", txtMExamTotal.Text)
+        cmd.Parameters.AddWithValue("@Midterm_exam_grade", txtMExamPerc.Text)
+        cmd.Parameters.AddWithValue("@Midterm_grade", lblMidGrade.Text) ' Assuming calculated grade
+        cmd.Parameters.AddWithValue("@Finals_attendance", txtFAtt.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_1", txtFQ1Score.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_1_total", txtFQuiz1Total.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_2", txtFQuiz2Score.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_2_total", txtFQuiz2Total.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_3", txtFQuiz3Score.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_3_total", txtFQuiz3Total.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_4", txtFQuiz4Score.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_4_total", txtFQuiz4Total.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_total", txtFQuizPerc.Text)
+        cmd.Parameters.AddWithValue("@Finals_quiz_items", txtFQuizPerc.Text) ' Assuming it's the same
+        cmd.Parameters.AddWithValue("@Finals_quiz_grade", txtFQuizPerc.Text) ' Assuming it's the same
+        cmd.Parameters.AddWithValue("@Finals_lab", txtFLab.Text)
+        cmd.Parameters.AddWithValue("@Finals_recitation", txtFRec.Text)
+        cmd.Parameters.AddWithValue("@Finals_casestudy", txtFCase.Text)
+        cmd.Parameters.AddWithValue("@Finals_exam", txtFExamScore.Text)
+        cmd.Parameters.AddWithValue("@Finals_exam_items", txtFExamTotal.Text)
+        cmd.Parameters.AddWithValue("@Finals_exam_grade", txtFExamPerc.Text)
+        cmd.Parameters.AddWithValue("@Finals_grade", lblFinGrade.Text) ' Assuming calculated grade
+        cmd.Parameters.AddWithValue("@Semestral_grade", lblSemGrade.Text) ' Assuming calculated grade
+        cmd.Parameters.AddWithValue("@Semester", comboSem.Text)
+        cmd.Parameters.AddWithValue("@College_grade", lblCollegeGrade.Text) ' Assuming calculated grade
+
+        Try
+            conn.Open()
+            If cmd.ExecuteNonQuery() > 0 Then
+                MessageBox.Show("Grades saved successfully!")
+            Else
+                MessageBox.Show("Failed to save grades.")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
     End Sub
 
     Public Sub enableMidterm()

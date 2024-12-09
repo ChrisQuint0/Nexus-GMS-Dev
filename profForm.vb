@@ -63,6 +63,7 @@ Public Class profForm
                 ' Use a HashSet to track unique course entries
                 Dim uniqueCourses As New HashSet(Of String)()
 
+
                 While reader.Read()
                     ' Combine course_handling and course_name into a single display value
                     Dim displayValue As String = reader("course_handling").ToString() & " - " & reader("course_title").ToString()
@@ -121,17 +122,96 @@ Public Class profForm
     End Sub
 
     Private Sub btnEncodeGrades_Click(sender As Object, e As EventArgs) Handles btnEncodeGrades.Click
-        Dim encodeGradesForm As New encodeGrades()
+        Dim profId As String = ""
 
+        ' Define the query to retrieve Prof_ID
+        Dim query As String = "SELECT Prof_ID FROM vCourse_Title WHERE User_name = @UserName"
+
+        ' Set up the command and parameters
+        Dim cmd As New MySqlCommand(query, con)
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("@UserName", username) ' Replace with dynamic username if needed
+
+        Try
+            ' Open the database connection
+            If con.State <> ConnectionState.Open Then
+                con.Open()
+            End If
+
+            ' Execute the query and read the result
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+            If reader.HasRows Then
+                ' Read the Prof_ID from the result
+                reader.Read()
+                profId = reader("Prof_ID").ToString()
+            Else
+                MessageBox.Show("No records found for the given username.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+
+            reader.Close() ' Close the reader
+
+        Catch ex As Exception
+            ' Handle any exceptions
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            ' Ensure the connection is closed
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+
+        ' Pass the retrieved profId to the encodeGrades form
+        Dim encodeGradesForm As New encodeGrades(profId)
+
+        ' Show the form
         encodeGradesForm.MdiParent = mainFormReference
         encodeGradesForm.StartPosition = FormStartPosition.Manual
         encodeGradesForm.Location = New Point(0, 0)
-
         encodeGradesForm.Show()
     End Sub
 
     Private Sub btnGenerateReport_Click(sender As Object, e As EventArgs) Handles btnGenerateReport.Click
-        Dim profReportForm As New profReportForm()
+        Dim profId As String = ""
+
+        ' Define the query to retrieve Prof_ID
+        Dim query As String = "SELECT Prof_ID FROM vCourse_Title WHERE User_name = @UserName"
+
+        ' Set up the command and parameters
+        Dim cmd As New MySqlCommand(query, con)
+        cmd.Parameters.Clear()
+        cmd.Parameters.AddWithValue("@UserName", username) ' Replace with dynamic username if needed
+
+        Try
+            ' Open the database connection
+            If con.State <> ConnectionState.Open Then
+                con.Open()
+            End If
+
+            ' Execute the query and read the result
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+            If reader.HasRows Then
+                ' Read the Prof_ID from the result
+                reader.Read()
+                profId = reader("Prof_ID").ToString()
+            Else
+                MessageBox.Show("No records found for the given username.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+
+            reader.Close() ' Close the reader
+
+        Catch ex As Exception
+            ' Handle any exceptions
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            ' Ensure the connection is closed
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+
+        Dim profReportForm As New profReportForm(profId)
 
         profReportForm.MdiParent = mainFormReference
         profReportForm.StartPosition = FormStartPosition.Manual
