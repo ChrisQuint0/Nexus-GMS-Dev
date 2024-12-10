@@ -1,4 +1,5 @@
 ﻿Imports System.Linq.Expressions
+Imports iText.Bouncycastle.Asn1
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports MySql.Data.MySqlClient
 
@@ -45,6 +46,7 @@ Public Class encodeNewData
         comboNewStudProgram.Enabled = True
         comboNewStudCourse.Enabled = True
         btnAddStud.Enabled = True
+        txtNewStudRecovery.Enabled = True
 
     End Sub
 
@@ -58,6 +60,7 @@ Public Class encodeNewData
         comboNewStudProgram.Enabled = False
         comboNewStudCourse.Enabled = False
         btnAddStud.Enabled = False
+        txtNewStudRecovery.Enabled = False
 
         txtNewStudId.Clear()
         txtNewStudName.Clear()
@@ -67,6 +70,7 @@ Public Class encodeNewData
         comboNewStudDept.SelectedIndex = -1
         comboNewStudProgram.SelectedIndex = -1
         comboNewStudCourse.SelectedIndex = -1
+        txtNewStudRecovery.Clear()
 
 
     End Sub
@@ -80,6 +84,7 @@ Public Class encodeNewData
         comboNewFacultyCourse.Enabled = True
         btnAddFaculty.Enabled = True
         txtSecHandling.Enabled = True
+        txtNewFacultyRecovery.Enabled = True
 
     End Sub
 
@@ -92,6 +97,8 @@ Public Class encodeNewData
         comboNewFacultyCourse.Enabled = False
         btnAddFaculty.Enabled = False
         txtSecHandling.Enabled = False
+        txtNewFacultyRecovery.Enabled = False
+
 
         txtNewFacultyID.Clear()
         txtNewFacultyName.Clear()
@@ -99,6 +106,7 @@ Public Class encodeNewData
         txtNewFacultyPass.Clear()
         comboNewFacultyDept.SelectedIndex = -1
         comboNewFacultyCourse.SelectedIndex = -1
+        txtNewFacultyRecovery.Clear()
 
     End Sub
 
@@ -470,7 +478,7 @@ Public Class encodeNewData
             End If
 
             ' Check if an account with the same faculty ID exists
-            Dim checkFacultyQuery As String = "SELECT u.User_name, u.Password " &
+            Dim checkFacultyQuery As String = "SELECT u.User_name, u.Password, u.recovery_answer " &
                                           "FROM users u " &
                                           "JOIN professors p ON u.User_ID = p.user_id " &
                                           "WHERE p.Prof_ID = @ProfID " &
@@ -488,11 +496,13 @@ Public Class encodeNewData
                 While reader.Read()
                     txtNewFacultyUsername.Text = reader("User_name").ToString()
                     txtNewFacultyPass.Text = reader("Password").ToString()
+                    txtNewFacultyRecovery.Text = reader("recovery_answer").ToString()
                 End While
 
                 ' Set textboxes to read-only
                 txtNewFacultyUsername.ReadOnly = True
                 txtNewFacultyPass.ReadOnly = True
+                txtNewFacultyRecovery.ReadOnly = True
 
                 MessageBox.Show("An account with this faculty ID already exists. The username and password have been loaded.",
                             "Account Exists", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -528,7 +538,7 @@ Public Class encodeNewData
             End If
 
             ' Check if an account with the same faculty ID exists
-            Dim checkFacultyQuery As String = "SELECT u.User_name, u.Password " &
+            Dim checkFacultyQuery As String = "SELECT u.User_name, u.Password, u.recovery_answer " &
                                           "FROM users u " &
                                           "JOIN students s ON u.User_ID = s.user_id " &
                                           "WHERE s.Student_ID = @StudID " &
@@ -546,13 +556,18 @@ Public Class encodeNewData
                 While reader.Read()
                     txtNewStudUsername.Text = reader("User_name").ToString()
                     txtNewStudPassword.Text = reader("Password").ToString()
+                    txtNewStudRecovery.Text = reader("recovery_answer").ToString()
                 End While
 
                 ' Set textboxes to read-only
                 txtNewStudUsername.ReadOnly = True
                 txtNewStudPassword.ReadOnly = True
+                txtNewStudRecovery.ReadOnly = True
 
-                MessageBox.Show("An account with this faculty ID already exists. The username and password have been loaded.", "Account Exists", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("An account with this student ID already exists. The username and password have been loaded.", "Account Exists", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                disableNewStudent()
+                comboAccountType.SelectedIndex = -1
                 accountExists = True
             Else
                 ' If no account exists, clear the textboxes and make them editable

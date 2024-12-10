@@ -1,5 +1,6 @@
 ﻿Imports System.Net.Security
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 Imports MySql.Data.MySqlClient
 
 'This is the updated master branch 29/11/2024 3:46 PM
@@ -134,15 +135,41 @@ Public Class mainForm
     End Sub
 
     Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs) Handles lblForgotPassword.Click
-        Dim forgotPassForm As New forgotPassForm(Me)
+        ' Open the connection
+        con.Open()
 
-        forgotPassForm.MdiParent = Me
-        forgotPassForm.StartPosition = FormStartPosition.Manual
-        forgotPassForm.Location = New Point(0, 0)
+        ' SQL query to validate the user
+        Dim query As String = "SELECT user_name FROM users WHERE user_name = @username;"
+        cmd = New MySqlCommand(query, con)
+        cmd.Parameters.AddWithValue("@username", txtUsername.Text)
 
-        mainSendToBack()
-        forgotPassForm.Show()
+        reader = cmd.ExecuteReader()
+
+        ' Check if the username exists
+        If reader.HasRows Then
+            ' Read the username value from the database
+            reader.Read()
+            Dim username As String = reader("user_name").ToString()
+
+            ' Open the forgot password form and pass the username
+            Dim forgotPassForm As New forgotPassForm(Me, username)
+
+            forgotPassForm.MdiParent = Me
+            forgotPassForm.StartPosition = FormStartPosition.Manual
+            forgotPassForm.Location = New Point(0, 0)
+
+            ' Send the main form to the background and show the forgot password form
+            mainSendToBack()
+            forgotPassForm.Show()
+        Else
+            MessageBox.Show("Username doesn't exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+        ' Close the reader and connection
+        reader.Close()
+        con.Close()
     End Sub
+
     Private Sub mainForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.Escape Then
             Dim confirmEsc = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)

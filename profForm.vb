@@ -220,7 +220,7 @@ Public Class profForm
         profReportForm.Show()
     End Sub
 
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) 
         Dim editForm As New editForm()
 
         editForm.MdiParent = mainFormReference

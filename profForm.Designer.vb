@@ -30,7 +30,6 @@ Partial Class profForm
         Me.lblFacultyName = New System.Windows.Forms.Label()
         Me.lblDepartment = New System.Windows.Forms.Label()
         Me.lblAcadYear = New System.Windows.Forms.Label()
-        Me.btnEdit = New System.Windows.Forms.Button()
         Me.calProf = New System.Windows.Forms.MonthCalendar()
         Me.btnEncodeGrades = New System.Windows.Forms.Button()
         Me.btnGenerateReport = New System.Windows.Forms.Button()
@@ -130,19 +129,6 @@ Partial Class profForm
         Me.lblAcadYear.TabIndex = 9
         Me.lblAcadYear.Text = "SY 2024-2025"
         '
-        'btnEdit
-        '
-        Me.btnEdit.BackColor = System.Drawing.Color.Transparent
-        Me.btnEdit.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.editButton
-        Me.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnEdit.FlatAppearance.BorderSize = 0
-        Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEdit.Location = New System.Drawing.Point(191, 765)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(120, 43)
-        Me.btnEdit.TabIndex = 10
-        Me.btnEdit.UseVisualStyleBackColor = False
-        '
         'calProf
         '
         Me.calProf.Font = New System.Drawing.Font("Montserrat", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -185,7 +171,6 @@ Partial Class profForm
         Me.Controls.Add(Me.btnGenerateReport)
         Me.Controls.Add(Me.btnEncodeGrades)
         Me.Controls.Add(Me.calProf)
-        Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.lblAcadYear)
         Me.Controls.Add(Me.lblDepartment)
         Me.Controls.Add(Me.lblFacultyName)
@@ -210,7 +195,6 @@ Partial Class profForm
     Friend WithEvents lblFacultyName As Label
     Friend WithEvents lblDepartment As Label
     Friend WithEvents lblAcadYear As Label
-    Friend WithEvents btnEdit As Button
     Friend WithEvents calProf As MonthCalendar
     Friend WithEvents btnEncodeGrades As Button
     Friend WithEvents btnGenerateReport As Button
