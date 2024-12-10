@@ -30,7 +30,6 @@ Partial Class profReportForm
         Me.lblDepartment = New System.Windows.Forms.Label()
         Me.comboCourse = New System.Windows.Forms.ComboBox()
         Me.btnBackReport = New System.Windows.Forms.Button()
-        Me.btnDLProfReport = New System.Windows.Forms.Button()
         Me.comboSection = New System.Windows.Forms.ComboBox()
         CType(Me.picProfReportBg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dataGradesProf, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,18 +124,6 @@ Partial Class profReportForm
         Me.btnBackReport.TabIndex = 7
         Me.btnBackReport.UseVisualStyleBackColor = False
         '
-        'btnDLProfReport
-        '
-        Me.btnDLProfReport.BackColor = System.Drawing.Color.Transparent
-        Me.btnDLProfReport.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.downloadButton
-        Me.btnDLProfReport.FlatAppearance.BorderSize = 0
-        Me.btnDLProfReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDLProfReport.Location = New System.Drawing.Point(1170, 788)
-        Me.btnDLProfReport.Name = "btnDLProfReport"
-        Me.btnDLProfReport.Size = New System.Drawing.Size(160, 45)
-        Me.btnDLProfReport.TabIndex = 8
-        Me.btnDLProfReport.UseVisualStyleBackColor = False
-        '
         'comboSection
         '
         Me.comboSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -154,7 +141,6 @@ Partial Class profReportForm
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.profReportForm
         Me.ClientSize = New System.Drawing.Size(1520, 845)
         Me.Controls.Add(Me.comboSection)
-        Me.Controls.Add(Me.btnDLProfReport)
         Me.Controls.Add(Me.btnBackReport)
         Me.Controls.Add(Me.comboCourse)
         Me.Controls.Add(Me.lblDepartment)
@@ -180,6 +166,5 @@ Partial Class profReportForm
     Friend WithEvents lblDepartment As Label
     Friend WithEvents comboCourse As ComboBox
     Friend WithEvents btnBackReport As Button
-    Friend WithEvents btnDLProfReport As Button
     Friend WithEvents comboSection As ComboBox
 End Class

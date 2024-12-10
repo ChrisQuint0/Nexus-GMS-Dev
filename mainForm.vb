@@ -78,7 +78,7 @@ Public Class mainForm
                         mainSendToBack()
                         adminForm.Show()
                     Case "student"
-                        Dim studForm = New studentForm(Me)
+                        Dim studForm = New studentForm(Me, username)
 
                         studForm.MdiParent = Me
                         studForm.StartPosition = FormStartPosition.Manual

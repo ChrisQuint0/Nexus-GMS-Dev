@@ -65,23 +65,23 @@
 
 
     Private Sub btnAssignAdminCard_Click(sender As Object, e As EventArgs) Handles btnAssignAdminCard.Click
-        Dim assignProfForm As New assignProf()
+        Dim manageData As New manageData()
 
-        assignProfForm.MdiParent = mainFormReference
-        assignProfForm.StartPosition = FormStartPosition.Manual
-        assignProfForm.Location = New Point(0, 0)
+        manageData.MdiParent = mainFormReference
+        manageData.StartPosition = FormStartPosition.Manual
+        manageData.Location = New Point(0, 0)
 
-        assignProfForm.Show()
+        manageData.Show()
     End Sub
 
     Private Sub btnAssignProf_Click(sender As Object, e As EventArgs) Handles btnAssignProf.Click
-        Dim assignProfForm As New assignProf()
+        Dim manageData As New manageData()
 
-        assignProfForm.MdiParent = mainFormReference
-        assignProfForm.StartPosition = FormStartPosition.Manual
-        assignProfForm.Location = New Point(0, 0)
+        manageData.MdiParent = mainFormReference
+        manageData.StartPosition = FormStartPosition.Manual
+        manageData.Location = New Point(0, 0)
 
-        assignProfForm.Show()
+        manageData.Show()
     End Sub
 
 

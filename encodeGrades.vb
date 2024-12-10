@@ -158,7 +158,7 @@ Public Class encodeGrades
                             Finals_quiz_2, Finals_quiz_2_total, Finals_quiz_3, Finals_quiz_3_total, Finals_quiz_4, 
                             Finals_quiz_4_total, Finals_quiz_total, Finals_quiz_items, Finals_quiz_grade, Finals_lab, 
                             Finals_recitation, Finals_casestudy, Finals_exam, Finals_exam_items, Finals_exam_grade, 
-                            Finals_grade, Semestral_grade, Semester, College_grade) 
+                            Finals_grade, Semestral_grade, Semester, College_grade, remarks) 
                             VALUES (@course_id, @Student_ID, @Prof_ID, @Midterm_Attendance, @Midterm_quiz_1, 
                             @Midterm_quiz_1_total, @Midterm_quiz_2, @Midterm_quiz_2_total, @Midterm_quiz_3, @Midterm_quiz_3_total, 
                             @Midterm_quiz_4, @Midterm_quiz_4_total, @Midterm_quiz_total, @Midterm_quiz_items, @Midterm_quiz_grade, 
@@ -167,7 +167,7 @@ Public Class encodeGrades
                             @Finals_quiz_2, @Finals_quiz_2_total, @Finals_quiz_3, @Finals_quiz_3_total, @Finals_quiz_4, 
                             @Finals_quiz_4_total, @Finals_quiz_total, @Finals_quiz_items, @Finals_quiz_grade, @Finals_lab, 
                             @Finals_recitation, @Finals_casestudy, @Finals_exam, @Finals_exam_items, @Finals_exam_grade, 
-                            @Finals_grade, @Semestral_grade, @Semester, @College_grade)"
+                            @Finals_grade, @Semestral_grade, @Semester, @College_grade, @Remarks)"
 
         Dim cmd As New MySqlCommand(query, conn)
 
@@ -220,6 +220,12 @@ Public Class encodeGrades
         cmd.Parameters.AddWithValue("@Semestral_grade", lblSemGrade.Text) ' Assuming calculated grade
         cmd.Parameters.AddWithValue("@Semester", comboSem.Text)
         cmd.Parameters.AddWithValue("@College_grade", lblCollegeGrade.Text) ' Assuming calculated grade
+
+        If Double.Parse(lblSemGrade.Text) > 75 Then
+            cmd.Parameters.AddWithValue("@Remarks", "PASSED")
+        Else
+            cmd.Parameters.AddWithValue("@Remarks", "FAILED")
+        End If
 
         Try
             conn.Open()

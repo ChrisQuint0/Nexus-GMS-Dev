@@ -324,7 +324,7 @@ Partial Class encodeNewData
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.encodeNewData
-        Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.ClientSize = New System.Drawing.Size(1520, 845)
         Me.Controls.Add(Me.txtNewStudId)
         Me.Controls.Add(Me.txtNewFacultyID)
         Me.Controls.Add(Me.txtSecHandling)

@@ -160,6 +160,9 @@
   <data name="computeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\computeButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="assignProfSaveButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\assignProfSaveButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="adminForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\adminForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -193,6 +196,12 @@
   <data name="cancelEditButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\cancelEditButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="manageDataBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\manageDataBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="assignProfBackButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\assignProfBackButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="editForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\editForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -217,10 +226,7 @@
   <data name="assignForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\assignForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="assignProfBackButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\assignProfBackButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="assignProfSaveButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\assignProfSaveButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnDeleteData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\btnDeleteData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

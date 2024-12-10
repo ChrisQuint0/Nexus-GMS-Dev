@@ -98,7 +98,8 @@ Public Class profReportForm
                 g.Finals_grade, 
                 g.Semestral_grade, 
                 g.Semester, 
-                g.College_grade
+                g.College_grade,
+                g.remarks
                 FROM grades g
                 JOIN students s ON g.Student_ID = s.Student_ID
                 JOIN vCourse_Title v ON g.course_id = v.course_handling

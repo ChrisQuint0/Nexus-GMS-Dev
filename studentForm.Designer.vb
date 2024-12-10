@@ -26,10 +26,11 @@ Partial Class studentForm
         Me.lblWelcomeStud = New System.Windows.Forms.Label()
         Me.lblStudId = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblProgYrSec = New System.Windows.Forms.Label()
+        Me.lblAcadYear = New System.Windows.Forms.Label()
         Me.datagridGradeReport = New System.Windows.Forms.DataGridView()
         Me.btnLogout = New System.Windows.Forms.Button()
+        Me.btnDownloadCopy = New System.Windows.Forms.Button()
         CType(Me.picStudFormBg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.datagridGradeReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -39,7 +40,7 @@ Partial Class studentForm
         Me.picStudFormBg.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.studentFormBg
         Me.picStudFormBg.Location = New System.Drawing.Point(0, 0)
         Me.picStudFormBg.Name = "picStudFormBg"
-        Me.picStudFormBg.Size = New System.Drawing.Size(1536, 864)
+        Me.picStudFormBg.Size = New System.Drawing.Size(1536, 884)
         Me.picStudFormBg.TabIndex = 1
         Me.picStudFormBg.TabStop = False
         '
@@ -76,27 +77,27 @@ Partial Class studentForm
         Me.lblName.TabIndex = 4
         Me.lblName.Text = "DELA CRUZ, JUAN"
         '
-        'Label1
+        'lblProgYrSec
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Montserrat", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(483, 505)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(121, 33)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "BSIT - 2A"
+        Me.lblProgYrSec.AutoSize = True
+        Me.lblProgYrSec.BackColor = System.Drawing.Color.Transparent
+        Me.lblProgYrSec.Font = New System.Drawing.Font("Montserrat", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProgYrSec.Location = New System.Drawing.Point(483, 505)
+        Me.lblProgYrSec.Name = "lblProgYrSec"
+        Me.lblProgYrSec.Size = New System.Drawing.Size(121, 33)
+        Me.lblProgYrSec.TabIndex = 5
+        Me.lblProgYrSec.Text = "BSIT - 2A"
         '
-        'Label2
+        'lblAcadYear
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Montserrat", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(1020, 419)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(263, 33)
-        Me.Label2.TabIndex = 6
-        Me.Label2.Text = "2024 - 2025 | 1st Sem"
+        Me.lblAcadYear.AutoSize = True
+        Me.lblAcadYear.BackColor = System.Drawing.Color.Transparent
+        Me.lblAcadYear.Font = New System.Drawing.Font("Montserrat", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAcadYear.Location = New System.Drawing.Point(1020, 419)
+        Me.lblAcadYear.Name = "lblAcadYear"
+        Me.lblAcadYear.Size = New System.Drawing.Size(263, 33)
+        Me.lblAcadYear.TabIndex = 6
+        Me.lblAcadYear.Text = "2024 - 2025 | 1st Sem"
         '
         'datagridGradeReport
         '
@@ -118,16 +119,29 @@ Partial Class studentForm
         Me.btnLogout.TabIndex = 8
         Me.btnLogout.UseVisualStyleBackColor = False
         '
+        'btnDownloadCopy
+        '
+        Me.btnDownloadCopy.BackColor = System.Drawing.Color.Transparent
+        Me.btnDownloadCopy.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.downloadButton
+        Me.btnDownloadCopy.FlatAppearance.BorderSize = 0
+        Me.btnDownloadCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDownloadCopy.Location = New System.Drawing.Point(1147, 505)
+        Me.btnDownloadCopy.Name = "btnDownloadCopy"
+        Me.btnDownloadCopy.Size = New System.Drawing.Size(157, 45)
+        Me.btnDownloadCopy.TabIndex = 9
+        Me.btnDownloadCopy.UseVisualStyleBackColor = False
+        '
         'studentForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.studentFormBg
         Me.ClientSize = New System.Drawing.Size(1520, 825)
+        Me.Controls.Add(Me.btnDownloadCopy)
         Me.Controls.Add(Me.btnLogout)
         Me.Controls.Add(Me.datagridGradeReport)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblAcadYear)
+        Me.Controls.Add(Me.lblProgYrSec)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.lblStudId)
         Me.Controls.Add(Me.lblWelcomeStud)
@@ -145,8 +159,9 @@ Partial Class studentForm
     Friend WithEvents lblWelcomeStud As Label
     Friend WithEvents lblStudId As Label
     Friend WithEvents lblName As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblProgYrSec As Label
+    Friend WithEvents lblAcadYear As Label
     Friend WithEvents datagridGradeReport As DataGridView
     Friend WithEvents btnLogout As Button
+    Friend WithEvents btnDownloadCopy As Button
 End Class
