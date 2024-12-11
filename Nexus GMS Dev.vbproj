@@ -223,6 +223,12 @@
     <Compile Include="manageData.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="manageData2.Designer.vb">
+      <DependentUpon>manageData2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="manageData2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="manageData.resx">
       <DependentUpon>manageData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="manageData2.resx">
+      <DependentUpon>manageData2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -422,6 +431,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\btnDeleteData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\btnUpdateData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\manageDataBackground2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

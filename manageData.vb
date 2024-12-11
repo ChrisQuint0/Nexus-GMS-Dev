@@ -1,6 +1,19 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Data.SqlClient
+Imports System.Runtime.Remoting.Messaging
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
+Imports MySql.Data.MySqlClient
 
 Public Class manageData
+    Dim mainFormReference As mainForm = Nothing
+
+    Public Sub New(ByVal mainFormIns As mainForm)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Me.mainFormReference = mainFormIns
+    End Sub
     Private Sub manageData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadData()
     End Sub
@@ -86,11 +99,13 @@ Public Class manageData
 
     Private Sub btnDeleteStudent_Click(sender As Object, e As EventArgs) Handles btnDeleteStudent.Click
         If txtStudDataID.Text.Trim() <> "" Then
-            Dim query As String = "DELETE FROM students WHERE Student_ID = @ID"
+            Dim query As String = "DELETE FROM students WHERE id = @ID"
             DeleteRecord(query, "@ID", txtStudDataID.Text.Trim())
         Else
             MessageBox.Show("Please enter a valid Student ID.")
         End If
+
+        LoadData()
     End Sub
 
     Private Sub btnDeleteProf_Click(sender As Object, e As EventArgs) Handles btnDeleteProf.Click
@@ -100,6 +115,8 @@ Public Class manageData
         Else
             MessageBox.Show("Please enter a valid data ID.")
         End If
+
+        LoadData()
     End Sub
 
     Private Sub btnDeleteCourse_Click(sender As Object, e As EventArgs) Handles btnDeleteCourse.Click
@@ -109,7 +126,147 @@ Public Class manageData
         Else
             MessageBox.Show("Please enter a valid Course ID.")
         End If
+
+        LoadData()
+    End Sub
+
+    Private Sub btnUpdateUser_Click(sender As Object, e As EventArgs) Handles btnUpdateUser.Click
+        ' Connection string (replace with your database details)
+        Dim connectionString As String = "server=localhost; user=root; database=nexus_db"
+
+        ' SQL query to update the user record
+        Dim query As String = "UPDATE users SET User_name = @username, Password = @password, User_type = @type, recovery_answer = @rec_answer WHERE User_ID = @userid"
+
+        ' Create a connection to the database
+        Using connection As New MySqlConnection(connectionString)
+            ' Create a command object
+            Using command As New MySqlCommand(query, connection)
+                ' Add parameters to the query
+                command.Parameters.AddWithValue("@username", txtUsername.Text)
+                command.Parameters.AddWithValue("@password", txtPass.Text)
+                command.Parameters.AddWithValue("@type", txtAccType.Text)
+                command.Parameters.AddWithValue("@rec_answer", txtRecAnswer.Text)
+                command.Parameters.AddWithValue("@userid", txtUserID.Text) ' Assuming you have a txtUserID field for the User_ID
+
+
+                ' Open the connection
+                connection.Open()
+
+                ' Execute the query
+                Dim rowsAffected As Integer = command.ExecuteNonQuery()
+
+                ' Check if the update was successful
+                If rowsAffected > 0 Then
+                    MessageBox.Show("User updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    LoadData()
+                Else
+                    MessageBox.Show("No record was updated. Please check the User ID.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+
+
+            End Using
+        End Using
     End Sub
 
 
+
+    Private Sub dataGVUsers_CellContentClick(sender As Object, e As EventArgs) Handles dataGVUsers.SelectionChanged
+        Try
+            If dataGVUsers.CurrentRow IsNot Nothing Then
+                Dim current_row As Integer = dataGVUsers.CurrentRow.Index
+                txtUserID.Text = dataGVUsers(0, current_row).Value.ToString()
+                txtUsername.Text = dataGVUsers(1, current_row).Value.ToString()
+                txtPass.Text = dataGVUsers(2, current_row).Value.ToString()
+                txtAccType.Text = dataGVUsers(3, current_row).Value.ToString()
+                txtRecAnswer.Text = dataGVUsers(4, current_row).Value.ToString()
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("End of records")
+        End Try
+    End Sub
+
+    Private Sub dataGVStudents_CellContentClick(sender As Object, e As EventArgs) Handles dataGVStudents.SelectionChanged
+        Try
+            If dataGVStudents.CurrentRow IsNot Nothing Then
+                Dim current_row As Integer = dataGVStudents.CurrentRow.Index
+                txtStudDataID.Text = dataGVStudents(0, current_row).Value.ToString()
+                txtStudID.Text = dataGVStudents(1, current_row).Value.ToString()
+                txtStudFullName.Text = dataGVStudents(2, current_row).Value.ToString()
+                txtStudYrSec.Text = dataGVStudents(3, current_row).Value.ToString()
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("End of records")
+        End Try
+    End Sub
+
+    Private Sub dataGVProfs_CellContentClick(sender As Object, e As EventArgs) Handles dataGVProfs.SelectionChanged
+        Try
+            If dataGVProfs.CurrentRow IsNot Nothing Then
+                Dim current_row As Integer = dataGVProfs.CurrentRow.Index
+                txtProfDataID.Text = dataGVProfs(0, current_row).Value.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("End of records")
+        End Try
+    End Sub
+
+    Private Sub dataGVCourses_CellContentClick(sender As Object, e As EventArgs) Handles dataGVCourses.SelectionChanged
+        Try
+            If dataGVCourses.CurrentRow IsNot Nothing Then
+                Dim current_row As Integer = dataGVCourses.CurrentRow.Index
+                txtCourseID.Text = dataGVCourses(0, current_row).Value.ToString()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("End of records")
+        End Try
+    End Sub
+
+    Private Sub btnUpdateStud_Click(sender As Object, e As EventArgs) Handles btnUpdateStud.Click
+        ' Connection string (replace with your database details)
+        Dim connectionString As String = "server=localhost; user=root; database=nexus_db"
+
+        ' SQL query to update the user record
+        Dim query As String = "update students set Student_ID = @studentid, Full_name = @fullname, Year_Section = @yrsec where id = @id"
+
+        ' Create a connection to the database
+        Using connection As New MySqlConnection(connectionString)
+            ' Create a command object
+            Using command As New MySqlCommand(query, connection)
+                ' Add parameters to the query
+                command.Parameters.AddWithValue("@studentid", txtUsername.Text)
+                command.Parameters.AddWithValue("@fullname", txtPass.Text)
+                command.Parameters.AddWithValue("@yrsec", txtAccType.Text)
+                command.Parameters.AddWithValue("@id", txtStudDataID.Text)
+
+
+                ' Open the connection
+                connection.Open()
+
+                ' Execute the query
+                Dim rowsAffected As Integer = command.ExecuteNonQuery()
+
+                ' Check if the update was successful
+                If rowsAffected > 0 Then
+                    MessageBox.Show("User updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    LoadData()
+                Else
+                    MessageBox.Show("No record was updated. Please check the User ID.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+
+
+            End Using
+        End Using
+    End Sub
+
+    Private Sub btnNextManage_Click(sender As Object, e As EventArgs) Handles btnNextManage.Click
+        Dim manageData2 = New manageData2(mainFormReference)
+
+        manageData2.MdiParent = mainFormReference
+        manageData2.StartPosition = FormStartPosition.Manual
+        manageData2.Location = New Point(0, 0)
+
+        manageData2.Show()
+    End Sub
 End Class

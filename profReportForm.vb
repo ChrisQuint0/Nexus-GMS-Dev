@@ -30,6 +30,11 @@ Public Class profReportForm
                 End Using
             End Using
         End If
+
+        dataGradesProf.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+
+        dataGradesProf.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.AllCells
+
     End Sub
 
     Private Sub LoadCourses()

@@ -22,6 +22,7 @@ Partial Class studentForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.picStudFormBg = New System.Windows.Forms.PictureBox()
         Me.lblWelcomeStud = New System.Windows.Forms.Label()
         Me.lblStudId = New System.Windows.Forms.Label()
@@ -102,6 +103,14 @@ Partial Class studentForm
         'datagridGradeReport
         '
         Me.datagridGradeReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Montserrat", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.datagridGradeReport.DefaultCellStyle = DataGridViewCellStyle1
         Me.datagridGradeReport.Location = New System.Drawing.Point(210, 581)
         Me.datagridGradeReport.Name = "datagridGradeReport"
         Me.datagridGradeReport.Size = New System.Drawing.Size(1083, 209)

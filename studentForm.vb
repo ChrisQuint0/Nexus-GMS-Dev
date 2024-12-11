@@ -38,6 +38,13 @@ Public Class studentForm
 
         DisplayGrades(username)
 
+        datagridGradeReport.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        datagridGradeReport.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        datagridGradeReport.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        datagridGradeReport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+
+        datagridGradeReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.AllCells
+
 
     End Sub
 

@@ -183,6 +183,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property btnNextManage() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("btnNextManage", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property btnUpdateData() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("btnUpdateData", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property cancelButtonPass() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("cancelButtonPass", resourceCulture)
@@ -346,6 +366,26 @@ Namespace My.Resources
         Friend ReadOnly Property manageDataBackground() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("manageDataBackground", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property manageDataBackground2() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("manageDataBackground2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property manageDataBackground21() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("manageDataBackground21", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

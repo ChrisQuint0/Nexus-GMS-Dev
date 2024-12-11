@@ -136,6 +136,12 @@
   <data name="encodeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\encodeButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btnUpdateData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\btnUpdateData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="manageDataBackground2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\manageDataBackground2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="addFacultyButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\addFacultyButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -178,6 +184,9 @@
   <data name="logoutButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\logoutButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="manageDataBackground21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\manageDataBackground2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="resetPassForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\resetPassForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -198,6 +207,9 @@
   </data>
   <data name="manageDataBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\manageDataBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnDeleteData" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\btnDeleteData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="assignProfBackButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\assignProfBackButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,7 +238,7 @@
   <data name="assignForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\assignForm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnDeleteData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\btnDeleteData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnNextManage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\btnNextManage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -65,7 +65,7 @@
 
 
     Private Sub btnAssignAdminCard_Click(sender As Object, e As EventArgs) Handles btnAssignAdminCard.Click
-        Dim manageData As New manageData()
+        Dim manageData As New manageData(mainFormReference)
 
         manageData.MdiParent = mainFormReference
         manageData.StartPosition = FormStartPosition.Manual
@@ -75,7 +75,7 @@
     End Sub
 
     Private Sub btnAssignProf_Click(sender As Object, e As EventArgs) Handles btnAssignProf.Click
-        Dim manageData As New manageData()
+        Dim manageData As New manageData(mainFormReference)
 
         manageData.MdiParent = mainFormReference
         manageData.StartPosition = FormStartPosition.Manual
