@@ -438,5 +438,8 @@
   <ItemGroup>
     <None Include="Assets\manageDataBackground2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\btnNextManage.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

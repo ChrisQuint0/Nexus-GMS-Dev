@@ -63,7 +63,9 @@ Public Class encodeGrades
                     ' Execute the program query
                     Dim programReader As MySqlDataReader = programCmd.ExecuteReader()
                     If programReader.Read() Then
-                        comboProgramEncode.Text = programReader("program_name").ToString()
+                        comboProgramEncode.Items.Clear()
+                        comboProgramEncode.Items.Add(programReader("program_name").ToString())
+                        comboProgramEncode.SelectedIndex = 0
                     Else
                         MessageBox.Show("Program not found.")
                     End If
@@ -72,7 +74,9 @@ Public Class encodeGrades
                     programReader.Close()
 
                     ' Set other details like Year/Section, Semester, etc.
-                    comboSectionEncode.Text = yearSection
+                    comboSectionEncode.Items.Clear()
+                    comboSectionEncode.Items.Add(yearSection)
+                    comboSectionEncode.SelectedIndex = 0
                     comboSem.Text = "1st Semester"
 
                     ' Populate courses based on program selection
@@ -101,22 +105,41 @@ Public Class encodeGrades
     End Sub
 
     Private Sub PopulateCourses()
-        Dim query As String = "SELECT course_code, course_title FROM courses WHERE course_ware_id = @course_ware_id"
-        Dim courseWareId As Integer
+        ' Use the IN clause to handle multiple course_ware_id values
+        Dim query As String = "SELECT course_code, course_title FROM courses WHERE course_ware_id IN (@course_ware_ids)"
+        Dim courseWareIds As List(Of Integer) = New List(Of Integer)()
 
         ' Determine course_ware_id from program
-        If comboProgramEncode.Text = "BS in Information Technology" Then
-            courseWareId = 1
-        ElseIf comboProgramEncode.Text = "BS in Nursing" Then
-            courseWareId = 2
+        If comboSectionEncode.Text.Contains("1") Then
+            ' Add courses with course_ware_id of 1 and 2
+            courseWareIds.Add(1)
+            courseWareIds.Add(2)
+        ElseIf comboSectionEncode.Text.Contains("2") Then
+            ' Add courses with course_ware_id of 3 and 4
+            courseWareIds.Add(3)
+            courseWareIds.Add(4)
+        ElseIf comboSectionEncode.Text.Contains("3") Then
+            ' Add courses with course_ware_id of 5 and 6
+            courseWareIds.Add(5)
+            courseWareIds.Add(6)
+        ElseIf comboSectionEncode.Text.Contains("4") Then
+            ' Add courses with course_ware_id of 7 and 8
+            courseWareIds.Add(7)
+            courseWareIds.Add(8)
         Else
             MessageBox.Show("Unknown program selected.")
             Exit Sub
         End If
 
+        ' Dynamically build the query to support multiple IDs
+        Dim placeholders As String = String.Join(",", courseWareIds.Select(Function(id, index) "@id" & index))
+        query = query.Replace("@course_ware_ids", placeholders)
+
         ' Create the command and add parameters
         Dim cmd As New MySqlCommand(query, conn)
-        cmd.Parameters.AddWithValue("@course_ware_id", courseWareId)
+        For i As Integer = 0 To courseWareIds.Count - 1
+            cmd.Parameters.AddWithValue("@id" & i, courseWareIds(i))
+        Next
 
         Try
             ' Open the connection within the method to ensure it's fresh
@@ -148,9 +171,11 @@ Public Class encodeGrades
     End Sub
 
 
+
     Private Sub btnSaveGrades_Click(sender As Object, e As EventArgs) Handles btnSaveEncode.Click
-        Dim conn As New MySqlConnection("server=localhost;user id=root;password=;database=nexus_db;")
-        Dim query As String = "INSERT INTO grades (course_id, Student_ID, Prof_ID, Midterm_Attendance, Midterm_quiz_1, 
+        If lblCollegeGrade.Text <> "00.00" Then
+            Dim conn As New MySqlConnection("server=localhost;user id=root;password=;database=nexus_db;")
+            Dim query As String = "INSERT INTO grades (course_id, Student_ID, Prof_ID, Midterm_Attendance, Midterm_quiz_1, 
                             Midterm_quiz_1_total, Midterm_quiz_2, Midterm_quiz_2_total, Midterm_quiz_3, Midterm_quiz_3_total, 
                             Midterm_quiz_4, Midterm_quiz_4_total, Midterm_quiz_total, Midterm_quiz_items, Midterm_quiz_grade, 
                             Midterm_lab, Midterm_recitation, Midterm_casestudy, Midterm_exam, Midterm_exam_items, 
@@ -169,76 +194,80 @@ Public Class encodeGrades
                             @Finals_recitation, @Finals_casestudy, @Finals_exam, @Finals_exam_items, @Finals_exam_grade, 
                             @Finals_grade, @Semestral_grade, @Semester, @College_grade, @Remarks)"
 
-        Dim cmd As New MySqlCommand(query, conn)
+            Dim cmd As New MySqlCommand(query, conn)
 
-        Dim courseEncode As String = comboCourseEncode.Text
-        Dim parts() As String = courseEncode.Split(":"c)
-        Dim courseId As String = parts(0).Trim()
+            Dim courseEncode As String = comboCourseEncode.Text
+            Dim parts() As String = courseEncode.Split(":"c)
+            Dim courseId As String = parts(0).Trim()
 
-        ' Add parameters
-        cmd.Parameters.AddWithValue("@course_id", courseId)
-        cmd.Parameters.AddWithValue("@Student_ID", maskedTxtStudId.Text)
-        cmd.Parameters.AddWithValue("@Prof_ID", profId) ' Example Professor ID, change accordingly
-        cmd.Parameters.AddWithValue("@Midterm_Attendance", txtMidAtt.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_1", txtMQ1Score.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_1_total", txtMQ1Total.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_2", txtMQ2Score.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_2_total", txtMQ2Total.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_3", txtMQ3Score.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_3_total", txtMQ3Total.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_4", txtMQ4Score.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_4_total", txtMQ4Total.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_total", txtMQuizPerc.Text)
-        cmd.Parameters.AddWithValue("@Midterm_quiz_items", txtMQuizPerc.Text) ' Assuming it's the same
-        cmd.Parameters.AddWithValue("@Midterm_quiz_grade", txtMQuizPerc.Text) ' Assuming it's the same
-        cmd.Parameters.AddWithValue("@Midterm_lab", txtMLab.Text)
-        cmd.Parameters.AddWithValue("@Midterm_recitation", txtMRec.Text)
-        cmd.Parameters.AddWithValue("@Midterm_casestudy", txtMCase.Text)
-        cmd.Parameters.AddWithValue("@Midterm_exam", txtMExamScore.Text)
-        cmd.Parameters.AddWithValue("@Midterm_exam_items", txtMExamTotal.Text)
-        cmd.Parameters.AddWithValue("@Midterm_exam_grade", txtMExamPerc.Text)
-        cmd.Parameters.AddWithValue("@Midterm_grade", lblMidGrade.Text) ' Assuming calculated grade
-        cmd.Parameters.AddWithValue("@Finals_attendance", txtFAtt.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_1", txtFQ1Score.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_1_total", txtFQuiz1Total.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_2", txtFQuiz2Score.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_2_total", txtFQuiz2Total.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_3", txtFQuiz3Score.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_3_total", txtFQuiz3Total.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_4", txtFQuiz4Score.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_4_total", txtFQuiz4Total.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_total", txtFQuizPerc.Text)
-        cmd.Parameters.AddWithValue("@Finals_quiz_items", txtFQuizPerc.Text) ' Assuming it's the same
-        cmd.Parameters.AddWithValue("@Finals_quiz_grade", txtFQuizPerc.Text) ' Assuming it's the same
-        cmd.Parameters.AddWithValue("@Finals_lab", txtFLab.Text)
-        cmd.Parameters.AddWithValue("@Finals_recitation", txtFRec.Text)
-        cmd.Parameters.AddWithValue("@Finals_casestudy", txtFCase.Text)
-        cmd.Parameters.AddWithValue("@Finals_exam", txtFExamScore.Text)
-        cmd.Parameters.AddWithValue("@Finals_exam_items", txtFExamTotal.Text)
-        cmd.Parameters.AddWithValue("@Finals_exam_grade", txtFExamPerc.Text)
-        cmd.Parameters.AddWithValue("@Finals_grade", lblFinGrade.Text) ' Assuming calculated grade
-        cmd.Parameters.AddWithValue("@Semestral_grade", lblSemGrade.Text) ' Assuming calculated grade
-        cmd.Parameters.AddWithValue("@Semester", comboSem.Text)
-        cmd.Parameters.AddWithValue("@College_grade", lblCollegeGrade.Text) ' Assuming calculated grade
+            ' Add parameters
+            cmd.Parameters.AddWithValue("@course_id", courseId)
+            cmd.Parameters.AddWithValue("@Student_ID", maskedTxtStudId.Text)
+            cmd.Parameters.AddWithValue("@Prof_ID", profId) ' Example Professor ID, change accordingly
+            cmd.Parameters.AddWithValue("@Midterm_Attendance", txtMidAtt.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_1", txtMQ1Score.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_1_total", txtMQ1Total.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_2", txtMQ2Score.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_2_total", txtMQ2Total.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_3", txtMQ3Score.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_3_total", txtMQ3Total.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_4", txtMQ4Score.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_4_total", txtMQ4Total.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_total", txtMQuizPerc.Text)
+            cmd.Parameters.AddWithValue("@Midterm_quiz_items", txtMQuizPerc.Text) ' Assuming it's the same
+            cmd.Parameters.AddWithValue("@Midterm_quiz_grade", txtMQuizPerc.Text) ' Assuming it's the same
+            cmd.Parameters.AddWithValue("@Midterm_lab", txtMLab.Text)
+            cmd.Parameters.AddWithValue("@Midterm_recitation", txtMRec.Text)
+            cmd.Parameters.AddWithValue("@Midterm_casestudy", txtMCase.Text)
+            cmd.Parameters.AddWithValue("@Midterm_exam", txtMExamScore.Text)
+            cmd.Parameters.AddWithValue("@Midterm_exam_items", txtMExamTotal.Text)
+            cmd.Parameters.AddWithValue("@Midterm_exam_grade", txtMExamPerc.Text)
+            cmd.Parameters.AddWithValue("@Midterm_grade", lblMidGrade.Text) ' Assuming calculated grade
+            cmd.Parameters.AddWithValue("@Finals_attendance", txtFAtt.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_1", txtFQ1Score.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_1_total", txtFQuiz1Total.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_2", txtFQuiz2Score.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_2_total", txtFQuiz2Total.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_3", txtFQuiz3Score.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_3_total", txtFQuiz3Total.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_4", txtFQuiz4Score.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_4_total", txtFQuiz4Total.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_total", txtFQuizPerc.Text)
+            cmd.Parameters.AddWithValue("@Finals_quiz_items", txtFQuizPerc.Text) ' Assuming it's the same
+            cmd.Parameters.AddWithValue("@Finals_quiz_grade", txtFQuizPerc.Text) ' Assuming it's the same
+            cmd.Parameters.AddWithValue("@Finals_lab", txtFLab.Text)
+            cmd.Parameters.AddWithValue("@Finals_recitation", txtFRec.Text)
+            cmd.Parameters.AddWithValue("@Finals_casestudy", txtFCase.Text)
+            cmd.Parameters.AddWithValue("@Finals_exam", txtFExamScore.Text)
+            cmd.Parameters.AddWithValue("@Finals_exam_items", txtFExamTotal.Text)
+            cmd.Parameters.AddWithValue("@Finals_exam_grade", txtFExamPerc.Text)
+            cmd.Parameters.AddWithValue("@Finals_grade", lblFinGrade.Text) ' Assuming calculated grade
+            cmd.Parameters.AddWithValue("@Semestral_grade", lblSemGrade.Text) ' Assuming calculated grade
+            cmd.Parameters.AddWithValue("@Semester", comboSem.Text)
+            cmd.Parameters.AddWithValue("@College_grade", lblCollegeGrade.Text) ' Assuming calculated grade
 
-        If Double.Parse(lblSemGrade.Text) > 75 Then
-            cmd.Parameters.AddWithValue("@Remarks", "PASSED")
+            If Double.Parse(lblSemGrade.Text) > 75 Then
+                cmd.Parameters.AddWithValue("@Remarks", "PASSED")
+            Else
+                cmd.Parameters.AddWithValue("@Remarks", "FAILED")
+            End If
+
+            Try
+                conn.Open()
+                If cmd.ExecuteNonQuery() > 0 Then
+                    MessageBox.Show("Grades saved successfully!")
+                Else
+                    MessageBox.Show("Failed to save grades.")
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error: " & ex.Message)
+            Finally
+                conn.Close()
+            End Try
         Else
-            cmd.Parameters.AddWithValue("@Remarks", "FAILED")
+            MessageBox.Show("There are missing fields. Please complete all of them", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
-        Try
-            conn.Open()
-            If cmd.ExecuteNonQuery() > 0 Then
-                MessageBox.Show("Grades saved successfully!")
-            Else
-                MessageBox.Show("Failed to save grades.")
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message)
-        Finally
-            conn.Close()
-        End Try
     End Sub
 
     Public Sub enableMidterm()
@@ -824,4 +853,6 @@ Public Class encodeGrades
     Private Sub btnSaveEncode_Click(sender As Object, e As EventArgs) Handles btnSaveEncode.Click
         Dim str = ""
     End Sub
+
+
 End Class

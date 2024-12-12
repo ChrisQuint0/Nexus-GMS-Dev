@@ -226,6 +226,7 @@ Public Class encodeNewData
                 txtNewCourseTitle.Clear()
                 txtNewCourseCurYear.Clear()
                 txtNewCoursewareId.Clear()
+                con.Close()
             End Try
         End If
     End Sub
@@ -328,9 +329,23 @@ Public Class encodeNewData
         comboNewStudCourse.Items.Clear()
 
         If comboNewStudProgram.SelectedItem = "BS in Information Technology" Then
-            comboNewStudCourse.Items.Add("1st Year IT Courseware")
+            comboNewStudCourse.Items.Add("1st Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("1st Year IT Courseware 2nd Sem")
+            comboNewStudCourse.Items.Add("2nd Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("2nd Year IT Courseware 2nd Sem")
+            comboNewStudCourse.Items.Add("3rd Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("3rd Year IT Courseware 2nd Sem")
+            comboNewStudCourse.Items.Add("4th Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("4th Year IT Courseware 2nd Sem")
         ElseIf comboNewStudProgram.SelectedItem = "BS in Computer Science" Then
-            comboNewStudCourse.Items.Add("1st Year CS Courseware")
+            comboNewStudCourse.Items.Add("1st Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("1st Year IT Courseware 2nd Sem")
+            comboNewStudCourse.Items.Add("2nd Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("2nd Year IT Courseware 2nd Sem")
+            comboNewStudCourse.Items.Add("3rd Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("3rd Year IT Courseware 2nd Sem")
+            comboNewStudCourse.Items.Add("4th Year IT Courseware 1st Sem")
+            comboNewStudCourse.Items.Add("4th Year IT Courseware 2nd Sem")
         ElseIf comboNewStudProgram.SelectedItem = "BS in Nursing" Then
             comboNewStudCourse.Items.Add("1st Year Nursing Courseware")
         End If
@@ -339,26 +354,28 @@ Public Class encodeNewData
     Public Sub loadCourses(deptId As Integer)
         comboNewFacultyCourse.Items.Clear()
         If deptId = 1 Then
-            Try
-                con.Open()
-                Dim query As String = "SELECT CONCAT(course_code, ': ', course_title)  AS displayText from courses WHERE course_ware_id = 1"
-                Using cmd As New MySqlCommand(query, con)
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
-                        While reader.Read()
-                            comboNewFacultyCourse.Items.Add(reader("displayText").ToString())
-                        End While
+            For i As Integer = 1 To 8
+                Try
+                    con.Open()
+                    Dim query As String = "SELECT CONCAT(course_code, ': ', course_title)  AS displayText from courses WHERE course_ware_id = " & i
+                    Using cmd As New MySqlCommand(query, con)
+                        Using reader As MySqlDataReader = cmd.ExecuteReader()
+                            While reader.Read()
+                                comboNewFacultyCourse.Items.Add(reader("displayText").ToString())
+                            End While
+                        End Using
                     End Using
-                End Using
 
-            Catch ex As MySqlException
-                MessageBox.Show("Error: " & ex.Message)
-            Finally
-                con.Close()
-            End Try
+                Catch ex As MySqlException
+                    MessageBox.Show("Error: " & ex.Message)
+                Finally
+                    con.Close()
+                End Try
+            Next
         ElseIf deptId = 2 Then
             Try
                 con.Open()
-                Dim query As String = "SELECT CONCAT(course_code, ': ', course_title)  AS displayText from courses WHERE course_ware_id = 2"
+                Dim query As String = "SELECT CONCAT(course_code, ': ', course_title)  AS displayText from courses WHERE course_ware_id = 9"
 
                 Using cmd As New MySqlCommand(query, con)
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
@@ -407,10 +424,11 @@ Public Class encodeNewData
             End If
 
             ' Insert new user securely using parameters
-            Dim insertStudentUser As String = "INSERT INTO users (User_name, Password, User_type) VALUES (@UserName, @Password, 'student');"
+            Dim insertStudentUser As String = "INSERT INTO users (User_name, Password, User_type, recovery_answer) VALUES (@UserName, @Password, 'student', @recovery_answer);"
             Dim cmdInsertUser As New MySqlCommand(insertStudentUser, con)
             cmdInsertUser.Parameters.AddWithValue("@UserName", txtNewStudUsername.Text)
             cmdInsertUser.Parameters.AddWithValue("@Password", txtNewStudPassword.Text)
+            cmdInsertUser.Parameters.AddWithValue("@recovery_answer", txtNewStudRecovery.Text)
             cmdInsertUser.ExecuteNonQuery()
 
             ' Retrieve User_ID for the new user
@@ -421,10 +439,44 @@ Public Class encodeNewData
             ' Determine courseware ID
             Dim selectedCourseware As String = comboNewStudCourse.Text
             Dim coursewareId As Integer
-            If selectedCourseware = "1st Year IT Courseware" Then
+            If selectedCourseware = "1st Year IT Courseware 1st Sem" Then
                 coursewareId = 1
-            ElseIf selectedCourseware = "1st Year Nursing Courseware" Then
+            ElseIf selectedCourseware = "1st Year IT Courseware 2nd Sem" Then
                 coursewareId = 2
+            ElseIf selectedCourseware = "2nd Year IT Courseware 1st Sem" Then
+                coursewareId = 3
+            ElseIf selectedCourseware = "2nd Year IT Courseware 2nd Sem" Then
+                coursewareId = 4
+            ElseIf selectedCourseware = "2nd Year IT Courseware 2nd Sem" Then
+                coursewareId = 5
+            ElseIf selectedCourseware = "3rd Year IT Courseware 1st Sem" Then
+                coursewareId = 6
+            ElseIf selectedCourseware = "3rd Year IT Courseware 2nd Sem" Then
+                coursewareId = 7
+            ElseIf selectedCourseware = "4th Year IT Courseware 1st Sem" Then
+                coursewareId = 8
+            ElseIf selectedCourseware = "4th Year IT Courseware 2nd Sem" Then
+                coursewareId = 9
+            ElseIf selectedCourseware = "1st Year CS Courseware 1st Sem" Then
+                coursewareId = 10
+            ElseIf selectedCourseware = "1st Year CS Courseware 2nd Sem" Then
+                coursewareId = 11
+            ElseIf selectedCourseware = "2nd Year CS Courseware 1st Sem" Then
+                coursewareId = 12
+            ElseIf selectedCourseware = "2nd Year CS Courseware 2nd Sem" Then
+                coursewareId = 13
+            ElseIf selectedCourseware = "2nd Year CS Courseware 2nd Sem" Then
+                coursewareId = 14
+            ElseIf selectedCourseware = "3rd Year CS Courseware 1st Sem" Then
+                coursewareId = 15
+            ElseIf selectedCourseware = "3rd Year CS Courseware 2nd Sem" Then
+                coursewareId = 16
+            ElseIf selectedCourseware = "4th Year CS Courseware 1st Sem" Then
+                coursewareId = 17
+            ElseIf selectedCourseware = "4th Year CS Courseware 2nd Sem" Then
+                coursewareId = 18
+            ElseIf selectedCourseware = "1st Year Nursing Courseware 1st Sem" Then
+                coursewareId = 19
             Else
                 MessageBox.Show("Invalid courseware selected.")
                 Exit Sub
@@ -442,10 +494,6 @@ Public Class encodeNewData
             End While
             reader.Close()
 
-            For Each course As String In courses
-                MessageBox.Show("Course: " & course) ' Debug output to confirm course value
-                ' Your insert code here...
-            Next
 
             ' Insert student details for each course
             For Each course As String In courses
@@ -597,6 +645,8 @@ Public Class encodeNewData
             deptId = 1
         ElseIf comboNewFacultyDept.Text.Contains("CON") Then
             deptId = 2
+        ElseIf comboNewFacultyDept.Text.Contains("CAS") Then
+            deptId = 3
         End If
 
         Dim courseHandling As String = comboNewFacultyCourse.Text
@@ -610,10 +660,11 @@ Public Class encodeNewData
 
             If Not accountExists Then
                 ' Insert a new user account
-                Dim insertUserQuery As String = "INSERT INTO users (User_name, Password, User_type) VALUES (@UserName, @Password, 'student');"
+                Dim insertUserQuery As String = "INSERT INTO users (User_name, Password, User_type, recovery_answer) VALUES (@UserName, @Password, 'professor', @recovery_answer);"
                 Using cmd As New MySqlCommand(insertUserQuery, con)
                     cmd.Parameters.AddWithValue("@UserName", txtNewFacultyUsername.Text)
                     cmd.Parameters.AddWithValue("@Password", txtNewFacultyPass.Text)
+                    cmd.Parameters.AddWithValue("@recovery_answer", txtNewFacultyRecovery.Text)
                     cmd.ExecuteNonQuery()
                 End Using
 
@@ -654,6 +705,8 @@ Public Class encodeNewData
 
     Private Sub comboNewFacultyDept_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboNewFacultyDept.SelectedIndexChanged
         If comboNewFacultyDept.Text = "CCS (College of Computer Studies)" Then
+            loadCourses(1)
+        ElseIf comboNewFacultyDept.Text = "CAS (College of Arts and Sciences)" Then
             loadCourses(1)
         ElseIf comboNewFacultyDept.Text = "CON (College of Nursing)" Then
             loadCourses(2)

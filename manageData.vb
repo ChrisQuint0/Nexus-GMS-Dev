@@ -16,6 +16,18 @@ Public Class manageData
     End Sub
     Private Sub manageData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadData()
+
+        dataGVUsers.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+        dataGVUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.AllCells
+
+        dataGVStudents.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+        dataGVStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.AllCells
+
+        dataGVProfs.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+        dataGVProfs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.AllCells
+
+        dataGVCourses.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+        dataGVCourses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.AllCells
     End Sub
 
     Private Sub LoadData()
@@ -33,7 +45,7 @@ Public Class manageData
 
             ' Load Students Table
             Using connection As New MySqlConnection(connectionString)
-                Dim studentsQuery As String = "SELECT * FROM students"
+                Dim studentsQuery As String = "SELECT * FROM students ORDER BY Student_ID"
                 Dim studentsAdapter As New MySqlDataAdapter(studentsQuery, connection)
                 Dim studentsTable As New DataTable()
                 studentsAdapter.Fill(studentsTable)
@@ -42,7 +54,7 @@ Public Class manageData
 
             ' Load Professors Table
             Using connection As New MySqlConnection(connectionString)
-                Dim profsQuery As String = "SELECT * FROM professors"
+                Dim profsQuery As String = "SELECT * FROM professors ORDER BY Prof_ID"
                 Dim profsAdapter As New MySqlDataAdapter(profsQuery, connection)
                 Dim profsTable As New DataTable()
                 profsAdapter.Fill(profsTable)
@@ -51,7 +63,7 @@ Public Class manageData
 
             ' Load Courses Table
             Using connection As New MySqlConnection(connectionString)
-                Dim coursesQuery As String = "SELECT * FROM courses"
+                Dim coursesQuery As String = "SELECT * FROM courses ORDER BY course_ware_id"
                 Dim coursesAdapter As New MySqlDataAdapter(coursesQuery, connection)
                 Dim coursesTable As New DataTable()
                 coursesAdapter.Fill(coursesTable)
@@ -121,7 +133,7 @@ Public Class manageData
 
     Private Sub btnDeleteCourse_Click(sender As Object, e As EventArgs) Handles btnDeleteCourse.Click
         If txtCourseID.Text.Trim() <> "" Then
-            Dim query As String = "DELETE FROM courses WHERE Course_ID = @ID"
+            Dim query As String = "DELETE FROM courses WHERE course_code = @ID"
             DeleteRecord(query, "@ID", txtCourseID.Text.Trim())
         Else
             MessageBox.Show("Please enter a valid Course ID.")

@@ -23,7 +23,6 @@ Partial Class encodeGrades
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.picEncodeGBg = New System.Windows.Forms.PictureBox()
-        Me.lblProfNameEncode = New System.Windows.Forms.Label()
         Me.comboCourseEncode = New System.Windows.Forms.ComboBox()
         Me.comboProgramEncode = New System.Windows.Forms.ComboBox()
         Me.comboSectionEncode = New System.Windows.Forms.ComboBox()
@@ -85,17 +84,6 @@ Partial Class encodeGrades
         Me.picEncodeGBg.TabIndex = 0
         Me.picEncodeGBg.TabStop = False
         '
-        'lblProfNameEncode
-        '
-        Me.lblProfNameEncode.AutoSize = True
-        Me.lblProfNameEncode.BackColor = System.Drawing.Color.Transparent
-        Me.lblProfNameEncode.Font = New System.Drawing.Font("Montserrat", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProfNameEncode.Location = New System.Drawing.Point(204, 135)
-        Me.lblProfNameEncode.Name = "lblProfNameEncode"
-        Me.lblProfNameEncode.Size = New System.Drawing.Size(335, 37)
-        Me.lblProfNameEncode.TabIndex = 2
-        Me.lblProfNameEncode.Text = "Prof. Rodolfo Mirabel Jr."
-        '
         'comboCourseEncode
         '
         Me.comboCourseEncode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -113,7 +101,6 @@ Partial Class encodeGrades
         Me.comboProgramEncode.Enabled = False
         Me.comboProgramEncode.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboProgramEncode.FormattingEnabled = True
-        Me.comboProgramEncode.Items.AddRange(New Object() {"BS in Information Technology", "BS in Computer Science"})
         Me.comboProgramEncode.Location = New System.Drawing.Point(913, 211)
         Me.comboProgramEncode.Name = "comboProgramEncode"
         Me.comboProgramEncode.Size = New System.Drawing.Size(447, 30)
@@ -125,7 +112,6 @@ Partial Class encodeGrades
         Me.comboSectionEncode.Enabled = False
         Me.comboSectionEncode.Font = New System.Drawing.Font("Montserrat", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboSectionEncode.FormattingEnabled = True
-        Me.comboSectionEncode.Items.AddRange(New Object() {"1A", "2A", "3A", "4A"})
         Me.comboSectionEncode.Location = New System.Drawing.Point(913, 259)
         Me.comboSectionEncode.Name = "comboSectionEncode"
         Me.comboSectionEncode.Size = New System.Drawing.Size(447, 30)
@@ -672,7 +658,6 @@ Partial Class encodeGrades
         Me.Controls.Add(Me.comboSectionEncode)
         Me.Controls.Add(Me.comboProgramEncode)
         Me.Controls.Add(Me.comboCourseEncode)
-        Me.Controls.Add(Me.lblProfNameEncode)
         Me.Controls.Add(Me.picEncodeGBg)
         Me.Name = "encodeGrades"
         Me.Text = "encodeGrades"
@@ -683,7 +668,6 @@ Partial Class encodeGrades
     End Sub
 
     Friend WithEvents picEncodeGBg As PictureBox
-    Friend WithEvents lblProfNameEncode As Label
     Friend WithEvents comboCourseEncode As ComboBox
     Friend WithEvents comboProgramEncode As ComboBox
     Friend WithEvents comboSectionEncode As ComboBox

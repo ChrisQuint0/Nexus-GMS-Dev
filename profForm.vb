@@ -86,6 +86,8 @@ Public Class profForm
                                 deptName = "CCS (College of Computer Studies)"
                             Case 2
                                 deptName = "CON (College of Nursing)"
+                            Case 3
+                                deptName = "CAS (College of Arts and Sciences)"
                             Case Else
                                 deptName = "Unknown Department"
                         End Select
