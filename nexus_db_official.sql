@@ -37,7 +37,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES ('BIO101','Anatomy and Physiology','2024',2),('COMP102','Information Management','2024',1),('IT201','Object Oriented Programming','2024',1),('IT956','Cloud Computing','2023',3),('IT999','Quantum Computing','2024',3),('PHAR201','Pharmacology','2024',2);
+INSERT INTO `courses` VALUES ('BIO101','Anatomy and Physiology','2024',2),('COMP102','Information Management','2024',1),('IT201','Object Oriented Programming','2024',1),('IT875','Machine Learning','2024',1),('IT956','Cloud Computing','2023',3),('IT999','Quantum Computing','2024',3),('PHAR201','Pharmacology','2024',2);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `grades` (
   KEY `Prof_ID` (`Prof_ID`),
   CONSTRAINT `fk_grades_students` FOREIGN KEY (`Student_ID`) REFERENCES `students` (`Student_ID`),
   CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `grades` (
 
 LOCK TABLES `grades` WRITE;
 /*!40000 ALTER TABLE `grades` DISABLE KEYS */;
-INSERT INTO `grades` VALUES (6,'COMP102','23-00165','01-0000001',90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,95.00,90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,95.00,95.00,'1st Semester',1.00,NULL),(7,'IT201','23-00163','01-0000001',90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,95.00,90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,95.00,95.00,'1st Semester',1.00,NULL),(9,'COMP102','23-00163','01-0000001',90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,94.50,90,90,90,90,90,90,90,0,0,100,100,100,90,90,90,90,90,100,94.50,94.50,'1st Semester',1.25,'PASSED');
+INSERT INTO `grades` VALUES (7,'IT201','23-00163','01-0000001',90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,95.00,90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,95.00,95.00,'1st Semester',1.00,NULL),(9,'COMP102','23-00163','01-0000001',90,90,90,90,90,0,0,0,0,100,100,100,90,90,90,90,90,100,94.50,90,90,90,90,90,90,90,0,0,100,100,100,90,90,90,90,90,100,94.50,94.50,'1st Semester',1.25,'PASSED'),(10,'COMP102','23-00164','01-0000001',100,54,100,41,50,0,0,0,0,82,82,82,98,87,93,67,100,84,89.20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.00,0.00,'1st Semester',0.00,'FAILED'),(11,'COMP102','23-00164','01-0000001',100,54,100,41,50,0,0,0,0,82,82,82,98,87,93,67,100,84,89.20,100,54,100,41,50,0,0,0,0,82,82,82,98,87,93,67,90,87,90.32,89.76,'1st Semester',1.75,'PASSED');
 /*!40000 ALTER TABLE `grades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +160,7 @@ CREATE TABLE `professors` (
   CONSTRAINT `fk_course_handling` FOREIGN KEY (`course_handling`) REFERENCES `courses` (`course_code`),
   CONSTRAINT `fk_dept_id` FOREIGN KEY (`dept_id`) REFERENCES `departments` (`Dept_ID`),
   CONSTRAINT `fk_professor_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`User_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +169,7 @@ CREATE TABLE `professors` (
 
 LOCK TABLES `professors` WRITE;
 /*!40000 ALTER TABLE `professors` DISABLE KEYS */;
-INSERT INTO `professors` VALUES (2,'01-0000001','Keith Tornea',1,'COMP102',4,'2A'),(14,'01-0000001','Keith Tornea',1,'COMP102',4,'2B'),(15,'01-0000001','Keith Tornea',1,'IT201',4,'2A');
+INSERT INTO `professors` VALUES (2,'01-0000001','Keith Tornea',1,'COMP102',4,'2A'),(14,'01-0000001','Keith Tornea',1,'COMP102',4,'2B'),(15,'01-0000001','Keith Tornea',1,'IT201',4,'2A'),(16,'01-0000010','Riegie D. Tan',1,'IT201',25,'2A');
 /*!40000 ALTER TABLE `professors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +222,7 @@ CREATE TABLE `students` (
   CONSTRAINT `fk_student_user` FOREIGN KEY (`User_ID`) REFERENCES `users` (`User_ID`),
   CONSTRAINT `students_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`),
   CONSTRAINT `students_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +231,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (6,'23-00163','Doe, John','2A',1,'COMP102',20),(7,'23-00163','Doe, John','2A',1,'IT201',20),(8,'23-00164','Rizal, Jose','2B',1,'COMP102',21),(9,'23-00164','Rizal, Jose','2B',1,'IT201',21),(10,'23-00165','Bonifacio, Andres','2B',1,'COMP102',22),(11,'23-00165','Bonifacio, Andres','2B',1,'IT201',22),(12,'23-00166','Paris Tecson','Nightingale',3,'BIO101',23),(13,'23-00166','Paris Tecson','Nightingale',3,'PHAR201',23);
+INSERT INTO `students` VALUES (6,'23-00163','Doe, John','2A',1,'COMP102',20),(7,'23-00163','Doe, John','2A',1,'IT201',20),(8,'23-00164','Rizal, Jose','2B',1,'COMP102',21),(9,'23-00164','Rizal, Jose','2B',1,'IT201',21),(14,'23-00238','Goto, Ipei B.','2A',1,'COMP102',24),(15,'23-00238','Goto, Ipei B.','2A',1,'IT201',24);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +250,7 @@ CREATE TABLE `users` (
   `recovery_answer` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`User_ID`),
   UNIQUE KEY `User_name` (`User_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +259,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'quinto_christopher','passadmin0713','admin','lani angga'),(4,'tornea_keith','pass567','professor','random mother'),(20,'doe_john','pass','student','random mother2'),(21,'rizal_jose','pass','student',NULL),(22,'bonifacio_andres','pass','student',NULL),(23,'paris_tecson','pass','student',NULL);
+INSERT INTO `users` VALUES (1,'quinto_christopher','passadmin0713','admin','lani angga'),(4,'tornea_keith_12','pass567','professor','random mother'),(20,'doe_john','pass','student','random mother2'),(21,'rizal_jose','pass','student','random mother3'),(24,'ipei','goto','student',NULL),(25,'tan','tan','student',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,4 +347,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-11  3:08:05
+-- Dump completed on 2024-12-11 12:50:54
