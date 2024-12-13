@@ -110,7 +110,7 @@ Public Class encodeGrades
         Dim courseWareIds As List(Of Integer) = New List(Of Integer)()
 
         ' Determine course_ware_id from program
-        If comboSectionEncode.Text.Contains("1") Then
+        If comboSectionEncode.Text.Contains("1  ") Then
             ' Add courses with course_ware_id of 1 and 2
             courseWareIds.Add(1)
             courseWareIds.Add(2)

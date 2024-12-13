@@ -39,7 +39,6 @@ Partial Class encodeNewData
         Me.btnAddFaculty = New System.Windows.Forms.Button()
         Me.btnAddStud = New System.Windows.Forms.Button()
         Me.btnBackEncodeNew = New System.Windows.Forms.Button()
-        Me.btnAdminGenReport = New System.Windows.Forms.Button()
         Me.txtNewStudUsername = New System.Windows.Forms.TextBox()
         Me.txtNewStudPassword = New System.Windows.Forms.TextBox()
         Me.txtNewFacultyUsername = New System.Windows.Forms.TextBox()
@@ -234,19 +233,6 @@ Partial Class encodeNewData
         Me.btnBackEncodeNew.TabIndex = 18
         Me.btnBackEncodeNew.UseVisualStyleBackColor = False
         '
-        'btnAdminGenReport
-        '
-        Me.btnAdminGenReport.BackColor = System.Drawing.Color.Transparent
-        Me.btnAdminGenReport.BackgroundImage = Global.Nexus_GMS_Dev.My.Resources.Resources.generateRButton
-        Me.btnAdminGenReport.Enabled = False
-        Me.btnAdminGenReport.FlatAppearance.BorderSize = 0
-        Me.btnAdminGenReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdminGenReport.Location = New System.Drawing.Point(1058, 32)
-        Me.btnAdminGenReport.Name = "btnAdminGenReport"
-        Me.btnAdminGenReport.Size = New System.Drawing.Size(343, 43)
-        Me.btnAdminGenReport.TabIndex = 19
-        Me.btnAdminGenReport.UseVisualStyleBackColor = False
-        '
         'txtNewStudUsername
         '
         Me.txtNewStudUsername.Enabled = False
@@ -355,7 +341,6 @@ Partial Class encodeNewData
         Me.Controls.Add(Me.txtNewFacultyUsername)
         Me.Controls.Add(Me.txtNewStudPassword)
         Me.Controls.Add(Me.txtNewStudUsername)
-        Me.Controls.Add(Me.btnAdminGenReport)
         Me.Controls.Add(Me.btnBackEncodeNew)
         Me.Controls.Add(Me.btnAddStud)
         Me.Controls.Add(Me.btnAddFaculty)
@@ -398,7 +383,6 @@ Partial Class encodeNewData
     Friend WithEvents btnAddFaculty As Button
     Friend WithEvents btnAddStud As Button
     Friend WithEvents btnBackEncodeNew As Button
-    Friend WithEvents btnAdminGenReport As Button
     Friend WithEvents txtNewStudUsername As TextBox
     Friend WithEvents txtNewStudPassword As TextBox
     Friend WithEvents txtNewFacultyUsername As TextBox

@@ -20,19 +20,14 @@ Public Class encodeNewData
             enableNewStudent()
             disableNewFaculty()
             disableNewCourse()
-            btnAdminGenReport.Enabled = True
         ElseIf comboAccountType.SelectedIndex = 1 Then
             disableNewStudent()
             enableNewFaculty()
             disableNewCourse()
-            btnAdminGenReport.Enabled = True
         ElseIf comboAccountType.SelectedIndex = 2 Then
             disableNewStudent()
             disableNewFaculty()
             enableNewCourse()
-            btnAdminGenReport.Enabled = True
-        Else
-            btnAdminGenReport.Enabled = False
         End If
     End Sub
 
@@ -428,7 +423,7 @@ Public Class encodeNewData
             Dim cmdInsertUser As New MySqlCommand(insertStudentUser, con)
             cmdInsertUser.Parameters.AddWithValue("@UserName", txtNewStudUsername.Text)
             cmdInsertUser.Parameters.AddWithValue("@Password", txtNewStudPassword.Text)
-            cmdInsertUser.Parameters.AddWithValue("@recovery_answer", txtNewStudRecovery.Text)
+            cmdInsertUser.Parameters.AddWithValue("@recovery_answer", LCase(txtNewStudRecovery.Text))
             cmdInsertUser.ExecuteNonQuery()
 
             ' Retrieve User_ID for the new user
@@ -455,28 +450,8 @@ Public Class encodeNewData
                 coursewareId = 7
             ElseIf selectedCourseware = "4th Year IT Courseware 1st Sem" Then
                 coursewareId = 8
-            ElseIf selectedCourseware = "4th Year IT Courseware 2nd Sem" Then
+            ElseIf selectedCourseware = "1st Year Nursing Courseware" Then
                 coursewareId = 9
-            ElseIf selectedCourseware = "1st Year CS Courseware 1st Sem" Then
-                coursewareId = 10
-            ElseIf selectedCourseware = "1st Year CS Courseware 2nd Sem" Then
-                coursewareId = 11
-            ElseIf selectedCourseware = "2nd Year CS Courseware 1st Sem" Then
-                coursewareId = 12
-            ElseIf selectedCourseware = "2nd Year CS Courseware 2nd Sem" Then
-                coursewareId = 13
-            ElseIf selectedCourseware = "2nd Year CS Courseware 2nd Sem" Then
-                coursewareId = 14
-            ElseIf selectedCourseware = "3rd Year CS Courseware 1st Sem" Then
-                coursewareId = 15
-            ElseIf selectedCourseware = "3rd Year CS Courseware 2nd Sem" Then
-                coursewareId = 16
-            ElseIf selectedCourseware = "4th Year CS Courseware 1st Sem" Then
-                coursewareId = 17
-            ElseIf selectedCourseware = "4th Year CS Courseware 2nd Sem" Then
-                coursewareId = 18
-            ElseIf selectedCourseware = "1st Year Nursing Courseware 1st Sem" Then
-                coursewareId = 19
             Else
                 MessageBox.Show("Invalid courseware selected.")
                 Exit Sub
@@ -562,6 +537,7 @@ Public Class encodeNewData
                 txtNewFacultyPass.Clear()
                 txtNewFacultyUsername.ReadOnly = False
                 txtNewFacultyPass.ReadOnly = False
+                txtNewFacultyRecovery.ReadOnly = False
                 accountExists = False
             End If
 
@@ -664,7 +640,7 @@ Public Class encodeNewData
                 Using cmd As New MySqlCommand(insertUserQuery, con)
                     cmd.Parameters.AddWithValue("@UserName", txtNewFacultyUsername.Text)
                     cmd.Parameters.AddWithValue("@Password", txtNewFacultyPass.Text)
-                    cmd.Parameters.AddWithValue("@recovery_answer", txtNewFacultyRecovery.Text)
+                    cmd.Parameters.AddWithValue("@recovery_answer", LCase(txtNewFacultyRecovery.Text))
                     cmd.ExecuteNonQuery()
                 End Using
 
