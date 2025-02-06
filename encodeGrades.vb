@@ -23,7 +23,7 @@ Public Class encodeGrades
             If confirmEsc = DialogResult.Yes Then
                 Application.Exit()
             End If
-        End If
+            End If
     End Sub
     Private Sub btnBackEncode_Click(sender As Object, e As EventArgs) Handles btnBackEncode.Click
         Me.Close()
